@@ -12,7 +12,7 @@ import {
     ASC, DESC,
 } from 'utils/sortDirection'
 
-import BaseCell from 'BaseCell'
+import BaseCell from '../BaseCell'
 import SortIcons from './SortIcons'
 
 import useStyles from './HeaderCell.style'
