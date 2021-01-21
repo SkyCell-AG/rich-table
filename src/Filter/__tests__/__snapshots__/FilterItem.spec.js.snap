@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app/shared-components/Filter/FilterItem should match snapshot should match snapshot 1`] = `
+<FilterItem
+  checked={true}
+  count={10}
+  disabled={false}
+  label="2500C"
+  onClick={[MockFunction]}
+  value="9x1EF20BD4D474D284ED257A1DAE235766F6EB3C2255BB0901832616UY"
+/>
+`;

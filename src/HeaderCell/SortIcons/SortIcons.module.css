@@ -1,0 +1,10 @@
+.root {
+    display: flex;
+    flex-direction: column;
+}
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    line-height: 0.3;
+}

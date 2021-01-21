@@ -1,0 +1,13 @@
+.wrapper {
+    min-height: 100%;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.dragging {
+    opacity: 50%;
+    transform: scale(0.7);
+    background: silver;
+}
