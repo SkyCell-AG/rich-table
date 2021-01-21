@@ -8,13 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: use Node 14
+      - name: Install Node
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: bahmutov/npm-install@v1
       - name: Compile
         run: npm run compile
