@@ -1,5 +1,5 @@
 {
-  "name": "sky-table",
+  "name": "@skycell/rich-table",
   "version": "0.1.0",
   "private": false,
   "main": "build/index.js",
