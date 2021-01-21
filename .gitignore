@@ -11,6 +11,7 @@ test-report.xml
 /build
 build.7z
 build.zip
+dist
 
 # misc
 .env
