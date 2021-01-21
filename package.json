@@ -1,8 +1,8 @@
 {
-  "name": "@skycell/richtable",
+  "name": "@skycell-ag/richtable",
   "version": "0.1.0",
   "private": false,
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "files": [
     "dist",
     "README.md"
