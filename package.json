@@ -1,6 +1,6 @@
 {
   "name": "@skycell-ag/richtable",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "private": false,
   "main": "dist/index.js",
   "files": [
@@ -61,6 +61,7 @@
     "@storybook/node-logger": "6.1.14",
     "@storybook/preset-create-react-app": "3.1.5",
     "@storybook/react": "6.1.14",
+    "babel-plugin-module-resolver": "4.1.0",
     "cross-env": "7.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
