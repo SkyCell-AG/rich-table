@@ -5,9 +5,10 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import List from '@material-ui/core/List'
 import TextField from '@material-ui/core/TextField'
 
-import FilterPopover from '../FilterPopover'
 import * as statuses from 'utils/requestStatuses'
 import getDataFromInput from 'utils/getDataFromInput'
+
+import FilterPopover from '../FilterPopover'
 
 import FilterItem from './FilterItem'
 

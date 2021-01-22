@@ -4,7 +4,7 @@ import {
     useEffect,
 } from 'react'
 
-import createReducer from '../utils/createReducer'
+import createReducer from 'utils/createReducer'
 
 const SET = 'SET'
 const REMOVE = 'REMOVE'

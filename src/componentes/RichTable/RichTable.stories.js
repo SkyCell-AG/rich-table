@@ -11,7 +11,8 @@ import {
 
 import { createStore, combineReducers } from 'redux'
 
-import reducer from './reducer'
+import reducer from 'componentes/InfiniteList/store/reducer'
+
 import RichTable from './index'
 
 export const actions = {

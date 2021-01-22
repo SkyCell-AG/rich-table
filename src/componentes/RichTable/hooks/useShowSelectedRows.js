@@ -4,7 +4,7 @@ import {
 } from 'react'
 import get from 'lodash/get'
 
-import SelectRowCell from '../SelectRowCell'
+import SelectRowCell from 'componentes/SelectRowCell'
 
 const useShowSelectedRows = ({
     columns,

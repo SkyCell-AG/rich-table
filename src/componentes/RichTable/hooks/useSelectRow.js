@@ -1,5 +1,3 @@
-/* eslint-disable */
-/* eslint-disable */
 import {
     useReducer,
     useCallback,
@@ -9,7 +7,7 @@ import {
 
 import createReducer from 'app/utils/createReducer'
 
-import SelectRowCell from '../SelectRowCell'
+import SelectRowCell from 'componentes/SelectRowCell'
 
 const SELECT_ALL = 'SELECT_ALL'
 const SELECT = 'SELECT'

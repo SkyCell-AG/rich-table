@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ListItem from '@material-ui/core/ListItem'
 import Chip from '@material-ui/core/Chip'
 
-import Checkbox from 'Checkbox'
+import Checkbox from 'componentes/Checkbox'
 
 import useStyles from './FilterItem.styles'
 

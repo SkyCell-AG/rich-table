@@ -4,7 +4,7 @@ import {
     useReducer,
 } from 'react'
 
-import createReducer from '../utils/createReducer'
+import createReducer from 'utils/createReducer'
 
 const SET = 'SET'
 

@@ -11,10 +11,11 @@ import {
 
 import getComponentProps from 'utils/getComponentProps'
 
-import BaseCell from './BaseCell'
-import HeaderCell from './HeaderCell'
-import InfiniteList from './InfiniteList'
-import DndCell from './DndCell'
+import BaseCell from 'componentes/BaseCell'
+import HeaderCell from 'componentes/HeaderCell'
+import InfiniteList from 'componentes/InfiniteList'
+import DndCell from 'componentes/DndCell'
+
 import useStyles from './RichTable.style'
 
 const propTypes = {

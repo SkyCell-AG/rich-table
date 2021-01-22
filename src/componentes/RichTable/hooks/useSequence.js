@@ -2,7 +2,7 @@ import {
     useEffect, useReducer, useCallback,
 } from 'react'
 
-import createReducer from '../utils/createReducer'
+import createReducer from 'utils/createReducer'
 
 const SET_COLUMNS_SEQUENCE = 'SET_COLUMNS_SEQUENCE'
 const CHANGE_COLUMNS_SEQUENCE = 'CHANGE_COLUMNS_SEQUENCE'

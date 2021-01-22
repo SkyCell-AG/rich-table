@@ -7,11 +7,11 @@ import {
     useTheme,
 } from '@material-ui/core/styles'
 
-import Filter from 'Filter'
 import {
     ASC, DESC,
 } from 'utils/sortDirection'
 
+import Filter from '../Filter'
 import BaseCell from '../BaseCell'
 import SortIcons from './SortIcons'
 
