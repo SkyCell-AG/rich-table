@@ -176,19 +176,13 @@ const RichTableContainer = ({
         removeSort,
     ] = useSort(predefinedSort)
 
-    const loadParams = useCallback(
-        () => {
-            return generateParams(filter, sort)()
-        },
-        [
-            filter,
-            sort,
-        ],
-    )
+    const params = useMemo(() => {
+        return generateParams(filter, sort)
+    }, [filter, sort])
 
     const loadWithParams = useCallback((page) => {
         return load({
-            ...loadParams,
+            ...params,
             typeMapping,
             page,
         }).catch((err) => {
@@ -197,7 +191,7 @@ const RichTableContainer = ({
         })
     }, [
         load,
-        loadParams,
+        params,
         typeMapping,
     ])
 
