@@ -102,11 +102,13 @@ const RichTable = (props) => {
     const selectedElm = useRef()
 
     useEffect(() => {
-        if (selectedElm.current.scrollIntoViewIfNeeded) {
-            selectedElm.current.scrollIntoViewIfNeeded()
-        } else {
-            // IE, Firefox
-            selectedElm.current.scrollIntoView()
+        if (selectedRowId) {
+            if (selectedElm.current.scrollIntoViewIfNeeded) {
+                selectedElm.current.scrollIntoViewIfNeeded()
+            } else {
+                // IE, Firefox
+                selectedElm.current.scrollIntoView()
+            }
         }
     }, [selectedRowId])
 
