@@ -1,5 +1,7 @@
 import React, {
     useCallback,
+    useEffect,
+    useRef,
 } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
@@ -97,6 +99,18 @@ const RichTable = (props) => {
         rerenderInfinitList,
     ])
 
+    const selectedElm = useRef()
+
+    useEffect(() => {
+        if (selectedElm.current.scrollIntoViewIfNeeded) {
+            selectedElm.current.scrollIntoViewIfNeeded()
+        } else {
+            // IE, Firefox
+            selectedElm.current.scrollIntoView()
+        }
+    }, [selectedRowId])
+
+
     return (
         <div
             className={clsx(
@@ -186,6 +200,7 @@ const RichTable = (props) => {
                                 className={clsx({
                                     [classes.selectedRow]: selectedRowId === uniqFieldValue,
                                 })}
+                                ref={selectedRowId === uniqFieldValue ? selectedElm : null}
                                 key={`row-${uniqFieldValue}`}
                                 onKeyDown={rowClick(rowProps)}
                                 onClick={rowClick(rowProps)}
