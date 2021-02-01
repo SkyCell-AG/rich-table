@@ -11,12 +11,10 @@ import {
     useTheme,
 } from '@material-ui/core/styles'
 
-import getComponentProps from 'utils/getComponentProps'
-
-import BaseCell from 'componentes/BaseCell'
 import HeaderCell from 'componentes/HeaderCell'
 import InfiniteList from 'componentes/InfiniteList'
 import DndCell from 'componentes/DndCell'
+import BaseRow from 'componentes/BaseRow'
 
 import useStyles from './RichTable.style'
 
@@ -52,6 +50,7 @@ const propTypes = {
     }),
     editing: PropTypes.bool,
     selectedRowId: PropTypes.string,
+    detailPanel: PropTypes.func,
 }
 
 const defaultProps = {
@@ -64,6 +63,7 @@ const defaultProps = {
     classNames: {},
     editing: false,
     selectedRowId: '',
+    detailPanel: undefined,
 }
 
 const RichTable = (props) => {
@@ -82,6 +82,7 @@ const RichTable = (props) => {
         editing,
         selectedRowId,
         name,
+        detailPanel,
     } = props
 
     const theme = useTheme()
@@ -151,7 +152,12 @@ const RichTable = (props) => {
                     key={infinitListKey}
                     onUpdateMatchedResults={setMatchedResults}
                     beforeList={(
-                        <div className={classes.headings}>
+                        <div className={clsx(
+                            classes.headings,
+                            {
+                                [classes.withDetailPanel]: detailPanel
+                            },
+                        )}>
                             {columns.map(({
                                 Header = HeaderCell,
                                 mapHeaderProps = noop,
@@ -201,72 +207,20 @@ const RichTable = (props) => {
 
                         return (
                             <div
-                                data-test-id="richtable-row"
-                                className={clsx({
-                                    [classes.selectedRow]: selectedRowId === uniqFieldValue,
-                                })}
                                 ref={selectedRowId === uniqFieldValue ? selectedElm : null}
                                 key={`row-${uniqFieldValue}`}
-                                onKeyDown={rowClick(rowProps)}
-                                onClick={rowClick(rowProps)}
                             >
-                                <div
-                                    className={clsx(
-                                        classes.rowContent,
-                                        {
-                                            [classes.cursorPointer]: !Array.isArray(selectedRows),
-                                        },
-                                        {
-                                            [classes.selectedRowContent]: rowSelected,
-                                        },
-                                    )}
-                                >
-                                    {columns.map(({
-                                        Cell = BaseCell,
-                                        id,
-                                        width,
-                                        mapCellProps = noop,
-                                        component: Component,
-                                        propsMapper,
-                                        props: columnProps,
-                                    }) => {
-                                        const value = get(rowProps, mapCellProps)
-
-                                        const cellProps = typeof mapCellProps === 'string' ? {
-                                            children: Component
-                                                ? (
-                                                    <Component
-                                                        name={name}
-                                                        value={value}
-                                                        mapCellProps={mapCellProps}
-                                                        {...getComponentProps(
-                                                            propsMapper,
-                                                            rowProps,
-                                                        )}
-                                                    />
-                                                )
-                                                : value,
-                                        } : mapCellProps(rowProps)
-
-                                        return (
-                                            <div
-                                                style={{
-                                                    width,
-                                                }}
-                                                className={classes.cell}
-                                                key={`cell-${id}`}
-                                                data-testid={`cell-${id}`}
-                                            >
-                                                <Cell
-                                                    id={id}
-                                                    {...rowProps}
-                                                    {...columnProps}
-                                                    {...cellProps}
-                                                />
-                                            </div>
-                                        )
-                                    })}
-                                </div>
+                                <BaseRow
+                                    name={name}
+                                    selectedRows={selectedRows}
+                                    rowSelected={rowSelected}
+                                    selectedRowId={selectedRowId}
+                                    uniqFieldValue={uniqFieldValue}
+                                    rowClick={rowClick}
+                                    rowProps={rowProps}
+                                    columns={columns}
+                                    detailPanel={detailPanel}
+                                />
                             </div>
                         )
                     }}
