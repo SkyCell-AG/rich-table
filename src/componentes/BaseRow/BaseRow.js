@@ -78,8 +78,6 @@ const BaseRow = (props) => {
                     classes.rowContent,
                     {
                         [classes.cursorPointer]: !Array.isArray(selectedRows),
-                    },
-                    {
                         [classes.selectedRowContent]: rowSelected,
                     },
                 )}
