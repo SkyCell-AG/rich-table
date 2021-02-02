@@ -16,11 +16,11 @@ import useStyles from './BaseRow.style'
 
 const propTypes = {
     name: PropTypes.string.isRequired,
-    selectedRows: PropTypes.object,
+    selectedRows: PropTypes.object, // eslint-disable-line
     rowSelected: PropTypes.string,
     uniqFieldValue: PropTypes.string.isRequired,
     rowClick: PropTypes.func.isRequired,
-    rowProps: PropTypes.object,
+    rowProps: PropTypes.object, // eslint-disable-line
     columns: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -30,12 +30,14 @@ const propTypes = {
         }).isRequired,
     ).isRequired,
     detailPanel: PropTypes.func,
+    selectedRowId: PropTypes.string,
 }
 
 const defaultProps = {
     selectedRows: {},
     detailPanel: undefined,
     rowSelected: undefined,
+    selectedRowId: undefined,
     rowProps: {},
 }
 
@@ -54,7 +56,10 @@ const BaseRow = (props) => {
 
     const classes = useStyles()
 
-    const [isHide, setHide] = useState(true)
+    const [
+        isHide,
+        setHide,
+    ] = useState(true)
     const togglePanel = useCallback(() => {
         setHide(!isHide)
     }, [isHide])
@@ -83,60 +88,65 @@ const BaseRow = (props) => {
                     detailPanel && (
                         <div className={classes.iconWrapper}>
                             <ChevronRight className={clsx(
-                                {[classes.isOpenIcon]: !isHide},
-                            )} />
-                        </div>
-                    )
-                }
-                {columns.map(({
-                                  Cell = BaseCell,
-                                  id,
-                                  width,
-                                  mapCellProps = noop,
-                                  component: Component,
-                                  propsMapper,
-                                  props: columnProps,
-                              }) => {
-                    const value = get(rowProps, mapCellProps)
-
-                    const cellProps = typeof mapCellProps === 'string' ? {
-                        children: Component
-                            ? (
-                                <Component
-                                    name={name}
-                                    value={value}
-                                    mapCellProps={mapCellProps}
-                                    {...getComponentProps(
-                                        propsMapper,
-                                        rowProps,
-                                    )}
-                                />
-                            )
-                            : value,
-                    } : mapCellProps(rowProps)
-
-                    return (
-                        <div
-                            style={{
-                                width,
-                            }}
-                            className={classes.cell}
-                            key={`cell-${id}`}
-                            data-testid={`cell-${id}`}
-                        >
-                            <Cell
-                                id={id}
-                                {...rowProps}
-                                {...columnProps}
-                                {...cellProps}
+                                {
+                                    [classes.isOpenIcon]: !isHide,
+                                },
+                            )}
                             />
                         </div>
                     )
-                })}
+                }
+                {
+                    columns.map(({
+                        Cell = BaseCell,
+                        id,
+                        width,
+                        mapCellProps = noop,
+                        component: Component,
+                        propsMapper,
+                        props: columnProps,
+                    }) => {
+                        const value = get(rowProps, mapCellProps)
+
+                        const cellProps = typeof mapCellProps === 'string' ? {
+                            children: Component
+                                ? (
+                                    <Component
+                                        name={name}
+                                        value={value}
+                                        mapCellProps={mapCellProps}
+                                        {...getComponentProps(
+                                            propsMapper,
+                                            rowProps,
+                                        )}
+                                    />
+                                )
+                                : value,
+                        } : mapCellProps(rowProps)
+
+                        return (
+                            <div
+                                style={{
+                                    width,
+                                }}
+                                className={classes.cell}
+                                key={`cell-${id}`}
+                                data-testid={`cell-${id}`}
+                            >
+                                <Cell
+                                    id={id}
+                                    {...rowProps}
+                                    {...columnProps}
+                                    {...cellProps}
+                                />
+                            </div>
+                        )
+                    })
+                }
             </div>
             {
                 detailPanel && (
-                    <div className={isHide? classes.hideDetails : classes.showDetails}>
+                    <div className={isHide ? classes.hideDetails : classes.showDetails}>
                         {detailPanel(rowProps)}
                     </div>
                 )

@@ -116,7 +116,6 @@ const RichTable = (props) => {
         selectedElm.current,
     ])
 
-
     return (
         <div
             className={clsx(
@@ -155,9 +154,10 @@ const RichTable = (props) => {
                         <div className={clsx(
                             classes.headings,
                             {
-                                [classes.withDetailPanel]: detailPanel
+                                [classes.withDetailPanel]: detailPanel,
                             },
-                        )}>
+                        )}
+                        >
                             {columns.map(({
                                 Header = HeaderCell,
                                 mapHeaderProps = noop,

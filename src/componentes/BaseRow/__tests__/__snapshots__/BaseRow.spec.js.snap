@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/BaseRow should match snapshot 1`] = `
+<div
+  className=""
+  data-test-id="richtable-row"
+>
+  <div
+    className="undefined"
+  >
+    <div
+      data-testid="cell-noteSubject"
+      key="cell-noteSubject"
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+    >
+      <BaseCell
+        changedBy="alessio.conese@skycell.ch"
+        className=""
+        id="noteSubject"
+        noteSubject="Logger Exchange"
+        noteText="Internal: ffff477a6c5d"
+        validDateTimestamp="28.12.2020 10:35:56 +0100"
+      >
+        Logger Exchange
+      </BaseCell>
+    </div>
+    <div
+      data-testid="cell-noteText"
+      key="cell-noteText"
+      style={
+        Object {
+          "width": undefined,
+        }
+      }
+    >
+      <BaseCell
+        changedBy="alessio.conese@skycell.ch"
+        className=""
+        id="noteText"
+        noteSubject="Logger Exchange"
+        noteText="Internal: ffff477a6c5d"
+        validDateTimestamp="28.12.2020 10:35:56 +0100"
+      >
+        Internal: ffff477a6c5d
+      </BaseCell>
+    </div>
+  </div>
+</div>
+`;
