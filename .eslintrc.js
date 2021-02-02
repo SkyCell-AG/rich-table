@@ -1,5 +1,4 @@
 module.exports = {
-    ignorePatterns: ['**/@fuse/**'],
     env: {
         browser: true,
         es6: true,
