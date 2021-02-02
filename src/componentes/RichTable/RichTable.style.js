@@ -79,25 +79,12 @@ const useStyles = makeStyles({
     cell: {
         width: '100%',
         overflow: 'hidden',
-        borderBottom: '1px solid',
-        borderColor: (theme) => { return theme.palette.secondary[100] },
-    },
-    rowContent: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        minHeight: '40px',
-        '&:hover': {
-            backgroundColor: (theme) => { return theme.palette.primary[50] },
-        },
     },
     cursorPointer: {
         cursor: 'pointer',
     },
-    selectedRowContent: {
-        opacity: 0.7,
-    },
-    selectedRow: {
-        background: (theme) => { return `${theme.palette.primary[50]} !important` },
+    withDetailPanel: {
+        paddingLeft: 24,
     },
 })
 

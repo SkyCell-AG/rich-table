@@ -23,6 +23,7 @@ exports[`app/shared-components/Filter should match snapshot should match snapsho
         checked={true}
         count={10}
         disabled={false}
+        key="9x1EF20BD4D474D284ED257A1DAE235766F6EB3C2255BB0901832616UY-filterItem"
         label="2500C"
         onClick={[Function]}
         value="9x1EF20BD4D474D284ED257A1DAE235766F6EB3C2255BB0901832616UY"
@@ -31,6 +32,7 @@ exports[`app/shared-components/Filter should match snapshot should match snapsho
         checked={false}
         count={4}
         disabled={false}
+        key="9x1EF20BD4D474D284ED257A1DAE235766F6EB3C2255BB0901832618B5-filterItem"
         label="1500C"
         onClick={[Function]}
         value="9x1EF20BD4D474D284ED257A1DAE235766F6EB3C2255BB0901832618B5"

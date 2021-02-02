@@ -24,7 +24,10 @@ const propTypes = {
     set: PropTypes.func.isRequired,
     load: PropTypes.func.isRequired,
     predefinedFilter: PropTypes.object, // eslint-disable-line
-    filters: PropTypes.array, // eslint-disable-line
+    filters: PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.string,
+        label: PropTypes.string,
+    })),
     status: PropTypes.oneOf([
         statuses.SUCCESS,
         statuses.FAILURE,
@@ -154,7 +157,12 @@ const Filter = (props) => {
                             value={searchPhrase}
                             autoFocus
                         />
-                        {filterItems.map(FilterItem)}
+                        {filterItems.map((item) => {
+                            return {
+                                ...item,
+                                key: `${item.value}-filterItem`,
+                            }
+                        }).map(FilterItem)}
                     </List>
                 )}
             </div>
