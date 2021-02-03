@@ -29,7 +29,7 @@ const propTypes = {
             props: PropTypes.object, // eslint-disable-line
         }).isRequired,
     ).isRequired,
-    detailPanel: PropTypes.node,
+    detailPanel: PropTypes.func,
     selectedRowId: PropTypes.string,
 }
 
