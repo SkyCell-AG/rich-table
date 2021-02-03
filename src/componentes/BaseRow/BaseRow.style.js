@@ -29,19 +29,16 @@ const useStyles = makeStyles((theme) => {
         hideDetails: {
             display: 'none',
         },
-        showDetails: {
-            display: 'block',
-        },
         iconWrapper: {
             height: 'auto',
             borderBottom: `1px solid ${theme.palette.secondary[100]}`,
             display: 'flex',
             alignItems: 'center',
-            color: theme.palette.secondary[600]
+            color: theme.palette.secondary[600],
         },
         isOpenIcon: {
             transform: 'rotate(90deg)',
-        }
+        },
     }
 })
 
