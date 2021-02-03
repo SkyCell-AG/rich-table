@@ -29,7 +29,7 @@ const propTypes = {
             props: PropTypes.object, // eslint-disable-line
         }).isRequired,
     ).isRequired,
-    detailPanel: PropTypes.func,
+    detailPanel: PropTypes.node,
     selectedRowId: PropTypes.string,
 }
 
@@ -51,7 +51,7 @@ const BaseRow = (props) => {
         rowClick,
         rowProps,
         columns,
-        detailPanel,
+        detailPanel: DetailPanel,
     } = props
 
     const classes = useStyles()
@@ -70,8 +70,8 @@ const BaseRow = (props) => {
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
             })}
-            onKeyDown={detailPanel ? togglePanel : rowClick(rowProps)}
-            onClick={detailPanel ? togglePanel : rowClick(rowProps)}
+            onKeyDown={DetailPanel ? togglePanel : rowClick(rowProps)}
+            onClick={DetailPanel ? togglePanel : rowClick(rowProps)}
         >
             <div
                 className={clsx(
@@ -83,7 +83,7 @@ const BaseRow = (props) => {
                 )}
             >
                 {
-                    detailPanel && (
+                    DetailPanel && (
                         <div className={classes.iconWrapper}>
                             <ChevronRight className={clsx(
                                 {
@@ -143,13 +143,20 @@ const BaseRow = (props) => {
                 }
             </div>
             {
-                detailPanel && (
-                    <div className={isHide ? classes.hideDetails : classes.showDetails}>
-                        {detailPanel(rowProps)}
+                DetailPanel && (
+                    <div className={clsx(
+                        {
+                            [classes.hideDetails]: isHide,
+                        },
+                    )}
+                    >
+                        <DetailPanel
+                            name={name}
+                            rowProps={rowProps}
+                        />
                     </div>
                 )
             }
-
         </div>
     )
 }

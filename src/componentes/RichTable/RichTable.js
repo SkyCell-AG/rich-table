@@ -50,7 +50,7 @@ const propTypes = {
     }),
     editing: PropTypes.bool,
     selectedRowId: PropTypes.string,
-    detailPanel: PropTypes.func,
+    detailPanel: PropTypes.node,
 }
 
 const defaultProps = {
