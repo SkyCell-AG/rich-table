@@ -11,112 +11,75 @@ import {
 const initialState = {}
 
 const inifiniteListReducer = createReducer({
-    [LOAD_DATA.pending]: (state, {
-        meta: {
-            appName,
-        },
-    }) => {
+    [LOAD_DATA.pending]: (state) => {
         return {
             ...state,
-            [appName]: {
-                ...state[appName],
-                status: statuses.PENDING,
-            },
+            status: statuses.PENDING,
         }
     },
-    [LOAD_DATA.failure]: (state, {
-        meta: {
-            appName,
-        }, err,
-    }) => {
+    [LOAD_DATA.failure]: (
+        state,
+        err
+    ) => {
         return {
             ...state,
-            [appName]: {
-                ...state[appName],
-                status: statuses.FAILURE,
-                err,
-            },
+            status: statuses.FAILURE,
+            err,
         }
     },
     [LOAD_DATA.success]: (state,
         {
             payload, meta: {
-                appName, page, matchedResults,
+                page, matchedResults,
             },
         }) => {
         return {
             ...state,
-            [appName]: {
-                ...state[appName],
-                status: statuses.SUCCESS,
-                data: payload,
-                page,
-                matchedResults,
-            },
+            status: statuses.SUCCESS,
+            data: payload,
+            page,
+            matchedResults,
         }
     },
     [ADD_DATA_ENTRY]: (state,
         {
             payload,
-            meta: {
-                appName,
-            },
         }) => {
         return {
             ...state,
-            [appName]: {
-                ...state[appName],
-                data: [
-                    payload,
-                    ...state[appName].data,
-                ],
-            },
+            data: [
+                payload,
+                ...state.data,
+            ],
         }
     },
     [UPDATE_DATA_ENTRY]: (
         state,
         {
             payload,
-            meta: {
-                appName,
-            },
         },
     ) => {
         return {
             ...state,
-            [appName]: {
-                ...state[appName],
-                data: [
-                    payload,
-                    ...state[appName].data.filter((item) => {
-                        // TODO remove this after new domain api is implementend everywhere
-                        if (item.contentid) {
-                            return item.contentid !== payload.contentid
-                        }
-
-                        return item.id !== payload.id
-                    }),
-                ],
-            },
+            data: [
+                payload,
+                ...data.filter((item) => {
+                    return item.id !== payload.id
+                }),
+            ],
         }
     },
     [DELETE_DATA_ENTRY]: (
         state,
         {
             payload,
-            meta: {
-                appName,
-            },
         },
     ) => {
         return {
             ...state,
-            [appName]: {
-                ...state[appName],
-                data: state[appName].data.filter((item) => {
-                    return item.id !== payload.id
-                }),
-            },
+            ...data.filter((item) => {
+                return item.id !== payload.id
+            }),
         }
     },
 }, initialState)

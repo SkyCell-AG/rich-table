@@ -15,51 +15,36 @@ export function loadDataSuccess({
     }
 }
 
-export function loadDataPending(appName) {
+export function loadDataPending() {
     return {
         type: LOAD_DATA.pending,
-        meta: {
-            appName,
-        },
     }
 }
 
-export function loadDataFailure(appName, err) {
+export function loadDataFailure(err) {
     return {
         type: LOAD_DATA.failure,
-        meta: {
-            appName,
-        },
         err,
     }
 }
 
-export function addDataEntry(appName, entry) {
+export function addDataEntry(entry) {
     return {
         type: ADD_DATA_ENTRY,
-        meta: {
-            appName,
-        },
         payload: entry,
     }
 }
 
-export function updateDataEntry(appName, entry) {
+export function updateDataEntry(entry) {
     return {
         type: UPDATE_DATA_ENTRY,
-        meta: {
-            appName,
-        },
         payload: entry,
     }
 }
 
-export function deleteDataEntry(appName, entry) {
+export function deleteDataEntry(entry) {
     return {
         type: DELETE_DATA_ENTRY,
-        meta: {
-            appName,
-        },
         payload: entry,
     }
 }
