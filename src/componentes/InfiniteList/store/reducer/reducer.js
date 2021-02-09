@@ -77,7 +77,7 @@ const inifiniteListReducer = createReducer({
     ) => {
         return {
             ...state,
-            ...data.filter((item) => {
+            data: data.filter((item) => {
                 return item.id !== payload.id
             }),
         }

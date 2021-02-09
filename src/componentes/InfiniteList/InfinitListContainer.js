@@ -51,7 +51,12 @@ const InfiniteListContainer = (props) => {
     const spacerRef = useRef(null)
     const cancelRequest = useRef(null)
 
-    const hasMore = data.length < matchedResults
+    const hasMore = useMemo(() => {
+        return data.length < matchedResults
+    },[
+        data.length,
+        matchedResults,
+    ])
 
     const loadNewPage = useCallback((oldVal, page) => {
         dispatch(loadDataPending())
