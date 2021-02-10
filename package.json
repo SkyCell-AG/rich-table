@@ -1,6 +1,6 @@
 {
   "name": "@skycell-ag/richtable",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "private": false,
   "main": "dist/index.js",
   "files": [
@@ -21,10 +21,8 @@
     "react": "17.0.1",
     "react-dnd": "11.1.3",
     "react-dnd-html5-backend": "11.1.3",
-    "react-redux": "7.2.2",
     "web-vitals": "0.2.4",
-    "prop-types": "15.7.2",
-    "redux": "4.0.5"
+    "prop-types": "15.7.2"
   },
   "scripts": {
     "start": "react-scripts start",

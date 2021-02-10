@@ -3,10 +3,9 @@ import React, {
     useEffect,
     useRef,
     useLayoutEffect,
+    useReducer,
+    useMemo,
 } from 'react'
-import {
-    useSelector, useDispatch,
-} from 'react-redux'
 import noop from 'lodash/noop'
 import get from 'lodash/get'
 import PropTypes from 'prop-types'
@@ -17,11 +16,11 @@ import createCancelablePromise from 'utils/createCancelablePromise'
 import {
     loadDataSuccess, loadDataFailure, loadDataPending,
 } from './store/actions'
+import reducer from './store/reducer'
 import InfiniteList from './InfiniteList'
 
 const propTypes = {
     load: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
     onUpdateMatchedResults: PropTypes.func,
 }
 
@@ -29,37 +28,39 @@ const defaultProps = {
     onUpdateMatchedResults: noop,
 }
 
-const defaultState = {
-    status: statuses.PRISTIN,
-    data: [],
-    matchedResults: 0,
-}
-
 const InfiniteListContainer = (props) => {
     const {
         load,
-        name,
         onUpdateMatchedResults,
     } = props
 
-    const dispatch = useDispatch()
-    const state = useSelector(({
-        infiniteList,
-    }) => {
-        return {
-            ...defaultState,
-            ...infiniteList[name],
-        }
+    const [
+        {
+          data,
+          matchedResults,
+          status,
+          page,
+        },
+        dispatch,
+    ] = useReducer(reducer, {
+        status: statuses.PRISTIN,
+        data: [],
+        matchedResults: 0,
     })
 
     const wrapperRef = useRef(null)
     const spacerRef = useRef(null)
     const cancelRequest = useRef(null)
 
-    const hasMore = state.data.length < state.matchedResults
+    const hasMore = useMemo(() => {
+        return data.length < matchedResults
+    },[
+        data.length,
+        matchedResults,
+    ])
 
     const loadNewPage = useCallback((oldVal, page) => {
-        dispatch(loadDataPending(name))
+        dispatch(loadDataPending())
 
         const [
             request,
@@ -85,7 +86,6 @@ const InfiniteListContainer = (props) => {
                 cancelRequest.current = null
                 dispatch(loadDataSuccess({
                     meta: {
-                        appName: name,
                         page,
                         matchedResults: matchedresults,
                     },
@@ -100,27 +100,26 @@ const InfiniteListContainer = (props) => {
                     return
                 }
 
-                dispatch(loadDataFailure(name, err))
+                dispatch(loadDataFailure(err))
             })
     }, [
-        name,
         load,
         dispatch,
     ])
 
     const loadNextPage = useCallback(() => {
-        loadNewPage(state.data, state.page + 1)
+        loadNewPage(data, page + 1)
     }, [
         loadNewPage,
-        state.data,
-        state.page,
+        data,
+        page,
     ])
 
     const onScroll = useCallback(({
         target,
     }) => {
         if (
-            state.status === statuses.PENDING
+            status === statuses.PENDING
             || !hasMore
             || target !== wrapperRef.current
             || target.scrollHeight - target.scrollTop > target.offsetHeight * 1.2
@@ -130,7 +129,7 @@ const InfiniteListContainer = (props) => {
 
         loadNextPage()
     }, [
-        state.status,
+        status,
         hasMore,
         loadNextPage,
     ])
@@ -144,14 +143,14 @@ const InfiniteListContainer = (props) => {
     }, [loadNewPage])
 
     useEffect(() => {
-        onUpdateMatchedResults(state.matchedResults)
+        onUpdateMatchedResults(matchedResults)
     }, [
         onUpdateMatchedResults,
-        state.matchedResults,
+        matchedResults,
     ])
 
     useLayoutEffect(() => {
-        if (state.status !== statuses.SUCCESS) {
+        if (status !== statuses.SUCCESS) {
             return
         }
 
@@ -188,8 +187,8 @@ const InfiniteListContainer = (props) => {
             spacer.style.height = '0px'
         }
     }, [
-        state.data,
-        state.status,
+        data,
+        status,
         hasMore,
     ])
 
@@ -199,10 +198,10 @@ const InfiniteListContainer = (props) => {
             wrapperRef={wrapperRef}
             spacerRef={spacerRef}
             hasMore={hasMore}
-            data={state.data}
-            status={state.status}
+            data={data}
+            status={status}
             loadNextPage={loadNextPage}
-            onScroll={state.status === statuses.SUCCESS || statuses.PRISTIN ? onScroll : noop}
+            onScroll={status === statuses.SUCCESS || statuses.PRISTIN ? onScroll : noop}
         />
     )
 }
