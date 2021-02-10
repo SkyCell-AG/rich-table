@@ -26,9 +26,6 @@ const useStyles = makeStyles((theme) => {
             overflow: 'hidden',
             borderBottom: `1px solid ${theme.palette.secondary[100]}`,
         },
-        hideDetails: {
-            display: 'none',
-        },
         iconWrapper: {
             height: 'auto',
             borderBottom: `1px solid ${theme.palette.secondary[100]}`,

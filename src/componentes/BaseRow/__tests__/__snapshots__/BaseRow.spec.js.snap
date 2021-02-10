@@ -3,13 +3,13 @@
 exports[`components/BaseRow should match snapshot 1`] = `
 <div
   className=""
-  data-test-id="richtable-row"
+  data-test-id="richtable-row-1"
 >
   <div
-    className="undefined"
+    className=""
   >
     <div
-      data-testid="cell-noteSubject"
+      data-test-id="cell-noteSubject"
       key="cell-noteSubject"
       style={
         Object {
@@ -20,7 +20,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       <BaseCell
         changedBy="alessio.conese@skycell.ch"
         className=""
-        id="noteSubject"
+        id="1"
         noteSubject="Logger Exchange"
         noteText="Internal: ffff477a6c5d"
         validDateTimestamp="28.12.2020 10:35:56 +0100"
@@ -29,7 +29,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       </BaseCell>
     </div>
     <div
-      data-testid="cell-noteText"
+      data-test-id="cell-noteText"
       key="cell-noteText"
       style={
         Object {
@@ -40,7 +40,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       <BaseCell
         changedBy="alessio.conese@skycell.ch"
         className=""
-        id="noteText"
+        id="1"
         noteSubject="Logger Exchange"
         noteText="Internal: ffff477a6c5d"
         validDateTimestamp="28.12.2020 10:35:56 +0100"

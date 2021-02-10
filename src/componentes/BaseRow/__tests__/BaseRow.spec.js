@@ -46,6 +46,7 @@ describe('components/BaseRow', () => {
                 noteText: 'Internal: ffff477a6c5d',
                 changedBy: 'alessio.conese@skycell.ch',
                 validDateTimestamp: '28.12.2020 10:35:56 +0100',
+                id: '1',
             },
         }
 
@@ -82,28 +83,23 @@ describe('components/BaseRow', () => {
                 validDateTimestamp: '28.12.2020 10:35:56 +0100',
             },
             detailPanel: () => {
-                return <div>detailPanel</div>
+                return <div className="detailPanel">detailPanel</div>
             },
         }
 
         const wrapper = mount(<BaseRow {...props} />)
         const iconChevron = wrapper.find(ChevronRight)
+        // const row = wrapper.find
 
         expect(iconChevron.length).toBe(1)
         expect(wrapper.find({
-            className: 'showDetails',
+            className: 'detailPanel',
         }).length).toBe(0)
-        expect(wrapper.find({
-            className: 'hideDetails',
-        }).length).toBe(1)
 
         iconChevron.simulate('click')
 
         expect(wrapper.find({
-            className: 'showDetails',
+            className: 'detailPanel',
         }).length).toBe(1)
-        expect(wrapper.find({
-            className: 'hideDetails',
-        }).length).toBe(0)
     })
 })
