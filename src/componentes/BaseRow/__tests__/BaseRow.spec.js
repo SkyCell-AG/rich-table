@@ -46,6 +46,7 @@ describe('components/BaseRow', () => {
                 noteText: 'Internal: ffff477a6c5d',
                 changedBy: 'alessio.conese@skycell.ch',
                 validDateTimestamp: '28.12.2020 10:35:56 +0100',
+                id: '1',
             },
         }
 
