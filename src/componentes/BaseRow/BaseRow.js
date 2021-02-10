@@ -145,18 +145,11 @@ const BaseRow = (props) => {
                 }
             </div>
             {
-                DetailPanel && (
-                    <div className={clsx(
-                        {
-                            [classes.hideDetails]: isHide,
-                        },
-                    )}
-                    >
-                        <DetailPanel
-                            name={name}
-                            rowProps={rowProps}
-                        />
-                    </div>
+                DetailPanel && !isHide && (
+                    <DetailPanel
+                        name={name}
+                        rowProps={rowProps}
+                    />
                 )
             }
         </div>
