@@ -20,7 +20,9 @@ const propTypes = {
     rowSelected: PropTypes.string,
     uniqFieldValue: PropTypes.string.isRequired,
     rowClick: PropTypes.func.isRequired,
-    rowProps: PropTypes.object, // eslint-disable-line
+    rowProps: PropTypes.shape({
+        id: PropTypes.string,
+    }),
     columns: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -66,7 +68,7 @@ const BaseRow = (props) => {
 
     return (
         <div
-            data-test-id="richtable-row"
+            data-test-id={`richtable-row-${rowProps.id}`}
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
             })}
@@ -129,7 +131,7 @@ const BaseRow = (props) => {
                                 }}
                                 className={classes.cell}
                                 key={`cell-${id}`}
-                                data-testid={`cell-${id}`}
+                                data-test-id={`cell-${id}`}
                             >
                                 <Cell
                                     id={id}
