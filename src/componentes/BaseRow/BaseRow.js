@@ -72,10 +72,10 @@ const BaseRow = (props) => {
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
             })}
-            onKeyDown={DetailPanel ? togglePanel : rowClick(rowProps)}
-            onClick={DetailPanel ? togglePanel : rowClick(rowProps)}
         >
             <div
+                onKeyDown={DetailPanel ? togglePanel : rowClick(rowProps)}
+                onClick={DetailPanel ? togglePanel : rowClick(rowProps)}
                 className={clsx(
                     classes.rowContent,
                     {
