@@ -53,7 +53,7 @@ const BaseRow = (props) => {
         rowClick,
         rowProps,
         columns,
-        detailPanel,
+        detailPanel: DetailPanel,
     } = props
 
     const classes = useStyles()
@@ -74,8 +74,8 @@ const BaseRow = (props) => {
             })}
         >
             <div
-                onKeyDown={detailPanel ? togglePanel : rowClick(rowProps)}
-                onClick={detailPanel ? togglePanel : rowClick(rowProps)}
+                onKeyDown={DetailPanel ? togglePanel : rowClick(rowProps)}
+                onClick={DetailPanel ? togglePanel : rowClick(rowProps)}
                 className={clsx(
                     classes.rowContent,
                     {
@@ -85,7 +85,7 @@ const BaseRow = (props) => {
                 )}
             >
                 {
-                    detailPanel && (
+                    DetailPanel && (
                         <div className={classes.iconWrapper}>
                             <ChevronRight className={clsx(
                                 {
@@ -145,11 +145,11 @@ const BaseRow = (props) => {
                 }
             </div>
             {
-                detailPanel && !isHide && (
-                    detailPanel({
-                        name,
-                        rowProps,
-                    })
+                DetailPanel && !isHide && (
+                    <DetailPanel
+                        name={name}
+                        rowProps={rowProps}
+                    />
                 )
             }
         </div>
