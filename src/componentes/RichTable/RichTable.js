@@ -30,7 +30,6 @@ const propTypes = {
     matchedResults: PropTypes.number,
     removeFilter: PropTypes.func.isRequired,
     removeSort: PropTypes.func.isRequired,
-    rerenderInfinitList: PropTypes.func.isRequired,
     infinitListKey: PropTypes.string.isRequired,
     selectedRows: PropTypes.object, // eslint-disable-line
     columns: PropTypes.arrayOf(
@@ -74,7 +73,6 @@ const RichTable = (props) => {
         onRowClick,
         selectedRows,
         infinitListKey,
-        rerenderInfinitList,
         changeSequence,
         uniqField,
         controlPanel: ControlPanel,
@@ -92,12 +90,10 @@ const RichTable = (props) => {
         return () => {
             onRowClick(
                 row,
-                rerenderInfinitList,
             )
         }
     }, [
         onRowClick,
-        rerenderInfinitList,
     ])
 
     const selectedElm = useRef()
