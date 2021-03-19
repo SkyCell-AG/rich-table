@@ -2,10 +2,11 @@ import {
     useReducer,
     useCallback,
     useEffect,
+    useMemo,
 } from 'react'
+import get from 'lodash/get'
 
-
-import createReducer from 'app/utils/createReducer'
+import createReducer from 'utils/createReducer'
 
 import SelectRowCell from 'componentes/SelectRowCell'
 
@@ -18,7 +19,11 @@ const initState = {
 }
 
 const reducer = createReducer({
-    [SELECT]: (state, { meta: { id, value } }) => {
+    [SELECT]: (state, {
+        meta: {
+            id, value,
+        },
+    }) => {
         return {
             ...state,
             allSelected: false,
@@ -28,7 +33,11 @@ const reducer = createReducer({
             },
         }
     },
-    [SELECT_ALL]: (state, { meta: { value } }) => {
+    [SELECT_ALL]: (state, {
+        meta: {
+            value,
+        },
+    }) => {
         return {
             ...state,
             selected: {},
@@ -37,7 +46,11 @@ const reducer = createReducer({
     },
 })
 
-const useSelectRow = (onSelectRow, columns) => {
+const useSelectRow = ({
+    columns,
+    onSelectRow,
+    uniqField,
+}) => {
     const [
         {
             selected,
@@ -54,9 +67,7 @@ const useSelectRow = (onSelectRow, columns) => {
                 id,
             },
         })
-    }, [
-        dispatch,
-    ])
+    }, [dispatch])
 
     const selectAll = useCallback((value) => {
         dispatch({
@@ -83,19 +94,24 @@ const useSelectRow = (onSelectRow, columns) => {
         }).map(([key]) => {
             return key
         }))
-    }, [selected, allSelected, onSelectRow])
+    }, [
+        selected,
+        allSelected,
+        onSelectRow,
+    ])
 
     const selectRowHandler = useCallback((rowId) => {
         return (value) => {
             select(rowId, value)
         }
-    }, [
-        select,
-    ])
+    }, [select])
 
-    return onSelectRow ? [
-        selected,
-        [
+    const columsWithSelect = useMemo(() => {
+        if (!selected) {
+            return columns
+        }
+
+        return [
             {
                 id: 'Select',
                 Header: SelectRowCell,
@@ -107,7 +123,8 @@ const useSelectRow = (onSelectRow, columns) => {
                     }
                 },
                 Cell: SelectRowCell,
-                mapCellProps: ({ id }) => {
+                mapCellProps: (rowProps) => {
+                    const id = get(rowProps, uniqField)
                     const selectedRow = allSelected ? false : selected[id]
 
                     return {
@@ -119,11 +136,17 @@ const useSelectRow = (onSelectRow, columns) => {
                 },
             },
             ...columns,
-        ],
-    ] : [
-        {},
+        ]
+    }, [
         columns,
-    ]
+        selectRowHandler,
+        allSelected,
+        selectAll,
+        selected,
+        uniqField,
+    ])
+
+    return columsWithSelect
 }
 
 export default useSelectRow
