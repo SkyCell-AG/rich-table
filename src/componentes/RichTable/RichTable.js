@@ -111,11 +111,7 @@ const RichTable = (props) => {
                 selectedElm.current.scrollIntoView()
             }
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
-        selectedRowId,
-        selectedElm.current,
-    ])
+    }, [selectedRowId])
 
     return (
         <div

@@ -257,7 +257,8 @@ const RichTableContainer = ({
 
     const visibleAndSortedColumnsWithSelection = useSelectRow({
         columns: visibleAndSortedColumns,
-        onSelect: onSelectRow,
+        onSelectRow,
+        selected: selectedRows,
         uniqField,
     })
 
