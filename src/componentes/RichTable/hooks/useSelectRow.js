@@ -53,7 +53,7 @@ const useSelectRow = ({
     }, [onSelectRow])
 
     const columsWithSelect = useMemo(() => {
-        if (!selected || !onSelectRow) {
+        if (!selected) {
             return columns
         }
 
@@ -84,7 +84,6 @@ const useSelectRow = ({
         ]
     }, [
         columns,
-        onSelectRow,
         selectRowHandler,
         allSelected,
         selectAllHandler,
