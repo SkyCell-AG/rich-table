@@ -111,7 +111,10 @@ const RichTable = (props) => {
                 selectedElm.current.scrollIntoView()
             }
         }
-    }, [selectedRowId])
+    }, [
+        selectedRowId,
+        selectedElm.current,
+    ])
 
     return (
         <div
