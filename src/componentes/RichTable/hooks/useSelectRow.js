@@ -1,59 +1,117 @@
 import {
+    useReducer,
     useCallback,
-    useState,
+    useEffect,
     useMemo,
 } from 'react'
+
 import get from 'lodash/get'
 
+import createReducer from 'utils/createReducer'
+
 import SelectRowCell from 'componentes/SelectRowCell'
+
+const SELECT_ALL = 'SELECT_ALL'
+const SELECT = 'SELECT'
 
 const useSelectRow = ({
     columns,
     onSelectRow,
-    selected,
     uniqField,
 }) => {
-    const [
-        allSelected,
-        setAllSelected,
-    ] = useState(false)
+    const initState = {
+        allSelected: false,
+        selected: [],
+    }
 
-    const selectRowHandler = useCallback((rowId) => {
-        return (checked) => {
-            if (!checked) {
-                onSelectRow(selected.filter((selectedId) => {
-                    return rowId !== selectedId
-                }))
-
-                return
+    const reducer = createReducer({
+        [SELECT]: (state, {
+            meta: {
+                id, value,
+            },
+        }) => {
+            return {
+                ...state,
+                allSelected: false,
+                selected: {
+                    ...state.selected,
+                    [id]: value,
+                },
             }
+        },
+        [SELECT_ALL]: (state, {
+            meta: {
+                value,
+            },
+        }) => {
+            return {
+                ...state,
+                selected: [],
+                allSelected: value,
+            }
+        },
+    })
 
-            onSelectRow([
-                ...selected,
-                rowId,
-            ])
+    const [
+        {
+            selected,
+            allSelected,
+        },
+        dispatch,
+    ] = useReducer(reducer, initState)
+
+    const select = useCallback((id, value) => {
+        dispatch({
+            type: SELECT,
+            meta: {
+                value,
+                id,
+            },
+        })
+    }, [dispatch])
+
+    const selectAll = useCallback((value) => {
+        dispatch({
+            type: SELECT_ALL,
+            meta: {
+                value,
+            },
+        })
+    }, [])
+
+    useEffect(() => {
+        if (!onSelectRow) {
+            return
         }
+
+        if (allSelected) {
+            onSelectRow('ALL')
+        } else {
+            onSelectRow([])
+        }
+
+        onSelectRow(Object.entries(selected).filter(([
+            key,
+            value,
+        ]) => {
+            return value
+        }).map(([key]) => {
+            return key
+        }))
     }, [
-        onSelectRow,
         selected,
+        allSelected,
+        onSelectRow,
     ])
 
-    const selectAllHandler = useCallback(() => {
-        return (checked) => {
-            if (!checked) {
-                setAllSelected(false)
-                onSelectRow([])
-
-                return
-            }
-
-            setAllSelected(true)
-            onSelectRow('ALL')
+    const selectRowHandler = useCallback((rowId) => {
+        return (value) => {
+            select(rowId, value)
         }
-    }, [onSelectRow])
+    }, [select])
 
     const columsWithSelect = useMemo(() => {
-        if (!selected) {
+        if (!onSelectRow) {
             return columns
         }
 
@@ -63,7 +121,7 @@ const useSelectRow = ({
                 Header: SelectRowCell,
                 mapHeaderProps: () => {
                     return {
-                        onChange: selectAllHandler(allSelected),
+                        onChange: selectAll,
                         checked: allSelected,
                         indeterminate: allSelected ? false : Object.values(selected).find(Boolean),
                     }
@@ -71,10 +129,10 @@ const useSelectRow = ({
                 Cell: SelectRowCell,
                 mapCellProps: (rowProps) => {
                     const id = get(rowProps, uniqField)
-                    const selectedRow = allSelected ? false : selected.includes(id)
+                    const selectedRow = allSelected ? false : selected[id]
 
                     return {
-                        onChange: selectRowHandler(id, selectedRow),
+                        onChange: selectRowHandler(id),
                         checked: selectedRow || allSelected,
                         selectedRow,
                     }
@@ -84,9 +142,10 @@ const useSelectRow = ({
         ]
     }, [
         columns,
+        onSelectRow,
         selectRowHandler,
         allSelected,
-        selectAllHandler,
+        selectAll,
         selected,
         uniqField,
     ])
