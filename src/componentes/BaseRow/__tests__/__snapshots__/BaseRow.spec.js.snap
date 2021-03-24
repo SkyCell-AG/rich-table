@@ -3,13 +3,13 @@
 exports[`components/BaseRow should match snapshot 1`] = `
 <div
   className=""
-  data-test-id="richtable-row-1"
+  data-testid="richtable-row-1"
 >
   <div
     className=""
   >
     <div
-      data-test-id="cell-noteSubject"
+      data-testid="cell-noteSubject"
       key="cell-noteSubject"
       style={
         Object {
@@ -29,7 +29,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       </BaseCell>
     </div>
     <div
-      data-test-id="cell-noteText"
+      data-testid="cell-noteText"
       key="cell-noteText"
       style={
         Object {
