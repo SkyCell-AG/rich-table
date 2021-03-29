@@ -37,10 +37,6 @@ const useSelectRow = ({
             return
         }
 
-        if (allSelected) {
-            onSelectRow(['ALL'])
-        }
-
         onSelectRow(Object.entries(selected).filter(([
             key,
             value,
@@ -61,7 +57,7 @@ const useSelectRow = ({
         }
     }, [])
 
-    const selectAllHandler = useCallback((data) => {
+    const selectAllRowsHandler = useCallback((data) => {
         return dispatch(selectAll(data))
     }, [])
 
@@ -76,7 +72,7 @@ const useSelectRow = ({
                 Header: SelectRowCell,
                 mapHeaderProps: () => {
                     return {
-                        onChange: selectAllHandler,
+                        onChange: selectAllRowsHandler,
                         checked: allSelected,
                         indeterminate: allSelected ? false : Object.values(selected).find(Boolean),
                     }
@@ -99,7 +95,7 @@ const useSelectRow = ({
         columns,
         onSelectRow,
         selectRowHandler,
-        selectAllHandler,
+        selectAllRowsHandler,
         allSelected,
         selected,
         uniqField,
