@@ -7,12 +7,13 @@ import {
 
 import get from 'lodash/get'
 
-import createReducer from 'utils/createReducer'
-
 import SelectRowCell from 'componentes/SelectRowCell'
 
-const SELECT_ALL = 'SELECT_ALL'
-const SELECT = 'SELECT'
+import reducer from './store/reducer'
+import {
+    select,
+    selectAll,
+} from './store/actions'
 
 const useSelectRow = ({
     columns,
@@ -21,37 +22,8 @@ const useSelectRow = ({
 }) => {
     const initState = {
         allSelected: false,
-        selected: [],
+        selected: {},
     }
-
-    const reducer = createReducer({
-        [SELECT]: (state, {
-            meta: {
-                id, value,
-            },
-        }) => {
-            return {
-                ...state,
-                allSelected: false,
-                selected: {
-                    ...state.selected,
-                    [id]: value,
-                },
-            }
-        },
-        [SELECT_ALL]: (state, {
-            meta: {
-                value,
-            },
-        }) => {
-            return {
-                ...state,
-                selected: [],
-                allSelected: value,
-            }
-        },
-    })
-
     const [
         {
             selected,
@@ -60,34 +32,13 @@ const useSelectRow = ({
         dispatch,
     ] = useReducer(reducer, initState)
 
-    const select = useCallback((id, value) => {
-        dispatch({
-            type: SELECT,
-            meta: {
-                value,
-                id,
-            },
-        })
-    }, [dispatch])
-
-    const selectAll = useCallback((value) => {
-        dispatch({
-            type: SELECT_ALL,
-            meta: {
-                value,
-            },
-        })
-    }, [])
-
     useEffect(() => {
         if (!onSelectRow) {
             return
         }
 
         if (allSelected) {
-            onSelectRow('ALL')
-        } else {
-            onSelectRow([])
+            onSelectRow(['ALL'])
         }
 
         onSelectRow(Object.entries(selected).filter(([
@@ -106,9 +57,13 @@ const useSelectRow = ({
 
     const selectRowHandler = useCallback((rowId) => {
         return (value) => {
-            select(rowId, value)
+            dispatch(select(rowId, value))
         }
-    }, [select])
+    }, [])
+
+    const selectAllHandler = useCallback((data) => {
+        return dispatch(selectAll(data))
+    }, [])
 
     const columsWithSelect = useMemo(() => {
         if (!onSelectRow) {
@@ -121,7 +76,7 @@ const useSelectRow = ({
                 Header: SelectRowCell,
                 mapHeaderProps: () => {
                     return {
-                        onChange: selectAll,
+                        onChange: selectAllHandler,
                         checked: allSelected,
                         indeterminate: allSelected ? false : Object.values(selected).find(Boolean),
                     }
@@ -144,8 +99,8 @@ const useSelectRow = ({
         columns,
         onSelectRow,
         selectRowHandler,
+        selectAllHandler,
         allSelected,
-        selectAll,
         selected,
         uniqField,
     ])

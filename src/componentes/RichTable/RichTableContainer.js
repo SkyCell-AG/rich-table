@@ -18,7 +18,7 @@ import useVisible from './hooks/useVisible'
 import useSequence from './hooks/useSequence'
 import useFilter from './hooks/useFilter'
 import useSort from './hooks/useSort'
-import useSelectRow from './hooks/useSelectRow'
+import useSelectRow from './hooks/useSelectRow/useSelectRow'
 
 import RichTable from './RichTable'
 
@@ -258,7 +258,6 @@ const RichTableContainer = ({
     const visibleAndSortedColumnsWithSelection = useSelectRow({
         columns: visibleAndSortedColumns,
         onSelectRow,
-        selected: selectedRows,
         uniqField,
     })
 
