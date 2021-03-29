@@ -68,7 +68,7 @@ const BaseRow = (props) => {
 
     return (
         <div
-            data-test-id={`richtable-row-${rowProps.id}`}
+            data-testid={`richtable-row-${rowProps.id}`}
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
             })}
@@ -131,7 +131,7 @@ const BaseRow = (props) => {
                                 }}
                                 className={classes.cell}
                                 key={`cell-${id}`}
-                                data-test-id={`cell-${id}`}
+                                data-testid={`cell-${id}`}
                             >
                                 <Cell
                                     id={id}
