@@ -58,7 +58,21 @@ const useSelectRow = ({
     }, [])
 
     const selectAllRowsHandler = useCallback((data) => {
-        return dispatch(selectAll(data))
+        return (value) => {
+            dispatch(
+                selectAll(
+                    data.reduce((acc, element) => {
+                        console.log('element', element)
+                        console.log('acc', acc)
+                        return {
+                            ...acc,
+                            [element]: value,
+                        }
+                    }, {}),
+                    value,
+                ),
+            )
+        }
     }, [])
 
     const columsWithSelect = useMemo(() => {
@@ -70,9 +84,15 @@ const useSelectRow = ({
             {
                 id: 'Select',
                 Header: SelectRowCell,
-                mapHeaderProps: () => {
+                mapHeaderProps: ({
+                    data,
+                }) => {
+                    const laneDepPricingNumbers = data.map((element) => {
+                        return element.laneDependentPricing.laneDepPricingNumber
+                    })
+
                     return {
-                        onChange: selectAllRowsHandler,
+                        onChange: selectAllRowsHandler(laneDepPricingNumbers),
                         checked: allSelected,
                         indeterminate: allSelected ? false : Object.values(selected).find(Boolean),
                     }

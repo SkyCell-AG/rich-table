@@ -19,7 +19,7 @@ const propTypes = {
     onScroll: PropTypes.func.isRequired,
     className: PropTypes.string,
     Row: PropTypes.func.isRequired,
-    beforeList: PropTypes.element,
+    beforeList: PropTypes.func,
 }
 
 const defaultProps = {
@@ -49,7 +49,7 @@ const InfiniteList = ({
                     message="Failed to load data"
                 />
             )}
-            {beforeList}
+            {beforeList(data)}
             {SUCCESS === status && data.length === 0 && (
                 <div>
                     No data to show
