@@ -62,8 +62,6 @@ const useSelectRow = ({
             dispatch(
                 selectAll(
                     data.reduce((acc, element) => {
-                        console.log('element', element)
-                        console.log('acc', acc)
                         return {
                             ...acc,
                             [element]: value,

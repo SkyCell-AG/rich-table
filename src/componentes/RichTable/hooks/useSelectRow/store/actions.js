@@ -11,11 +11,11 @@ export const select = (id, value) => {
     }
 }
 
-export const selectAll = (data, value) => {
+export const selectAll = (selected, value) => {
     return {
         type: SELECT_ALL,
         meta: {
-            data,
+            selected,
             value,
         },
     }
