@@ -57,7 +57,7 @@ const useSelectRow = ({
         }
     }, [])
 
-    const selectAllRowsHandler = useCallback((data) => {
+    const selectAllColumnsHandler = useCallback((data) => {
         return (value) => {
             dispatch(
                 selectAll(
@@ -90,7 +90,7 @@ const useSelectRow = ({
                     })
 
                     return {
-                        onChange: selectAllRowsHandler(laneDepPricingNumbers),
+                        onChange: selectAllColumnsHandler(laneDepPricingNumbers),
                         checked: allSelected,
                         indeterminate: allSelected ? false : Object.values(selected).find(Boolean),
                     }
@@ -113,7 +113,7 @@ const useSelectRow = ({
         columns,
         onSelectRow,
         selectRowHandler,
-        selectAllRowsHandler,
+        selectAllColumnsHandler,
         allSelected,
         selected,
         uniqField,

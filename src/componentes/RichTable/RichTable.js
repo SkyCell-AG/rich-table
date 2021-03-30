@@ -150,7 +150,9 @@ const RichTable = (props) => {
                     {...props}
                     key={infinitListKey}
                     onUpdateMatchedResults={setMatchedResults}
-                    beforeList={(data) => {
+                    BeforeList={({
+                        data,
+                    }) => {
                         return (
                             <div className={clsx(
                                 classes.headings,
