@@ -19,12 +19,12 @@ const propTypes = {
     onScroll: PropTypes.func.isRequired,
     className: PropTypes.string,
     Row: PropTypes.func.isRequired,
-    beforeList: PropTypes.element,
+    BeforeList: PropTypes.element,
 }
 
 const defaultProps = {
     className: '',
-    beforeList: null,
+    BeforeList: null,
 }
 
 const InfiniteList = ({
@@ -34,7 +34,7 @@ const InfiniteList = ({
     wrapperRef, // eslint-disable-line
     spacerRef, // eslint-disable-line
     className,
-    beforeList,
+    BeforeList,
     Row,
 }) => {
     return (
@@ -49,7 +49,7 @@ const InfiniteList = ({
                     message="Failed to load data"
                 />
             )}
-            {beforeList}
+            <BeforeList data={data} />
             {SUCCESS === status && data.length === 0 && (
                 <div>
                     No data to show

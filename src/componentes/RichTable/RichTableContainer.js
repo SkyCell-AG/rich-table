@@ -18,7 +18,7 @@ import useVisible from './hooks/useVisible'
 import useSequence from './hooks/useSequence'
 import useFilter from './hooks/useFilter'
 import useSort from './hooks/useSort'
-import useShowSelectedRows from './hooks/useShowSelectedRows'
+import useSelectRow from './hooks/useSelectRow/useSelectRow'
 
 import RichTable from './RichTable'
 
@@ -178,7 +178,10 @@ const RichTableContainer = ({
 
     const params = useMemo(() => {
         return generateParams(filter, sort)
-    }, [filter, sort])
+    }, [
+        filter,
+        sort,
+    ])
 
     const loadWithParams = useCallback((page) => {
         return load({
@@ -252,10 +255,9 @@ const RichTableContainer = ({
             }
         })
 
-    const visibleAndSortedColumnsWithSelection = useShowSelectedRows({
+    const visibleAndSortedColumnsWithSelection = useSelectRow({
         columns: visibleAndSortedColumns,
-        onSelect: onSelectRow,
-        selected: selectedRows,
+        onSelectRow,
         uniqField,
     })
 

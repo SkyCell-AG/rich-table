@@ -9,17 +9,20 @@ const propTypes = {
     checked: PropTypes.bool,
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
+    data: PropTypes.array,
 }
 
 const defaultProps = {
     checked: false,
     indeterminate: false,
+    data: [],
 }
 
 const SelectRowCell = ({
     checked = false,
     indeterminate,
     onChange,
+    data,
 }) => {
     return (
         <div
@@ -29,6 +32,7 @@ const SelectRowCell = ({
                 value={checked}
                 indeterminate={indeterminate}
                 onChange={onChange}
+                data={data}
             />
         </div>
     )

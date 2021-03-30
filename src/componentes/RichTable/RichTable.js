@@ -150,57 +150,68 @@ const RichTable = (props) => {
                     {...props}
                     key={infinitListKey}
                     onUpdateMatchedResults={setMatchedResults}
-                    beforeList={(
-                        <div className={clsx(
-                            classes.headings,
-                            {
-                                [classes.withDetailPanel]: detailPanel,
-                            },
-                        )}
-                        >
-                            {columns.map(({
-                                Header = HeaderCell,
-                                mapHeaderProps = noop,
-                                headerProps: headerPropsOut,
-                                filterField,
-                                id,
-                                className: cellClassName,
-                                width,
-                                props: columnProps,
-                                ...rest
-                            }) => {
-                                const headerProps = headerPropsOut || mapHeaderProps(columnProps)
+                    BeforeList={({
+                        data,
+                    }) => {
+                        return (
+                            <div className={clsx(
+                                classes.headings,
+                                {
+                                    [classes.withDetailPanel]: detailPanel,
+                                },
+                            )}
+                            >
+                                {columns.map(({
+                                    Header = HeaderCell,
+                                    mapHeaderProps = noop,
+                                    headerProps: headerPropsOut,
+                                    filterField,
+                                    id,
+                                    className: cellClassName,
+                                    width,
+                                    props: columnProps,
+                                    ...rest
+                                }) => {
+                                    const headerProps = headerPropsOut
+                                    || mapHeaderProps({
+                                        ...columnProps,
+                                        data,
+                                    })
 
-                                return (
-                                    <div
-                                        key={`DndCell-${id}`}
-                                        data-testid={`table-header-${id}`}
-                                        className={clsx(
-                                            classes.cell,
-                                            cellClassName,
-                                        )}
-                                        style={{
-                                            width,
-                                        }}
-                                    >
-                                        <DndCell
-                                            onDrop={changeSequence}
-                                            id={id}
-                                            type="HeaderCell"
+                                    return (
+                                        <div
+                                            key={`DndCell-${id}`}
+                                            data-testid={`table-header-${id}`}
+                                            className={clsx(
+                                                classes.cell,
+                                                cellClassName,
+                                            )}
+                                            style={{
+                                                width,
+                                            }}
                                         >
-                                            <Header
-                                                {...rest}
-                                                {...columnProps}
+                                            <DndCell
                                                 {...headerProps}
-                                                key={`header-${id}`}
-                                                id={filterField}
-                                            />
-                                        </DndCell>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    )}
+                                                onDrop={changeSequence}
+                                                id={id}
+                                                type="HeaderCell"
+                                                data={data}
+                                            >
+                                                <Header
+                                                    {...rest}
+                                                    {...columnProps}
+                                                    {...headerProps}
+                                                    data={data}
+                                                    key={`header-${id}`}
+                                                    id={filterField}
+                                                />
+                                            </DndCell>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )
+                    }}
                     Row={(rowProps) => {
                         const uniqFieldValue = get(rowProps, uniqField)
                         const rowSelected = selectedRows[uniqFieldValue]
