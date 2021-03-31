@@ -31,6 +31,8 @@ const defaultProps = {
 const InfiniteListContainer = (props) => {
     const {
         load,
+        namedQuery,
+        filter,
         onUpdateMatchedResults,
     } = props
 
@@ -135,12 +137,8 @@ const InfiniteListContainer = (props) => {
     ])
 
     useEffect(() => {
-        if (cancelRequest.current) {
-            cancelRequest.current()
-        }
-
         loadNewPage([], 1)
-    }, [loadNewPage])
+    }, [filter, namedQuery])
 
     useEffect(() => {
         onUpdateMatchedResults(matchedResults)

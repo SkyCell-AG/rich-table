@@ -207,7 +207,11 @@ const RichTableContainer = ({
         })
     }, [dispatch])
 
-    
+    const rerenderInfinitList = useCallback(() => {
+        dispatch({
+            type: RERENDER_INFINIT_LIST,
+        })
+    }, [dispatch])
 
     const createFilterHandler = useCallback((columnId) => {
         return (value) => {
@@ -262,8 +266,10 @@ const RichTableContainer = ({
             {...props}
             load={loadWithParams}
             name={name}
+            filter={filter}
             removeFilter={removeFilter}
             infinitListKey={infinitListKey}
+            rerenderInfinitList={rerenderInfinitList}
             removeSort={removeSort}
             setMatchedResults={setMatchedResults}
             matchedResults={matchedResults}
