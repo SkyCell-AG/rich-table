@@ -74,7 +74,6 @@ const RichTable = (props) => {
         onRowClick,
         selectedRows,
         infinitListKey,
-        rerenderInfinitList,
         changeSequence,
         uniqField,
         controlPanel: ControlPanel,
@@ -83,6 +82,7 @@ const RichTable = (props) => {
         selectedRowId,
         name,
         detailPanel,
+        rerenderInfinitList,
     } = props
 
     const theme = useTheme()

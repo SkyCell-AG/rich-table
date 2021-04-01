@@ -266,6 +266,7 @@ const RichTableContainer = ({
             {...props}
             load={loadWithParams}
             name={name}
+            filter={filter}
             removeFilter={removeFilter}
             infinitListKey={infinitListKey}
             rerenderInfinitList={rerenderInfinitList}
