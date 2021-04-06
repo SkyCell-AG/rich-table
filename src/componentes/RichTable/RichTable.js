@@ -51,6 +51,7 @@ const propTypes = {
     editing: PropTypes.bool,
     selectedRowId: PropTypes.string,
     detailPanel: PropTypes.func,
+    openRowId: PropTypes.string,
 }
 
 const defaultProps = {
@@ -64,6 +65,7 @@ const defaultProps = {
     editing: false,
     selectedRowId: '',
     detailPanel: undefined,
+    openRowId: undefined,
 }
 
 const RichTable = (props) => {
@@ -83,6 +85,7 @@ const RichTable = (props) => {
         name,
         detailPanel,
         rerenderInfinitList,
+        openRowId,
     } = props
 
     const theme = useTheme()
@@ -111,10 +114,7 @@ const RichTable = (props) => {
                 selectedElm.current.scrollIntoView()
             }
         }
-    }, [
-        selectedRowId,
-        selectedElm.current,
-    ])
+    }, [selectedRowId])
 
     return (
         <div
@@ -231,6 +231,7 @@ const RichTable = (props) => {
                                     rowProps={rowProps}
                                     columns={columns}
                                     detailPanel={detailPanel}
+                                    openRow={openRowId === rowProps.id}
                                 />
                             </div>
                         )

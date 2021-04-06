@@ -33,6 +33,7 @@ const propTypes = {
     ).isRequired,
     detailPanel: PropTypes.func,
     selectedRowId: PropTypes.string,
+    openRow: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -41,6 +42,7 @@ const defaultProps = {
     rowSelected: undefined,
     selectedRowId: undefined,
     rowProps: {},
+    openRow: false,
 }
 
 const BaseRow = (props) => {
@@ -54,6 +56,7 @@ const BaseRow = (props) => {
         rowProps,
         columns,
         detailPanel: DetailPanel,
+        openRow,
     } = props
 
     const classes = useStyles()
@@ -61,7 +64,7 @@ const BaseRow = (props) => {
     const [
         isHide,
         setHide,
-    ] = useState(true)
+    ] = useState(!openRow)
     const togglePanel = useCallback(() => {
         setHide(!isHide)
     }, [isHide])
