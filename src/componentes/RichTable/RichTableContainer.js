@@ -2,52 +2,34 @@ import React, {
     useReducer,
     useCallback,
     useMemo,
+    useEffect,
 } from 'react'
 import PropTypes from 'prop-types'
-import memoize from 'lodash/memoize'
-import isEmpty from 'lodash/isEmpty'
 import omit from 'lodash/omit'
 import {
     v1 as uuid,
 } from 'uuid'
 
-import createReducer from 'utils/createReducer'
 import generateFilters from 'utils/generateFilters'
+import reducer from '/store/reducer'
+import * as statuses from 'utils/requestStatuses'
+import generateParams from 'utils/generateParams'
 
-import useVisible from './hooks/useVisible'
-import useSequence from './hooks/useSequence'
-import useFilter from './hooks/useFilter'
-import useSort from './hooks/useSort'
-import useSelectRow from './hooks/useSelectRow/useSelectRow'
+import useLoadPage from 'hooks/useLoadPage'
+import useVisible from 'hooks/useVisible'
+import useSequence from 'hooks/useSequence'
+import useFilter from 'hooks/useFilter'
+import useSort from 'hooks/useSort'
+import useSelectRow from 'hooks/useSelectRow'
 
 import RichTable from './RichTable'
 
-const SET_MATCHED_RESULTS = 'SET_MATCHED_RESULTS'
-const RERENDER_INFINIT_LIST = 'RERENDER_INFINIT_LIST'
-
-const initState = {
+const initialState = {
+    status: statuses.PRISTIN,
+    data: [],
     matchedResults: 0,
     infinitListKey: uuid(),
 }
-
-const reducer = createReducer({
-    [RERENDER_INFINIT_LIST]: (state) => {
-        return {
-            ...state,
-            infinitListKey: uuid(),
-        }
-    },
-    [SET_MATCHED_RESULTS]: (state, {
-        meta: {
-            matchedResults,
-        },
-    }) => {
-        return {
-            ...state,
-            matchedResults,
-        }
-    },
-})
 
 const propTypes = {
     uniqField: PropTypes.string,
@@ -75,22 +57,6 @@ const defaultProps = {
     selectedRows: undefined,
 }
 
-const generateParams = memoize((filter, sort) => {
-    const params = {}
-
-    if (!isEmpty(filter)) {
-        params.filter = filter
-    }
-
-    if (!isEmpty(sort)) {
-        params.sort = sort
-    }
-
-    return params
-}, (...data) => {
-    return JSON.stringify(data)
-})
-
 const RichTableContainer = ({
     columns: outColumns,
     load,
@@ -101,17 +67,18 @@ const RichTableContainer = ({
     filter: predefinedFilter,
     onSelectRow,
     uniqField,
+    namedQuery,
     ...props
 }) => {
     const [
-        {
-            matchedResults,
-            infinitListKey,
-        },
+        state,
         dispatch,
-    ] = useReducer(reducer, {
-        ...initState,
-    })
+    ] = useReducer(reducer, initialState)
+
+    const  {
+        infinitListKey,
+        matchedResults,
+    } = state
 
     const typeMapping = useMemo(() => {
         return outColumns.reduce((prev, {
@@ -198,20 +165,11 @@ const RichTableContainer = ({
         typeMapping,
     ])
 
-    const setMatchedResults = useCallback((newMatchedResults) => {
-        dispatch({
-            type: SET_MATCHED_RESULTS,
-            meta: {
-                matchedResults: newMatchedResults,
-            },
-        })
-    }, [dispatch])
-
-    const rerenderInfinitList = useCallback(() => {
-        dispatch({
-            type: RERENDER_INFINIT_LIST,
-        })
-    }, [dispatch])
+    const {
+        loadPage,
+        handleSetMatchedResults,
+        handleRerenderInfinitList,
+    } = useLoadPage(loadWithParams, dispatch)
 
     const createFilterHandler = useCallback((columnId) => {
         return (value) => {
@@ -261,22 +219,27 @@ const RichTableContainer = ({
         uniqField,
     })
 
+    useEffect(() => {
+        loadPage([], 1)
+    }, [filter, namedQuery])
+
     return (
         <RichTable
             {...props}
-            load={loadWithParams}
+            {...state}
             name={name}
+            load={loadPage}
             filter={filter}
             removeFilter={removeFilter}
-            infinitListKey={infinitListKey}
-            rerenderInfinitList={rerenderInfinitList}
+            rerenderInfinitList={handleRerenderInfinitList}
             removeSort={removeSort}
-            setMatchedResults={setMatchedResults}
-            matchedResults={matchedResults}
+            setMatchedResults={handleSetMatchedResults}
             changeSequence={changeSequence}
             visible={visible}
             setVisible={setVisible}
             allColumns={columns}
+            infinitListKey={infinitListKey}
+            matchedResults={matchedResults}
             selectedRows={selectedRows}
             columns={visibleAndSortedColumnsWithSelection}
             uniqField={uniqField}

@@ -86,7 +86,7 @@ const useSelectRow = ({
                     data,
                 }) => {
                     const laneDepPricingNumbers = data.map((element) => {
-                        return element.laneDependentPricing.laneDepPricingNumber
+                        return element.laneDependentPricing && element.laneDependentPricing.laneDepPricingNumber
                     })
 
                     return {

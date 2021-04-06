@@ -7,16 +7,10 @@ import React, {
     useMemo,
 } from 'react'
 import noop from 'lodash/noop'
-import get from 'lodash/get'
 import PropTypes from 'prop-types'
 
 import * as statuses from 'utils/requestStatuses'
-import createCancelablePromise from 'utils/createCancelablePromise'
 
-import {
-    loadDataSuccess, loadDataFailure, loadDataPending,
-} from './store/actions'
-import reducer from './store/reducer'
 import InfiniteList from './InfiniteList'
 
 const propTypes = {
@@ -31,28 +25,15 @@ const defaultProps = {
 const InfiniteListContainer = (props) => {
     const {
         load,
-        namedQuery,
-        filter,
         onUpdateMatchedResults,
+        data,
+        matchedResults,
+        status,
+        page,
     } = props
-
-    const [
-        {
-          data,
-          matchedResults,
-          status,
-          page,
-        },
-        dispatch,
-    ] = useReducer(reducer, {
-        status: statuses.PRISTIN,
-        data: [],
-        matchedResults: 0,
-    })
 
     const wrapperRef = useRef(null)
     const spacerRef = useRef(null)
-    const cancelRequest = useRef(null)
 
     const hasMore = useMemo(() => {
         return data.length < matchedResults
@@ -61,58 +42,10 @@ const InfiniteListContainer = (props) => {
         matchedResults,
     ])
 
-    const loadNewPage = useCallback((oldVal, page) => {
-        dispatch(loadDataPending())
-
-        const [
-            request,
-            cancel,
-        ] = createCancelablePromise(load(page))
-
-        cancelRequest.current = cancel
-
-        request
-            .then((response) => {
-                if (!get(response, 'data') || get(response, 'meta.matchedresults') === undefined) {
-                    throw new Error('Not valid response')
-                }
-
-                return response
-            })
-            .then(({
-                data,
-                meta: {
-                    matchedresults,
-                },
-            }) => {
-                cancelRequest.current = null
-                dispatch(loadDataSuccess({
-                    meta: {
-                        page,
-                        matchedResults: matchedresults,
-                    },
-                    data: [
-                        ...oldVal,
-                        ...data,
-                    ],
-                }))
-            })
-            .catch((err) => {
-                if (err.message === 'canceled') {
-                    return
-                }
-
-                dispatch(loadDataFailure(err))
-            })
+    const loadNextPage = useCallback(() => {
+        load(data, page + 1)
     }, [
         load,
-        dispatch,
-    ])
-
-    const loadNextPage = useCallback(() => {
-        loadNewPage(data, page + 1)
-    }, [
-        loadNewPage,
         data,
         page,
     ])
@@ -135,10 +68,6 @@ const InfiniteListContainer = (props) => {
         hasMore,
         loadNextPage,
     ])
-
-    useEffect(() => {
-        loadNewPage([], 1)
-    }, [filter, namedQuery])
 
     useEffect(() => {
         onUpdateMatchedResults(matchedResults)

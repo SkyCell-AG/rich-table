@@ -4,6 +4,8 @@ export const LOAD_DATA = generateAsyncActions('LOAD_DATA')
 export const ADD_DATA_ENTRY = '[INFINITE LIST] ADD DATA ENTRY'
 export const UPDATE_DATA_ENTRY = '[INFINITE LIST] UPDATE DATA ENTRY'
 export const DELETE_DATA_ENTRY = '[INFINITE LIST] DELETE DATA ENTRY'
+export const SET_MATCHED_RESULTS = 'SET_MATCHED_RESULTS'
+export const RERENDER_INFINIT_LIST = 'RERENDER_INFINIT_LIST'
 
 export function loadDataSuccess({
     meta, data,
@@ -46,5 +48,20 @@ export function deleteDataEntry(entry) {
     return {
         type: DELETE_DATA_ENTRY,
         payload: entry,
+    }
+}
+
+export function setMatchedResults(newMatchedResults) {
+    return {
+        type: SET_MATCHED_RESULTS,
+        meta: {
+            matchedResults: newMatchedResults,
+        },
+    }
+}
+
+export function rerenderInfinitList() {
+    return {
+        type: RERENDER_INFINIT_LIST,
     }
 }

@@ -6,11 +6,13 @@ import {
     ADD_DATA_ENTRY,
     UPDATE_DATA_ENTRY,
     DELETE_DATA_ENTRY,
+    SET_MATCHED_RESULTS,
+    RERENDER_INFINIT_LIST,
 } from '../actions'
 
 const initialState = {}
 
-const inifiniteListReducer = createReducer({
+const reducer = createReducer({
     [LOAD_DATA.pending]: (state) => {
         return {
             ...state,
@@ -82,6 +84,22 @@ const inifiniteListReducer = createReducer({
             }),
         }
     },
+    [RERENDER_INFINIT_LIST]: (state) => {
+        return {
+            ...state,
+            infinitListKey: uuid(),
+        }
+    },
+    [SET_MATCHED_RESULTS]: (state, {
+        meta: {
+            matchedResults,
+        },
+    }) => {
+        return {
+            ...state,
+            matchedResults,
+        }
+    },
 }, initialState)
 
-export default inifiniteListReducer
+export default reducer
