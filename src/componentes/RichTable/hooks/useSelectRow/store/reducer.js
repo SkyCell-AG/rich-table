@@ -22,13 +22,12 @@ const reducer = createReducer({
     },
     [SELECT_ALL]: (state, {
         meta: {
-            selected,
             value,
         },
     }) => {
         return {
             ...state,
-            selected,
+            selected: {},
             allSelected: value,
         }
     },

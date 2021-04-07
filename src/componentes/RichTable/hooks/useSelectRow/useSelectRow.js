@@ -37,6 +37,11 @@ const useSelectRow = ({
             return
         }
 
+        if (allSelected) {
+            onSelectRow('ALL')
+            return
+        }
+
         onSelectRow(Object.entries(selected).filter(([
             key,
             value,
@@ -57,20 +62,8 @@ const useSelectRow = ({
         }
     }, [])
 
-    const selectAllColumnsHandler = useCallback((data) => {
-        return (value) => {
-            dispatch(
-                selectAll(
-                    data.reduce((acc, element) => {
-                        return {
-                            ...acc,
-                            [element]: value,
-                        }
-                    }, {}),
-                    value,
-                ),
-            )
-        }
+    const selectAllRowsHandler = useCallback((value) => {
+        return dispatch(selectAll(value))
     }, [])
 
     const columsWithSelect = useMemo(() => {
@@ -82,15 +75,9 @@ const useSelectRow = ({
             {
                 id: 'Select',
                 Header: SelectRowCell,
-                mapHeaderProps: ({
-                    data,
-                }) => {
-                    const laneDepPricingNumbers = data.map((element) => {
-                        return element.laneDependentPricing.laneDepPricingNumber
-                    })
-
+                mapHeaderProps: () => {
                     return {
-                        onChange: selectAllColumnsHandler(laneDepPricingNumbers),
+                        onChange: selectAllRowsHandler,
                         checked: allSelected,
                         indeterminate: allSelected ? false : Object.values(selected).find(Boolean),
                     }
@@ -113,7 +100,7 @@ const useSelectRow = ({
         columns,
         onSelectRow,
         selectRowHandler,
-        selectAllColumnsHandler,
+        selectAllRowsHandler,
         allSelected,
         selected,
         uniqField,
