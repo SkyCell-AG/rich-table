@@ -31,17 +31,15 @@ const defaultProps = {
 const InfiniteListContainer = (props) => {
     const {
         load,
-        namedQuery,
-        filter,
         onUpdateMatchedResults,
     } = props
 
     const [
         {
-          data,
-          matchedResults,
-          status,
-          page,
+            data,
+            matchedResults,
+            status,
+            page,
         },
         dispatch,
     ] = useReducer(reducer, {
@@ -56,18 +54,18 @@ const InfiniteListContainer = (props) => {
 
     const hasMore = useMemo(() => {
         return data.length < matchedResults
-    },[
+    }, [
         data.length,
         matchedResults,
     ])
 
-    const loadNewPage = useCallback((oldVal, page) => {
+    const loadNewPage = useCallback((oldVal, newPage) => {
         dispatch(loadDataPending())
 
         const [
             request,
             cancel,
-        ] = createCancelablePromise(load(page))
+        ] = createCancelablePromise(load(newPage))
 
         cancelRequest.current = cancel
 
@@ -80,7 +78,7 @@ const InfiniteListContainer = (props) => {
                 return response
             })
             .then(({
-                data,
+                data: newPageData,
                 meta: {
                     matchedresults,
                 },
@@ -88,12 +86,12 @@ const InfiniteListContainer = (props) => {
                 cancelRequest.current = null
                 dispatch(loadDataSuccess({
                     meta: {
-                        page,
+                        page: newPage,
                         matchedResults: matchedresults,
                     },
                     data: [
                         ...oldVal,
-                        ...data,
+                        ...newPageData,
                     ],
                 }))
             })
@@ -137,8 +135,12 @@ const InfiniteListContainer = (props) => {
     ])
 
     useEffect(() => {
+        if (cancelRequest.current) {
+            cancelRequest.current()
+        }
+
         loadNewPage([], 1)
-    }, [filter, namedQuery])
+    }, [loadNewPage])
 
     useEffect(() => {
         onUpdateMatchedResults(matchedResults)

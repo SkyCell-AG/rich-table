@@ -1,7 +1,11 @@
-import React, { useCallback } from 'react'
+import React, {
+    useCallback,
+} from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import { useDrop } from 'react-dnd'
+import {
+    useDrop,
+} from 'react-dnd'
 
 import styles from './DroppableCell.module.css'
 
@@ -30,14 +34,14 @@ const DroppableCell = ({
         id,
         onDrop,
     ])
-    const canDrop = useCallback(({ id: droppedId }) => {
+    const canDrop = useCallback(({
+        id: droppedId,
+    }) => {
         return id !== droppedId
-    }, [
-        id,
-    ])
+    }, [id])
 
     const [
-        ,
+        _,
         drop,
     ] = useDrop({
         accept,

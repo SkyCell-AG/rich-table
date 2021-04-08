@@ -19,7 +19,7 @@ const inifiniteListReducer = createReducer({
     },
     [LOAD_DATA.failure]: (
         state,
-        err
+        err,
     ) => {
         return {
             ...state,
@@ -63,7 +63,7 @@ const inifiniteListReducer = createReducer({
             ...state,
             data: [
                 payload,
-                ...data.filter((item) => {
+                ...state.data.filter((item) => {
                     return item.id !== payload.id
                 }),
             ],
@@ -77,7 +77,7 @@ const inifiniteListReducer = createReducer({
     ) => {
         return {
             ...state,
-            data: data.filter((item) => {
+            data: state.data.filter((item) => {
                 return item.id !== payload.id
             }),
         }

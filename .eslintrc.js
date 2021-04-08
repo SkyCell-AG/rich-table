@@ -39,6 +39,12 @@ module.exports = {
         },
     },
     rules: {
+        'import/no-extraneous-dependencies': [
+            "error",
+            {
+                "peerDependencies": false,
+            }
+        ],
         'import/no-cycle': [
             2,
             {

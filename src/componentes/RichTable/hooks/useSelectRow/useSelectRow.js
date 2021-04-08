@@ -43,7 +43,7 @@ const useSelectRow = ({
         }
 
         onSelectRow(Object.entries(selected).filter(([
-            key,
+            _, // eslint-disable-line no-unused-vars
             value,
         ]) => {
             return value
