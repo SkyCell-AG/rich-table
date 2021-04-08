@@ -9,7 +9,7 @@ const propTypes = {
     checked: PropTypes.bool,
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
-    data: PropTypes.array,
+    data: PropTypes.array, // eslint-disable-line react/forbid-prop-types
 }
 
 const defaultProps = {

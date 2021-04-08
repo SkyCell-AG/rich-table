@@ -1,1 +1,3 @@
-export { default } from './componentes/RichTable'
+export {
+    default,
+} from './componentes/RichTable'

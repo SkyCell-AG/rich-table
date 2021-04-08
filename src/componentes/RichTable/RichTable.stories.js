@@ -1,6 +1,13 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
+import React, {
+    useCallback,
+    useState,
+} from 'react'
+import {
+    storiesOf,
+} from '@storybook/react'
+import {
+    action,
+} from '@storybook/addon-actions'
 import {
     DndProvider,
 } from 'react-dnd'
@@ -8,68 +15,99 @@ import {
     HTML5Backend,
 } from 'react-dnd-html5-backend'
 
-
 import RichTable from './index'
 
-export const actions = {
+export const actions = { // eslint-disable-line import/prefer-default-export
     onClick: action('onClick'),
 }
 
 storiesOf('RichTable')
-    .add('default', () => (
-        <DndProvider backend={HTML5Backend}>
-            <RichTable
-                name="myRichTable"
-                columns={[
+    .add('default', () => {
+        const [
+            tab,
+            setTab,
+        ] = useState(0)
+
+        const load = useCallback(() => {
+            return Promise.resolve({
+                meta: {
+                    matchedresults: 1000,
+                },
+                data: [
                     {
-                        id: 'field1',
-                        filterField: 'field1',
-                        mapHeaderProps: () => {
-                            return {
-                                children: 'Field 1',
-                            }
-                        },
-                        mapCellProps: 'field1',
+                        id: '1',
+                        field1: tab,
+                        field2: 'Field 2 content',
+                        field3: 'Field 3 content',
                     },
                     {
-                        id: 'field2',
-                        filterField: 'field2',
-                        mapHeaderProps: () => {
-                            return {
-                                children: 'Field 2',
-                            }
-                        },
-                        mapCellProps: 'field2'
+                        id: '2',
+                        field1: 'Field 1 content 2',
+                        field2: 'Field 2 content 2',
+                        field3: 'Field 3 content 2',
                     },
-                    {
-                        id: 'field3',
-                        filterField: 'field3',
-                        mapHeaderProps: () => {
-                            return {
-                                children: 'Field 3',
-                            }
+                ],
+            })
+        }, [tab])
+
+        return (
+            <DndProvider backend={HTML5Backend}>
+                <div>
+                    <button
+                        type="button"
+                        onClick={() => { setTab(0) }}
+                    >
+                        Tab 1
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => { setTab(1) }}
+                    >
+                        Tab 2
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => { setTab(2) }}
+                    >
+                        Tab 3
+                    </button>
+                </div>
+                <RichTable
+                    name="myRichTable"
+                    columns={[
+                        {
+                            id: 'field1',
+                            filterField: 'field1',
+                            mapHeaderProps: () => {
+                                return {
+                                    children: 'Field 1',
+                                }
+                            },
+                            mapCellProps: 'field1',
                         },
-                        mapCellProps: 'field3',
-                    }
-                ]}
-                load={() => {
-                    return Promise.resolve({
-                        meta: {
-                            matchedresults: 1000,
+                        {
+                            id: 'field2',
+                            filterField: 'field2',
+                            mapHeaderProps: () => {
+                                return {
+                                    children: 'Field 2',
+                                }
+                            },
+                            mapCellProps: 'field2',
                         },
-                        data: [{
-                            id: '1',
-                            field1: 'Field 1 content',
-                            field2: 'Field 2 content',
-                            field3: 'Field 3 content',
-                        }, {
-                            id: '2',
-                            field1: 'Field 1 content 2',
-                            field2: 'Field 2 content 2',
-                            field3: 'Field 3 content 2',
-                        }],
-                    })
-                }}
-            />
-        </DndProvider>
-    ))
+                        {
+                            id: 'field3',
+                            filterField: 'field3',
+                            mapHeaderProps: () => {
+                                return {
+                                    children: 'Field 3',
+                                }
+                            },
+                            mapCellProps: 'field3',
+                        },
+                    ]}
+                    load={load}
+                />
+            </DndProvider>
+        )
+    })
