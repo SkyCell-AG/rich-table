@@ -40,7 +40,10 @@ const DroppableCell = ({
         return id !== droppedId
     }, [id])
 
-    const [drop] = useDrop({
+    const [
+        _,
+        drop,
+    ] = useDrop({
         accept,
         drop: dropHandler,
         canDrop,
