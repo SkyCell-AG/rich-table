@@ -6,7 +6,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
   data-testid="richtable-row-1"
 >
   <div
-    className=""
+    className="undefined"
   >
     <div
       data-testid="cell-noteSubject"
