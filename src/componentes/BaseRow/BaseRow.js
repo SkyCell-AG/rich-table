@@ -16,12 +16,22 @@ import useStyles from './BaseRow.style'
 
 const propTypes = {
     name: PropTypes.string.isRequired,
-    selectedRows: PropTypes.object, // eslint-disable-line
-    rowSelected: PropTypes.string,
-    uniqFieldValue: PropTypes.string.isRequired,
+    selectedRows: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
+    ),
+    uniqFieldValue: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]).isRequired,
     rowClick: PropTypes.func.isRequired,
     rowProps: PropTypes.shape({
-        id: PropTypes.string,
+        id: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
     }),
     columns: PropTypes.arrayOf(
         PropTypes.shape({
@@ -37,9 +47,8 @@ const propTypes = {
 }
 
 const defaultProps = {
-    selectedRows: {},
+    selectedRows: undefined,
     detailPanel: undefined,
-    rowSelected: undefined,
     selectedRowId: undefined,
     rowProps: {},
     openRow: false,
@@ -49,7 +58,6 @@ const BaseRow = (props) => {
     const {
         name,
         selectedRows,
-        rowSelected,
         selectedRowId,
         uniqFieldValue,
         rowClick,
@@ -82,8 +90,7 @@ const BaseRow = (props) => {
                 className={clsx(
                     classes.rowContent,
                     {
-                        [classes.cursorPointer]: !Array.isArray(selectedRows),
-                        [classes.selectedRowContent]: rowSelected,
+                        [classes.cursorPointer]: !selectedRows,
                     },
                 )}
             >

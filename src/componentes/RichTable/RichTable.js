@@ -32,7 +32,12 @@ const propTypes = {
     removeSort: PropTypes.func.isRequired,
     rerenderInfinitList: PropTypes.func.isRequired,
     infinitListKey: PropTypes.string.isRequired,
-    selectedRows: PropTypes.object, // eslint-disable-line
+    selectedRows: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
+    ),
     columns: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -58,7 +63,7 @@ const defaultProps = {
     matchedResults: undefined,
     className: '',
     onRowClick: noop,
-    selectedRows: {},
+    selectedRows: undefined,
     uniqField: 'id',
     controlPanel: null,
     classNames: {},
@@ -214,7 +219,6 @@ const RichTable = (props) => {
                     }}
                     Row={(rowProps) => {
                         const uniqFieldValue = get(rowProps, uniqField)
-                        const rowSelected = selectedRows[uniqFieldValue]
 
                         return (
                             <div
@@ -224,7 +228,6 @@ const RichTable = (props) => {
                                 <BaseRow
                                     name={name}
                                     selectedRows={selectedRows}
-                                    rowSelected={rowSelected}
                                     selectedRowId={selectedRowId}
                                     uniqFieldValue={uniqFieldValue}
                                     rowClick={rowClick}

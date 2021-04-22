@@ -18,9 +18,6 @@ const useStyles = makeStyles((theme) => {
         cursorPointer: {
             cursor: 'pointer',
         },
-        selectedRowContent: {
-            opacity: 0.7,
-        },
         cell: {
             width: '100%',
             overflow: 'hidden',
