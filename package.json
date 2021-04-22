@@ -30,6 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "npx eslint ./src",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "clean": "rimraf dist",
@@ -39,6 +40,16 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -60,13 +71,13 @@
     "@material-ui/core": "4.11.3",
     "@material-ui/icons": "4.11.2",
     "@material-ui/styles": "4.11.3",
-    "@storybook/addon-actions": "6.1.14",
-    "@storybook/addon-essentials": "6.1.14",
+    "@storybook/addon-actions": "6.2.5",
+    "@storybook/addon-essentials": "6.2.5",
     "@storybook/addon-knobs": "6.1.15",
-    "@storybook/addon-links": "6.1.14",
-    "@storybook/node-logger": "6.1.14",
-    "@storybook/preset-create-react-app": "3.1.5",
-    "@storybook/react": "6.1.14",
+    "@storybook/addon-links": "6.2.5",
+    "@storybook/node-logger": "6.2.5",
+    "@storybook/preset-create-react-app": "3.1.7",
+    "@storybook/react": "6.2.5",
     "@wojtekmaj/enzyme-adapter-react-17": "0.4.1",
     "babel-plugin-module-resolver": "4.1.0",
     "cross-env": "7.0.3",
@@ -76,7 +87,7 @@
     "jest-enzyme": "7.1.2",
     "jest-image-snapshot": "4.3.0",
     "react-dom": "17.0.1",
-    "react-scripts": "4.0.1"
+    "react-scripts": "4.0.3"
   },
   "description": "",
   "bugs": {

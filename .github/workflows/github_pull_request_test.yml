@@ -1,0 +1,23 @@
+name: PULL_REQUEST_CHECK
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: bahmutov/npm-install@v1
+      - name: Lint
+        run: npm run lint
+      - name: Unit testing
+        run: npm run test
+      - name: Try to compile
+        run: npm run compile
