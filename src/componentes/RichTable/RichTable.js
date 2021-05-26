@@ -1,5 +1,6 @@
 import React, {
     useCallback,
+    forwardRef,
     useEffect,
     useRef,
 } from 'react'
@@ -73,7 +74,7 @@ const defaultProps = {
     openRowId: undefined,
 }
 
-const RichTable = (props) => {
+const RichTable = forwardRef((props, ref) => {
     const {
         columns,
         className: wrapperClassName,
@@ -153,6 +154,7 @@ const RichTable = (props) => {
             >
                 <InfiniteList
                     {...props}
+                    ref={ref}
                     key={infinitListKey}
                     onUpdateMatchedResults={setMatchedResults}
                     BeforeList={({
@@ -234,7 +236,7 @@ const RichTable = (props) => {
                                     rowProps={rowProps}
                                     columns={columns}
                                     detailPanel={detailPanel}
-                                    openRow={openRowId === rowProps.id}
+                                    openRow={openRowId === uniqFieldValue}
                                 />
                             </div>
                         )
@@ -243,7 +245,7 @@ const RichTable = (props) => {
             </div>
         </div>
     )
-}
+})
 
 RichTable.propTypes = propTypes
 RichTable.defaultProps = defaultProps

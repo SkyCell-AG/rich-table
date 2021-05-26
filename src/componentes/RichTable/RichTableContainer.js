@@ -1,7 +1,10 @@
 import React, {
-    useReducer,
     useCallback,
+    useReducer,
+    forwardRef,
+    useEffect,
     useMemo,
+    useRef,
 } from 'react'
 import PropTypes from 'prop-types'
 import memoize from 'lodash/memoize'
@@ -91,7 +94,7 @@ const generateParams = memoize((filter, sort) => {
     return JSON.stringify(data)
 })
 
-const RichTableContainer = ({
+const RichTableContainer = forwardRef(({
     columns: outColumns,
     load,
     name,
@@ -102,7 +105,7 @@ const RichTableContainer = ({
     onSelectRow,
     uniqField,
     ...props
-}) => {
+}, ref) => {
     const [
         {
             matchedResults,
@@ -112,6 +115,16 @@ const RichTableContainer = ({
     ] = useReducer(reducer, {
         ...initState,
     })
+
+    const infiniteListRef = useRef(null)
+
+    useEffect(() => {
+        ref.current = { // eslint-disable-line
+            update: (updatedElement) => {
+                infiniteListRef.current.update(updatedElement)
+            },
+        }
+    }, [ref])
 
     const typeMapping = useMemo(() => {
         return outColumns.reduce((prev, {
@@ -264,6 +277,7 @@ const RichTableContainer = ({
     return (
         <RichTable
             {...props}
+            ref={infiniteListRef}
             load={loadWithParams}
             name={name}
             removeFilter={removeFilter}
@@ -281,7 +295,7 @@ const RichTableContainer = ({
             uniqField={uniqField}
         />
     )
-}
+})
 
 RichTableContainer.propTypes = propTypes
 RichTableContainer.defaultProps = defaultProps

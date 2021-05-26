@@ -56,15 +56,18 @@ const inifiniteListReducer = createReducer({
     [UPDATE_DATA_ENTRY]: (
         state,
         {
-            payload,
+            payload: {
+                uniqField,
+                entry,
+            },
         },
     ) => {
         return {
             ...state,
             data: [
-                payload,
+                entry,
                 ...state.data.filter((item) => {
-                    return item.id !== payload.id
+                    return item[uniqField] !== entry[uniqField]
                 }),
             ],
         }
