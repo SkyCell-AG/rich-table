@@ -1,6 +1,7 @@
 import React, {
     useCallback,
     useState,
+    useRef,
 } from 'react'
 import {
     DndProvider,
@@ -23,6 +24,8 @@ const Template = (args) => {
         setTab,
     ] = useState(0)
 
+    const richtableRef = useRef()
+
     const load = useCallback(() => {
         return Promise.resolve({
             meta: {
@@ -30,13 +33,13 @@ const Template = (args) => {
             },
             data: [
                 {
-                    id: '1',
+                    uniqField: '1',
                     field1: tab,
                     field2: 'Field 2 content',
                     field3: 'Field 3 content',
                 },
                 {
-                    id: '2',
+                    uniqField: '2',
                     field1: 'Field 1 content 2',
                     field2: 'Field 2 content 2',
                     field3: 'Field 3 content 2',
@@ -47,6 +50,21 @@ const Template = (args) => {
 
     return (
         <DndProvider backend={HTML5Backend}>
+            <button
+                type="button"
+                onClick={() => {
+                    return richtableRef.current && richtableRef.current.update(
+                        {
+                            uniqField: '2',
+                            field1: tab,
+                            field2: 'Field 2 updated content 2',
+                            field3: 'Field 3 content 2',
+                        },
+                    )
+                }}
+            >
+                update
+            </button>
             <div>
                 <button
                     type="button"
@@ -70,6 +88,8 @@ const Template = (args) => {
             <RichTable
                 {...args}
                 name="myRichTable"
+                uniqField="uniqField"
+                ref={richtableRef}
                 columns={[
                     {
                         id: 'field1',

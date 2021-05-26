@@ -2,6 +2,7 @@ import React, {
     useCallback,
     useEffect,
     useRef,
+    forwardRef,
     useLayoutEffect,
     useReducer,
     useMemo,
@@ -14,24 +15,30 @@ import * as statuses from 'utils/requestStatuses'
 import createCancelablePromise from 'utils/createCancelablePromise'
 
 import {
-    loadDataSuccess, loadDataFailure, loadDataPending,
+    loadDataSuccess,
+    loadDataFailure,
+    loadDataPending,
+    updateDataEntry,
 } from './store/actions'
 import reducer from './store/reducer'
 import InfiniteList from './InfiniteList'
 
 const propTypes = {
+    uniqField: PropTypes.string,
     load: PropTypes.func.isRequired,
     onUpdateMatchedResults: PropTypes.func,
 }
 
 const defaultProps = {
     onUpdateMatchedResults: noop,
+    uniqField: 'id',
 }
 
-const InfiniteListContainer = (props) => {
+const InfiniteListContainer = forwardRef((props, ref) => {
     const {
         load,
         onUpdateMatchedResults,
+        uniqField,
     } = props
 
     const [
@@ -47,6 +54,17 @@ const InfiniteListContainer = (props) => {
         data: [],
         matchedResults: 0,
     })
+
+    useEffect(() => {
+        ref.current = { // eslint-disable-line
+            update: (updatedElement) => {
+                dispatch(updateDataEntry(updatedElement, uniqField))
+            },
+        }
+    }, [
+        ref,
+        uniqField,
+    ])
 
     const wrapperRef = useRef(null)
     const spacerRef = useRef(null)
@@ -204,7 +222,7 @@ const InfiniteListContainer = (props) => {
             onScroll={status === statuses.SUCCESS || statuses.PRISTIN ? onScroll : noop}
         />
     )
-}
+})
 
 InfiniteListContainer.propTypes = propTypes
 InfiniteListContainer.defaultProps = defaultProps

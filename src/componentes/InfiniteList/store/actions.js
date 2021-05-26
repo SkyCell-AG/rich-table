@@ -35,10 +35,13 @@ export function addDataEntry(entry) {
     }
 }
 
-export function updateDataEntry(entry) {
+export function updateDataEntry(entry, uniqField) {
     return {
         type: UPDATE_DATA_ENTRY,
-        payload: entry,
+        payload: {
+            entry,
+            uniqField,
+        },
     }
 }
 
