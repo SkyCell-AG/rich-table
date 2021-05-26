@@ -87,7 +87,6 @@ const Template = (args) => {
             </div>
             <RichTable
                 {...args}
-                name="myRichTable"
                 uniqField="uniqField"
                 ref={richtableRef}
                 columns={[
