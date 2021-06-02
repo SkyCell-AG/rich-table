@@ -1,8 +1,10 @@
 import React, {
     useCallback,
     useState,
+    useMemo,
     useRef,
 } from 'react'
+import PropTypes from 'prop-types'
 import {
     DndProvider,
 } from 'react-dnd'
@@ -18,11 +20,34 @@ export default {
     argTypes: {},
 }
 
-const Template = (args) => {
+const propTypes = {
+    filter: PropTypes.object, // eslint-disable-line
+    onFilterChange: PropTypes.func, // eslint-disable-line
+    onSelectRow: PropTypes.func, // eslint-disable-line
+    sort: PropTypes.object, // eslint-disable-line
+    visible: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line
+}
+const defaultProps = {
+    filter: undefined,
+    onFilterChange: undefined,
+    onSelectRow: undefined,
+    sort: undefined,
+    visible: undefined,
+}
+
+const Template = (props) => {
     const [
         tab,
         setTab,
     ] = useState(0)
+    const [
+        selectedRows,
+        setSelectedRows,
+    ] = useState([
+        1,
+        2,
+        3,
+    ])
 
     const richtableRef = useRef()
 
@@ -31,31 +56,79 @@ const Template = (args) => {
             meta: {
                 matchedresults: 1000,
             },
-            data: [
-                {
-                    uniqField: '1',
-                    field1: tab,
-                    field2: 'Field 2 content',
-                    field3: 'Field 3 content',
-                },
-                {
-                    uniqField: '2',
-                    field1: 'Field 1 content 2',
-                    field2: 'Field 2 content 2',
-                    field3: 'Field 3 content 2',
-                },
-            ],
+            data: (new Array(20).fill(0).map((val, index) => {
+                return {
+                    uniqField: index,
+                    field1: `field1: ${index}; tab: ${tab}`,
+                    field2: `Field 2: ${index}`,
+                    field3: `Field 3: ${index}`,
+                }
+            })),
         })
     }, [tab])
+
+    const columns = useMemo(() => {
+        return [
+            {
+                id: 'field1',
+                filterField: 'field1',
+                mapHeaderProps: () => {
+                    return {
+                        children: 'Field 1',
+                    }
+                },
+                mapCellProps: 'field1',
+            },
+            {
+                id: 'field2',
+                filterField: 'field2',
+                mapHeaderProps: () => {
+                    return {
+                        children: 'Field 2',
+                    }
+                },
+                mapCellProps: 'field2',
+            },
+            {
+                id: 'field3',
+                filterField: 'field3',
+                mapHeaderProps: () => {
+                    return {
+                        children: 'Field 3',
+                    }
+                },
+                mapCellProps: 'field3',
+            },
+        ]
+    }, [])
+
+    const {
+        filter,
+        onFilterChange,
+        onSelectRow,
+        sort,
+        visible,
+    } = props
 
     return (
         <DndProvider backend={HTML5Backend}>
             <button
                 type="button"
                 onClick={() => {
+                    return setSelectedRows([
+                        0,
+                        5,
+                    ])
+                }}
+            >
+                change selected rows
+            </button>
+            <button
+                type="button"
+                onClick={() => {
                     return richtableRef.current && richtableRef.current.update(
                         {
-                            uniqField: '2',
+                            uniqField: 2,
                             field1: tab,
                             field2: 'Field 2 updated content 2',
                             field3: 'Field 3 content 2',
@@ -86,46 +159,23 @@ const Template = (args) => {
                 </button>
             </div>
             <RichTable
-                {...args}
-                uniqField="uniqField"
                 ref={richtableRef}
-                columns={[
-                    {
-                        id: 'field1',
-                        filterField: 'field1',
-                        mapHeaderProps: () => {
-                            return {
-                                children: 'Field 1',
-                            }
-                        },
-                        mapCellProps: 'field1',
-                    },
-                    {
-                        id: 'field2',
-                        filterField: 'field2',
-                        mapHeaderProps: () => {
-                            return {
-                                children: 'Field 2',
-                            }
-                        },
-                        mapCellProps: 'field2',
-                    },
-                    {
-                        id: 'field3',
-                        filterField: 'field3',
-                        mapHeaderProps: () => {
-                            return {
-                                children: 'Field 3',
-                            }
-                        },
-                        mapCellProps: 'field3',
-                    },
-                ]}
+                columns={columns}
+                filter={filter}
+                onFilterChange={onFilterChange}
+                onSelectRow={onSelectRow}
+                sort={sort}
+                uniqField="uniqField"
+                visible={visible}
                 load={load}
+                selectedRows={selectedRows}
             />
         </DndProvider>
     )
 }
+
+Template.propTypes = propTypes
+Template.defaultProps = defaultProps
 
 export const Primary = Template.bind({})
 Primary.args = {}

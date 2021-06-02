@@ -62,6 +62,10 @@ const inifiniteListReducer = createReducer({
             },
         },
     ) => {
+        console.log(state.data, state.data.filter((item) => {
+            return item[uniqField] !== entry[uniqField]
+        }))
+
         return {
             ...state,
             data: [
