@@ -24,12 +24,7 @@ const useSelectRow = ({
 }) => {
     const initState = {
         allSelected: false,
-        selected: selectedRows.reduce((res, key) => {
-            return {
-                [key]: true,
-                ...res,
-            }
-        }, {}),
+        selected: {},
     }
 
     const [
