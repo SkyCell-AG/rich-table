@@ -279,9 +279,6 @@ const RichTableContainer = forwardRef(({
         selectedRows,
     })
 
-    useEffect(() => {
-    })
-
     return (
         <RichTable
             {...props}
