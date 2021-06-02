@@ -1,6 +1,7 @@
 import createReducer from 'utils/createReducer'
 
 import {
+    RESET,
     SELECT,
     SELECT_ALL,
 } from './actions'
@@ -29,6 +30,22 @@ const reducer = createReducer({
             ...state,
             selected: {},
             allSelected: value,
+        }
+    },
+    [RESET]: (state, {
+        payload: {
+            selectedRows = [],
+        },
+    }) => {
+        return {
+            ...state,
+            allSelected: false,
+            selected: selectedRows.reduce((acc, rowId) => {
+                return {
+                    ...acc,
+                    [rowId]: true,
+                }
+            }, {}),
         }
     },
 })

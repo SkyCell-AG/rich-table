@@ -11,6 +11,7 @@ import SelectRowCell from 'componentes/SelectRowCell'
 
 import reducer from './store/reducer'
 import {
+    reset,
     select,
     selectAll,
 } from './store/actions'
@@ -19,11 +20,13 @@ const useSelectRow = ({
     columns,
     onSelectRow,
     uniqField,
+    selectedRows = [],
 }) => {
     const initState = {
         allSelected: false,
         selected: {},
     }
+
     const [
         {
             selected,
@@ -31,6 +34,10 @@ const useSelectRow = ({
         },
         dispatch,
     ] = useReducer(reducer, initState)
+
+    useEffect(() => {
+        dispatch(reset(selectedRows))
+    }, [selectedRows])
 
     useEffect(() => {
         if (!onSelectRow) {

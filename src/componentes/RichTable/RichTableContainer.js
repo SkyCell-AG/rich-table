@@ -276,6 +276,7 @@ const RichTableContainer = forwardRef(({
         columns: visibleAndSortedColumns,
         onSelectRow,
         uniqField,
+        selectedRows,
     })
 
     return (
