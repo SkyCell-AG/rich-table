@@ -119,6 +119,10 @@ const RichTableContainer = forwardRef(({
     const infiniteListRef = useRef(null)
 
     useEffect(() => {
+        if (!ref) {
+            return
+        }
+
         ref.current = { // eslint-disable-line
             update: (updatedElement) => {
                 infiniteListRef.current.update(updatedElement)
