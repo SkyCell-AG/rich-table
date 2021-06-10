@@ -20,7 +20,7 @@ const useSelectRow = ({
         return selectedRows === ALL_ROWS_SELECTED
     }, [selectedRows])
     const selectedRowsHash = useMemo(() => {
-        if (selectedRows === ALL_ROWS_SELECTED) {
+        if (allSelected) {
             return {}
         }
 
@@ -30,7 +30,10 @@ const useSelectRow = ({
                 [id]: true,
             }
         }, {})
-    }, [selectedRows])
+    }, [
+        allSelected,
+        selectedRows,
+    ])
 
     const selectAllRowsHandler = useCallback(() => {
         if (allSelected) {
