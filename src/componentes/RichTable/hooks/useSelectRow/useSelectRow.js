@@ -1,20 +1,14 @@
 import {
-    useReducer,
-    useCallback,
-    useEffect,
     useMemo,
+    useCallback,
 } from 'react'
 
 import get from 'lodash/get'
 
 import SelectRowCell from 'componentes/SelectRowCell'
-
-import reducer from './store/reducer'
 import {
-    reset,
-    select,
-    selectAll,
-} from './store/actions'
+    ALL_ROWS_SELECTED,
+} from './utils'
 
 const useSelectRow = ({
     columns,
@@ -22,56 +16,56 @@ const useSelectRow = ({
     uniqField,
     selectedRows = [],
 }) => {
-    const initState = {
-        allSelected: false,
-        selected: {},
-    }
-
-    const [
-        {
-            selected,
-            allSelected,
-        },
-        dispatch,
-    ] = useReducer(reducer, initState)
-
-    useEffect(() => {
-        dispatch(reset(selectedRows))
+    const allSelected = useMemo(() => {
+        return selectedRows === ALL_ROWS_SELECTED
     }, [selectedRows])
-
-    useEffect(() => {
-        if (!onSelectRow) {
-            return
-        }
-
+    const selectedRowsHash = useMemo(() => {
         if (allSelected) {
-            onSelectRow('ALL')
+            return {}
+        }
+
+        return selectedRows.reduce((acc, id) => {
+            return {
+                ...acc,
+                [id]: true,
+            }
+        }, {})
+    }, [
+        allSelected,
+        selectedRows,
+    ])
+
+    const selectAllRowsHandler = useCallback(() => {
+        if (allSelected) {
+            onSelectRow([])
+
             return
         }
 
-        onSelectRow(Object.entries(selected).filter(([
-            _, // eslint-disable-line no-unused-vars
-            value,
-        ]) => {
-            return value
-        }).map(([key]) => {
-            return key
-        }))
+        onSelectRow(ALL_ROWS_SELECTED)
     }, [
-        selected,
         allSelected,
         onSelectRow,
     ])
 
-    const selectRowHandler = useCallback((rowId) => {
-        return (value) => {
-            dispatch(select(rowId, value))
-        }
-    }, [])
+    const selectRowHandler = useCallback((id) => {
+        return () => {
+            if (selectedRowsHash[id]) {
+                onSelectRow(selectedRows.filter((oldId) => { return oldId !== id }))
 
-    const selectAllRowsHandler = useCallback((value) => {
-        return dispatch(selectAll(value))
-    }, [])
+                return
+            }
+
+            onSelectRow([
+                ...selectedRows,
+                id,
+            ])
+        }
+    }, [
+        onSelectRow,
+        selectedRows,
+        selectedRowsHash,
+    ])
 
     const columsWithSelect = useMemo(() => {
         if (!onSelectRow) {
@@ -86,13 +80,13 @@ const useSelectRow = ({
                     return {
                         onChange: selectAllRowsHandler,
                         checked: allSelected,
-                        indeterminate: allSelected ? false : Object.values(selected).find(Boolean),
+                        indeterminate: allSelected ? false : selectedRows.length > 0,
                     }
                 },
                 Cell: SelectRowCell,
                 mapCellProps: (rowProps) => {
                     const id = get(rowProps, uniqField)
-                    const selectedRow = allSelected ? false : selected[id]
+                    const selectedRow = allSelected ? false : selectedRowsHash[id]
 
                     return {
                         onChange: selectRowHandler(id),
@@ -105,12 +99,13 @@ const useSelectRow = ({
         ]
     }, [
         columns,
-        onSelectRow,
-        selectRowHandler,
-        selectAllRowsHandler,
-        allSelected,
-        selected,
         uniqField,
+        onSelectRow,
+        allSelected,
+        selectedRowsHash,
+        selectRowHandler,
+        selectedRows.length,
+        selectAllRowsHandler,
     ])
 
     return columsWithSelect
