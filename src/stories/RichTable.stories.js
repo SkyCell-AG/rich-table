@@ -55,8 +55,6 @@ const Template = (props) => {
         setSelectedRows(selectedRowsFromProps)
     }, [selectedRowsFromProps])
 
-    console.log(props)
-
     const richtableRef = useRef()
 
     const load = useCallback(() => {

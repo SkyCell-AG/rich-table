@@ -6,6 +6,9 @@ import {
 import get from 'lodash/get'
 
 import SelectRowCell from 'componentes/SelectRowCell'
+import {
+    ALL_ROWS_SELECTED,
+} from './utils'
 
 const useSelectRow = ({
     columns,
@@ -14,9 +17,13 @@ const useSelectRow = ({
     selectedRows = [],
 }) => {
     const allSelected = useMemo(() => {
-        return selectedRows === 'ALL'
+        return selectedRows === ALL_ROWS_SELECTED
     }, [selectedRows])
     const selectedRowsHash = useMemo(() => {
+        if (selectedRows === ALL_ROWS_SELECTED) {
+            return {}
+        }
+
         return selectedRows.reduce((acc, id) => {
             return {
                 ...acc,
@@ -32,7 +39,7 @@ const useSelectRow = ({
             return
         }
 
-        onSelectRow('ALL')
+        onSelectRow(ALL_ROWS_SELECTED)
     }, [
         allSelected,
         onSelectRow,
