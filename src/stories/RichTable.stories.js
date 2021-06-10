@@ -1,5 +1,6 @@
 import React, {
     useCallback,
+    useEffect,
     useState,
     useMemo,
     useRef,
@@ -23,19 +24,24 @@ export default {
 const propTypes = {
     filter: PropTypes.object, // eslint-disable-line
     onFilterChange: PropTypes.func, // eslint-disable-line
-    onSelectRow: PropTypes.func, // eslint-disable-line
     sort: PropTypes.object, // eslint-disable-line
     visible: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line
+    selectedRows: PropTypes.arrayOf(PropTypes.number),
 }
+
 const defaultProps = {
+    selectedRows: [],
     filter: undefined,
     onFilterChange: undefined,
-    onSelectRow: undefined,
     sort: undefined,
     visible: undefined,
 }
 
 const Template = (props) => {
+    const {
+        selectedRows: selectedRowsFromProps,
+    } = props
+
     const [
         tab,
         setTab,
@@ -43,11 +49,13 @@ const Template = (props) => {
     const [
         selectedRows,
         setSelectedRows,
-    ] = useState([
-        1,
-        2,
-        3,
-    ])
+    ] = useState()
+
+    useEffect(() => {
+        setSelectedRows(selectedRowsFromProps)
+    }, [selectedRowsFromProps])
+
+    console.log(props)
 
     const richtableRef = useRef()
 
@@ -105,7 +113,6 @@ const Template = (props) => {
     const {
         filter,
         onFilterChange,
-        onSelectRow,
         sort,
         visible,
     } = props
@@ -163,7 +170,7 @@ const Template = (props) => {
                 columns={columns}
                 filter={filter}
                 onFilterChange={onFilterChange}
-                onSelectRow={onSelectRow}
+                onSelectRow={setSelectedRows}
                 sort={sort}
                 uniqField="uniqField"
                 visible={visible}
@@ -178,4 +185,10 @@ Template.propTypes = propTypes
 Template.defaultProps = defaultProps
 
 export const Primary = Template.bind({})
-Primary.args = {}
+Primary.args = {
+    selectedRows: [
+        0,
+        3,
+        5,
+    ],
+}
