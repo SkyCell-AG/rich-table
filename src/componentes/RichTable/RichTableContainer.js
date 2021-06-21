@@ -62,6 +62,7 @@ const propTypes = {
     onFilterChange: PropTypes.func,
     selectedFilter: PropTypes.object, // eslint-disable-line
     filter: PropTypes.object, // eslint-disable-line
+    excludeFilters: PropTypes.object, // eslint-disable-line
     sort: PropTypes.object, // eslint-disable-line
     columns: PropTypes.arrayOf(PropTypes.shape({
         props: PropTypes.object, // eslint-disable-line
@@ -78,7 +79,7 @@ const defaultProps = {
     selectedRows: undefined,
 }
 
-const generateParams = memoize((filter, sort) => {
+const generateParams = memoize((filter, sort, excludeFilters) => {
     const params = {}
 
     if (!isEmpty(filter)) {
@@ -87,6 +88,9 @@ const generateParams = memoize((filter, sort) => {
 
     if (!isEmpty(sort)) {
         params.sort = sort
+    }
+    if (!isEmpty(excludeFilters)) {
+        params.excludeFilters = excludeFilters
     }
 
     return params
@@ -102,6 +106,7 @@ const RichTableContainer = forwardRef(({
     visible: predefinedVisible,
     sort: predefinedSort,
     filter: predefinedFilter,
+    excludeFilters,
     onSelectRow,
     uniqField,
     ...props
@@ -194,8 +199,9 @@ const RichTableContainer = forwardRef(({
     ] = useSort(predefinedSort)
 
     const params = useMemo(() => {
-        return generateParams(filter, sort)
+        return generateParams(filter, sort, excludeFilters)
     }, [
+        excludeFilters,
         filter,
         sort,
     ])
