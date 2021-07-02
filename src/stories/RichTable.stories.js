@@ -131,6 +131,21 @@ const Template = (props) => {
             <button
                 type="button"
                 onClick={() => {
+                    return richtableRef.current && richtableRef.current.add(
+                        {
+                            uniqField: 2,
+                            field1: tab,
+                            field2: 'Field 2 updated content 2',
+                            field3: 'Field 3 content 2',
+                        },
+                    )
+                }}
+            >
+                add
+            </button>
+            <button
+                type="button"
+                onClick={() => {
                     return richtableRef.current && richtableRef.current.update(
                         {
                             uniqField: 2,

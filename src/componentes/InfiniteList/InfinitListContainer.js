@@ -19,6 +19,7 @@ import {
     loadDataFailure,
     loadDataPending,
     updateDataEntry,
+    addDataEntry,
 } from './store/actions'
 import reducer from './store/reducer'
 import InfiniteList from './InfiniteList'
@@ -59,6 +60,9 @@ const InfiniteListContainer = forwardRef((props, ref) => {
         ref.current = { // eslint-disable-line
             update: (updatedElement) => {
                 dispatch(updateDataEntry(updatedElement, uniqField))
+            },
+            add: (updatedElement) => {
+                dispatch(addDataEntry(updatedElement))
             },
         }
     }, [

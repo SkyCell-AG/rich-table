@@ -132,6 +132,9 @@ const RichTableContainer = forwardRef(({
             update: (updatedElement) => {
                 infiniteListRef.current.update(updatedElement)
             },
+            add: (updatedElement) => {
+                infiniteListRef.current.add(updatedElement)
+            },
         }
     }, [ref])
 
