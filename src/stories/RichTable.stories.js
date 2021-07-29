@@ -180,6 +180,9 @@ const Template = (props) => {
             </div>
             <RichTable
                 ref={richtableRef}
+                detailPanel={() => {
+                    return <div>DetailPanel</div>
+                }}
                 columns={columns}
                 filter={filter}
                 onFilterChange={onFilterChange}

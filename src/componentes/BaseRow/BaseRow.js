@@ -1,6 +1,5 @@
 import React, {
-    useCallback,
-    useState,
+    useMemo,
 } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
@@ -69,25 +68,11 @@ const BaseRow = (props) => {
 
     const classes = useStyles()
 
-    const [
-        isHide,
-        setHide,
-    ] = useState(!openRow)
-    const togglePanel = useCallback(() => {
-        setHide(!isHide)
-    }, [isHide])
-
-    const onRowClick = useCallback(() => {
-        if (DetailPanel) {
-            togglePanel()
-        }
-
-        rowClick(rowProps)
+    const showDetailPanel = useMemo(() => {
+        return DetailPanel && openRow
     }, [
         DetailPanel,
-        togglePanel,
-        rowClick,
-        rowProps,
+        openRow,
     ])
 
     return (
@@ -98,8 +83,8 @@ const BaseRow = (props) => {
             })}
         >
             <div
-                onKeyDown={onRowClick}
-                onClick={onRowClick}
+                onKeyDown={rowClick}
+                onClick={rowClick}
                 className={clsx(
                     classes.rowContent,
                     {
@@ -112,7 +97,7 @@ const BaseRow = (props) => {
                         <div className={classes.iconWrapper}>
                             <ChevronRight className={clsx(
                                 {
-                                    [classes.isOpenIcon]: !isHide,
+                                    [classes.isOpenIcon]: showDetailPanel,
                                 },
                             )}
                             />
@@ -168,7 +153,7 @@ const BaseRow = (props) => {
                 }
             </div>
             {
-                DetailPanel && !isHide && (
+                showDetailPanel && (
                     <DetailPanel
                         name={name}
                         rowProps={rowProps}
