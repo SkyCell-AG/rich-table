@@ -77,6 +77,19 @@ const BaseRow = (props) => {
         setHide(!isHide)
     }, [isHide])
 
+    const onRowClick = useCallback(() => {
+        if (DetailPanel) {
+            togglePanel()
+        }
+
+        rowClick(rowProps)
+    }, [
+        DetailPanel,
+        togglePanel,
+        rowClick,
+        rowProps,
+    ])
+
     return (
         <div
             data-testid={`richtable-row-${rowProps.id}`}
@@ -85,8 +98,8 @@ const BaseRow = (props) => {
             })}
         >
             <div
-                onKeyDown={DetailPanel ? togglePanel : rowClick(rowProps)}
-                onClick={DetailPanel ? togglePanel : rowClick(rowProps)}
+                onKeyDown={onRowClick}
+                onClick={onRowClick}
                 className={clsx(
                     classes.rowContent,
                     {
