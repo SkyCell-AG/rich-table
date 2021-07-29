@@ -95,11 +95,12 @@ const BaseRow = (props) => {
                 {
                     DetailPanel && (
                         <div className={classes.iconWrapper}>
-                            <ChevronRight className={clsx(
-                                {
-                                    [classes.isOpenIcon]: showDetailPanel,
-                                },
-                            )}
+                            <ChevronRight
+                                className={clsx(
+                                    {
+                                        [classes.isOpenIcon]: showDetailPanel,
+                                    },
+                                )}
                             />
                         </div>
                     )

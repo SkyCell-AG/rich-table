@@ -56,6 +56,10 @@ describe('components/BaseRow', () => {
     })
 
     it('with detailPanel', () => {
+        const DetailPanel = () => {
+            return <div className="detailPanel">detailPanel</div>
+        }
+
         const props = {
             name: 'Note',
             columns: [
@@ -82,24 +86,12 @@ describe('components/BaseRow', () => {
                 changedBy: 'alessio.conese@skycell.ch',
                 validDateTimestamp: '28.12.2020 10:35:56 +0100',
             },
-            detailPanel: () => {
-                return <div className="detailPanel">detailPanel</div>
-            },
+            openRow: true,
+            detailPanel: DetailPanel,
         }
 
-        const wrapper = mount(<BaseRow {...props} />)
-        const iconChevron = wrapper.find(ChevronRight)
-        // const row = wrapper.find
+        const wrapper = shallow(<BaseRow {...props} />)
 
-        expect(iconChevron.length).toBe(1)
-        expect(wrapper.find({
-            className: 'detailPanel',
-        }).length).toBe(0)
-
-        iconChevron.simulate('click')
-
-        expect(wrapper.find({
-            className: 'detailPanel',
-        }).length).toBe(1)
+        expect(wrapper.find(DetailPanel).length).toBe(1)
     })
 })
