@@ -78,7 +78,7 @@ describe('components/BaseRow', () => {
                     mapCellProps: 'noteText',
                 },
             ],
-            uniqFieldValue: '9x3C821DE9260469101EAEF912A3B3961A9E71B1D7037AF64F78DBE960',
+            uniqFieldValue: 124,
             rowClick: jest.fn(),
             rowProps: {
                 noteSubject: 'Logger Exchange',
