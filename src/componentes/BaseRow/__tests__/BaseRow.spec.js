@@ -1,9 +1,7 @@
 import React from 'react'
 import {
     shallow,
-    mount,
 } from 'enzyme'
-import ChevronRight from '@material-ui/icons/ChevronRight'
 
 import BaseRow from '../BaseRow'
 
