@@ -58,10 +58,10 @@ const propTypes = {
     editing: PropTypes.bool,
     selectedRowId: PropTypes.string,
     detailPanel: PropTypes.func,
-    openRowId: PropTypes.oneOfType(
+    openRowId: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
-    ),
+    ]),
 }
 
 const defaultProps = {
