@@ -81,7 +81,7 @@ const BaseRow = (props) => {
             data-testid={`richtable-row-${rowProps.id}`}
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
-                [classes.cursorPointer]: rowClick,
+                [classes.cursorPointer]: Boolean(rowClick),
             })}
         >
             <div

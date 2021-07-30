@@ -12,6 +12,7 @@ jest.mock(
             return {
                 hideDetails: 'hideDetails',
                 showDetails: 'showDetails',
+                cursorPointer: 'cursorPointer',
             }
         }
     },
