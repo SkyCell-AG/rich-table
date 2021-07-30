@@ -2,6 +2,7 @@ import React, {
     useCallback,
     forwardRef,
     useEffect,
+    useState,
     useRef,
 } from 'react'
 import PropTypes from 'prop-types'
@@ -57,13 +58,16 @@ const propTypes = {
     editing: PropTypes.bool,
     selectedRowId: PropTypes.string,
     detailPanel: PropTypes.func,
-    openRowId: PropTypes.string,
+    openRowId: PropTypes.oneOfType(
+        PropTypes.string,
+        PropTypes.number,
+    ),
 }
 
 const defaultProps = {
     matchedResults: undefined,
     className: '',
-    onRowClick: noop,
+    onRowClick: undefined,
     selectedRows: undefined,
     uniqField: 'id',
     controlPanel: null,
@@ -97,15 +101,26 @@ const RichTable = forwardRef((props, ref) => {
     const theme = useTheme()
     const classes = useStyles(theme, props)
 
+    const [
+        openedRow,
+        setOpenedRow,
+    ] = useState(null)
+
     const rowClick = useCallback((row) => {
         return () => {
-            onRowClick(
-                row,
-                rerenderInfinitList,
-            )
+            if (onRowClick) {
+                onRowClick(
+                    row,
+                    rerenderInfinitList,
+                )
+            } else if (detailPanel) {
+                setOpenedRow(openedRow === row ? null : row)
+            }
         }
     }, [
+        openedRow,
         onRowClick,
+        detailPanel,
         rerenderInfinitList,
     ])
 
@@ -221,6 +236,12 @@ const RichTable = forwardRef((props, ref) => {
                     }}
                     Row={(rowProps) => {
                         const uniqFieldValue = get(rowProps, uniqField)
+                        const innerOpenRowId = get(openedRow, uniqField)
+
+                        const openRow = (
+                            openRowId === uniqFieldValue
+                            || innerOpenRowId === uniqFieldValue
+                        )
 
                         return (
                             <div
@@ -232,11 +253,11 @@ const RichTable = forwardRef((props, ref) => {
                                     selectedRows={selectedRows}
                                     selectedRowId={selectedRowId}
                                     uniqFieldValue={uniqFieldValue}
-                                    rowClick={rowClick}
+                                    rowClick={rowClick(rowProps)}
                                     rowProps={rowProps}
                                     columns={columns}
                                     detailPanel={detailPanel}
-                                    openRow={openRowId === uniqFieldValue}
+                                    openRow={openRow}
                                 />
                             </div>
                         )

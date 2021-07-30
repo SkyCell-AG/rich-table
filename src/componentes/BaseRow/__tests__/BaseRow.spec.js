@@ -1,9 +1,7 @@
 import React from 'react'
 import {
     shallow,
-    mount,
 } from 'enzyme'
-import ChevronRight from '@material-ui/icons/ChevronRight'
 
 import BaseRow from '../BaseRow'
 
@@ -14,6 +12,7 @@ jest.mock(
             return {
                 hideDetails: 'hideDetails',
                 showDetails: 'showDetails',
+                cursorPointer: 'cursorPointer',
             }
         }
     },
@@ -56,6 +55,10 @@ describe('components/BaseRow', () => {
     })
 
     it('with detailPanel', () => {
+        const DetailPanel = () => {
+            return <div className="detailPanel">detailPanel</div>
+        }
+
         const props = {
             name: 'Note',
             columns: [
@@ -74,7 +77,7 @@ describe('components/BaseRow', () => {
                     mapCellProps: 'noteText',
                 },
             ],
-            uniqFieldValue: '9x3C821DE9260469101EAEF912A3B3961A9E71B1D7037AF64F78DBE960',
+            uniqFieldValue: 124,
             rowClick: jest.fn(),
             rowProps: {
                 noteSubject: 'Logger Exchange',
@@ -82,24 +85,12 @@ describe('components/BaseRow', () => {
                 changedBy: 'alessio.conese@skycell.ch',
                 validDateTimestamp: '28.12.2020 10:35:56 +0100',
             },
-            detailPanel: () => {
-                return <div className="detailPanel">detailPanel</div>
-            },
+            openRow: true,
+            detailPanel: DetailPanel,
         }
 
-        const wrapper = mount(<BaseRow {...props} />)
-        const iconChevron = wrapper.find(ChevronRight)
-        // const row = wrapper.find
+        const wrapper = shallow(<BaseRow {...props} />)
 
-        expect(iconChevron.length).toBe(1)
-        expect(wrapper.find({
-            className: 'detailPanel',
-        }).length).toBe(0)
-
-        iconChevron.simulate('click')
-
-        expect(wrapper.find({
-            className: 'detailPanel',
-        }).length).toBe(1)
+        expect(wrapper.find(DetailPanel).length).toBe(1)
     })
 })

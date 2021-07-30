@@ -1,6 +1,5 @@
 import React, {
-    useCallback,
-    useState,
+    useMemo,
 } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
@@ -26,7 +25,7 @@ const propTypes = {
         PropTypes.string,
         PropTypes.number,
     ]).isRequired,
-    rowClick: PropTypes.func.isRequired,
+    rowClick: PropTypes.func,
     rowProps: PropTypes.shape({
         id: PropTypes.oneOfType([
             PropTypes.string,
@@ -47,6 +46,7 @@ const propTypes = {
 }
 
 const defaultProps = {
+    rowClick: undefined,
     selectedRows: undefined,
     detailPanel: undefined,
     selectedRowId: undefined,
@@ -69,24 +69,24 @@ const BaseRow = (props) => {
 
     const classes = useStyles()
 
-    const [
-        isHide,
-        setHide,
-    ] = useState(!openRow)
-    const togglePanel = useCallback(() => {
-        setHide(!isHide)
-    }, [isHide])
+    const showDetailPanel = useMemo(() => {
+        return DetailPanel && openRow
+    }, [
+        DetailPanel,
+        openRow,
+    ])
 
     return (
         <div
             data-testid={`richtable-row-${rowProps.id}`}
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
+                [classes.cursorPointer]: Boolean(rowClick),
             })}
         >
             <div
-                onKeyDown={DetailPanel ? togglePanel : rowClick(rowProps)}
-                onClick={DetailPanel ? togglePanel : rowClick(rowProps)}
+                onKeyDown={rowClick}
+                onClick={rowClick}
                 className={clsx(
                     classes.rowContent,
                     {
@@ -97,11 +97,12 @@ const BaseRow = (props) => {
                 {
                     DetailPanel && (
                         <div className={classes.iconWrapper}>
-                            <ChevronRight className={clsx(
-                                {
-                                    [classes.isOpenIcon]: !isHide,
-                                },
-                            )}
+                            <ChevronRight
+                                className={clsx(
+                                    {
+                                        [classes.isOpenIcon]: showDetailPanel,
+                                    },
+                                )}
                             />
                         </div>
                     )
@@ -155,7 +156,7 @@ const BaseRow = (props) => {
                 }
             </div>
             {
-                DetailPanel && !isHide && (
+                showDetailPanel && (
                     <DetailPanel
                         name={name}
                         rowProps={rowProps}

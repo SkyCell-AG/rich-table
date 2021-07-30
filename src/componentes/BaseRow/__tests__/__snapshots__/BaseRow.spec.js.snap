@@ -2,11 +2,13 @@
 
 exports[`components/BaseRow should match snapshot 1`] = `
 <div
-  className=""
+  className="cursorPointer"
   data-testid="richtable-row-1"
 >
   <div
-    className="undefined"
+    className="cursorPointer"
+    onClick={[MockFunction]}
+    onKeyDown={[MockFunction]}
   >
     <div
       data-testid="cell-noteSubject"
