@@ -113,13 +113,14 @@ const RichTable = forwardRef((props, ref) => {
                     row,
                     rerenderInfinitList,
                 )
-            } else {
+            } else if (detailPanel) {
                 setOpenedRow(openedRow === row ? null : row)
             }
         }
     }, [
         openedRow,
         onRowClick,
+        detailPanel,
         rerenderInfinitList,
     ])
 

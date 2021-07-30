@@ -25,7 +25,7 @@ const propTypes = {
         PropTypes.string,
         PropTypes.number,
     ]).isRequired,
-    rowClick: PropTypes.func.isRequired,
+    rowClick: PropTypes.func,
     rowProps: PropTypes.shape({
         id: PropTypes.oneOfType([
             PropTypes.string,
@@ -46,6 +46,7 @@ const propTypes = {
 }
 
 const defaultProps = {
+    rowClick: undefined,
     selectedRows: undefined,
     detailPanel: undefined,
     selectedRowId: undefined,
@@ -80,6 +81,7 @@ const BaseRow = (props) => {
             data-testid={`richtable-row-${rowProps.id}`}
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
+                [classes.cursorPointer]: rowClick,
             })}
         >
             <div
