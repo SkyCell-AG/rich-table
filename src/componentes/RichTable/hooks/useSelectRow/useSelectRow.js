@@ -6,6 +6,9 @@ import {
 import get from 'lodash/get'
 
 import SelectRowCell from 'componentes/SelectRowCell'
+
+import useStyles from './useSelectRow.style'
+
 import {
     ALL_ROWS_SELECTED,
 } from './utils'
@@ -16,6 +19,7 @@ const useSelectRow = ({
     uniqField,
     selectedRows = [],
 }) => {
+    const classes = useStyles()
     const allSelected = useMemo(() => {
         return selectedRows === ALL_ROWS_SELECTED
     }, [selectedRows])
@@ -76,6 +80,7 @@ const useSelectRow = ({
             {
                 id: 'Select',
                 Header: SelectRowCell,
+                className: classes.checkall,
                 mapHeaderProps: () => {
                     return {
                         onChange: selectAllRowsHandler,
