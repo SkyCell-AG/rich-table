@@ -3,7 +3,7 @@ import {
 } from '@material-ui/styles'
 
 const useStyles = makeStyles({
-    checkall: {
+    checkAll: {
         visibility: 'hidden',
     },
 })

@@ -80,7 +80,7 @@ const useSelectRow = ({
             {
                 id: 'Select',
                 Header: SelectRowCell,
-                className: classes.checkall,
+                className: classes.checkAll,
                 mapHeaderProps: () => {
                     return {
                         onChange: selectAllRowsHandler,
@@ -111,6 +111,7 @@ const useSelectRow = ({
         selectRowHandler,
         selectedRows.length,
         selectAllRowsHandler,
+        classes.checkAll,
     ])
 
     return columsWithSelect
