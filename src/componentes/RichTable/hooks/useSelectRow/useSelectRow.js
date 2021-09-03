@@ -35,6 +35,19 @@ const useSelectRow = ({
         selectedRows,
     ])
 
+    const selectAllRowsHandler = useCallback(() => {
+        if (allSelected) {
+            onSelectRow([])
+
+            return
+        }
+
+        onSelectRow(ALL_ROWS_SELECTED)
+    }, [
+        allSelected,
+        onSelectRow,
+    ])
+
     const selectRowHandler = useCallback((id) => {
         return () => {
             if (selectedRowsHash[id]) {
@@ -62,6 +75,14 @@ const useSelectRow = ({
         return [
             {
                 id: 'Select',
+                Header: SelectRowCell,
+                mapHeaderProps: () => {
+                    return {
+                        onChange: selectAllRowsHandler,
+                        checked: allSelected,
+                        indeterminate: allSelected ? false : selectedRows.length > 0,
+                    }
+                },
                 Cell: SelectRowCell,
                 mapCellProps: (rowProps) => {
                     const id = get(rowProps, uniqField)
@@ -83,6 +104,8 @@ const useSelectRow = ({
         allSelected,
         selectedRowsHash,
         selectRowHandler,
+        selectedRows.length,
+        selectAllRowsHandler,
     ])
 
     return columsWithSelect
