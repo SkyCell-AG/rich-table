@@ -106,6 +106,10 @@ const RichTable = forwardRef((props, ref) => {
         setOpenedRow,
     ] = useState(null)
 
+    const closeOpenedRow = useCallback(() => {
+        setOpenedRow(null)
+    }, [])
+
     const rowClick = useCallback((row) => {
         return () => {
             if (onRowClick) {
@@ -258,6 +262,7 @@ const RichTable = forwardRef((props, ref) => {
                                     columns={columns}
                                     detailPanel={detailPanel}
                                     openRow={openRow}
+                                    closeOpenedRow={closeOpenedRow}
                                 />
                             </div>
                         )
