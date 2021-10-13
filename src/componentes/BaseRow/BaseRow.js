@@ -43,7 +43,7 @@ const propTypes = {
     detailPanel: PropTypes.func,
     selectedRowId: PropTypes.string,
     openRow: PropTypes.bool,
-    closeOpenedRow: PropTypes.func.isRequired
+    closeOpenedRow: PropTypes.func.isRequired,
 }
 
 const defaultProps = {
