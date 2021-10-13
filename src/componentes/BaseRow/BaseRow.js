@@ -43,6 +43,7 @@ const propTypes = {
     detailPanel: PropTypes.func,
     selectedRowId: PropTypes.string,
     openRow: PropTypes.bool,
+    closeOpenedRow: PropTypes.func.isRequired,
 }
 
 const defaultProps = {
@@ -65,6 +66,7 @@ const BaseRow = (props) => {
         columns,
         detailPanel: DetailPanel,
         openRow,
+        closeOpenedRow,
     } = props
 
     const classes = useStyles()
@@ -125,6 +127,7 @@ const BaseRow = (props) => {
                                     <Component
                                         name={name}
                                         value={value}
+                                        rowProps={rowProps}
                                         mapCellProps={mapCellProps}
                                         {...getComponentProps(
                                             propsMapper,
@@ -160,6 +163,7 @@ const BaseRow = (props) => {
                     <DetailPanel
                         name={name}
                         rowProps={rowProps}
+                        closeOpenedRow={closeOpenedRow}
                     />
                 )
             }
