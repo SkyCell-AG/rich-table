@@ -1,7 +1,9 @@
 import {
     makeStyles,
 } from '@mui/styles'
-import {useTheme} from "@mui/material/styles";
+import {
+    useTheme
+} from "@mui/material/styles"
 
 const useStyles = makeStyles(() => {
     const theme = useTheme()
@@ -17,7 +19,6 @@ const useStyles = makeStyles(() => {
             minHeight: theme.shape.tabHeight,
             backgroundColor: theme.palette.common.white,
         },
-
         tableWrapper: {
             position: 'relative',
             width: '100%',
