@@ -9,9 +9,6 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import noop from 'lodash/noop'
 import get from 'lodash/get'
-import {
-    useTheme,
-} from '@mui/material/styles'
 
 import HeaderCell from 'componentes/HeaderCell'
 import InfiniteList from 'componentes/InfiniteList'
@@ -98,8 +95,7 @@ const RichTable = forwardRef((props, ref) => {
         openRowId,
     } = props
 
-    const theme = useTheme()
-    const classes = useStyles(theme, props)
+    const classes = useStyles()
 
     const [
         openedRow,
