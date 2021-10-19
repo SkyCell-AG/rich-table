@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import SnackbarContent from '@material-ui/core/SnackbarContent'
+import CircularProgress from '@mui/material/CircularProgress'
+import SnackbarContent from '@mui/material/SnackbarContent'
 
 import {
     PENDING,

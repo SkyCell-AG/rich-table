@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ListItem from '@material-ui/core/ListItem'
-import Chip from '@material-ui/core/Chip'
+import ListItem from '@mui/material/ListItem'
+import Chip from '@mui/material/Chip'
 
 import Checkbox from 'componentes/Checkbox'
 

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import noop from 'lodash/noop'
 import {
     FormControlLabel, Checkbox as MaterialCheckbox,
-} from '@material-ui/core'
+} from '@mui/material'
 
 const propTypes = {
     title: PropTypes.string,

@@ -1,8 +1,13 @@
 import {
     makeStyles,
-} from '@material-ui/core'
+} from '@mui/styles'
+import {
+    useTheme,
+} from '@mui/material/styles'
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(() => {
+    const theme = useTheme()
+
     return {
         filterListContainer: {
             minWidth: 200,
@@ -18,7 +23,7 @@ const useStyles = makeStyles((theme) => {
         searchField: {
             display: 'flex',
             maxWidth: '100%',
-            margin: `${theme.spacing(2)}px !important`,
+            margin: `${theme.spacing(2)} !important`,
         },
     }
 })

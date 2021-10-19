@@ -11,7 +11,7 @@ import noop from 'lodash/noop'
 import get from 'lodash/get'
 import {
     useTheme,
-} from '@material-ui/core/styles'
+} from '@mui/material/styles'
 
 import HeaderCell from 'componentes/HeaderCell'
 import InfiniteList from 'componentes/InfiniteList'

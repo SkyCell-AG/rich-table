@@ -1,11 +1,13 @@
 import {
     makeStyles,
-} from '@material-ui/styles'
+} from '@mui/styles'
 
-const useStyles = makeStyles({
-    checkAll: {
-        visibility: 'hidden',
-    },
+const useStyles = makeStyles(() => {
+    return {
+        checkAll: {
+            visibility: 'hidden',
+        },
+    }
 })
 
 export default useStyles
