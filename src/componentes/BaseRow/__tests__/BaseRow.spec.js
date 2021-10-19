@@ -47,6 +47,7 @@ describe('components/BaseRow', () => {
                 validDateTimestamp: '28.12.2020 10:35:56 +0100',
                 id: '1',
             },
+            closeOpenedRow: jest.fn(),
         }
 
         const wrapper = shallow(<BaseRow {...props} />)
@@ -87,6 +88,7 @@ describe('components/BaseRow', () => {
             },
             openRow: true,
             detailPanel: DetailPanel,
+            closeOpenedRow: jest.fn(),
         }
 
         const wrapper = shallow(<BaseRow {...props} />)
