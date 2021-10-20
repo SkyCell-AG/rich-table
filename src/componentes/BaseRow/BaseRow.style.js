@@ -1,8 +1,13 @@
 import {
     makeStyles,
-} from '@material-ui/core'
+} from '@mui/styles'
+import {
+    useTheme,
+} from '@mui/material/styles'
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(() => {
+    const theme = useTheme()
+
     return {
         selectedRow: {
             background: `${theme.palette.primary[50]} !important`,

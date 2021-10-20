@@ -1,18 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`app/shared-components/Filter should match snapshot should match snapshot 1`] = `
-<FilterPopoverContainer
+<Component
   active={true}
   button={null}
   className="makeStyles-item-2"
-  onClose={[Function]}
   onOpen={[MockFunction]}
 >
   <div
     className="makeStyles-filterListContainer-1"
   >
-    <WithStyles(ForwardRef(List))>
-      <WithStyles(ForwardRef(TextField))
+    <ForwardRef(List)>
+      <ForwardRef(TextField)
         autoFocus={true}
         className="makeStyles-searchField-3"
         label="Filter search"
@@ -37,7 +36,7 @@ exports[`app/shared-components/Filter should match snapshot should match snapsho
         onClick={[Function]}
         value="9x1EF20BD4D474D284ED257A1DAE235766F6EB3C2255BB0901832618B5"
       />
-    </WithStyles(ForwardRef(List))>
+    </ForwardRef(List)>
   </div>
-</FilterPopoverContainer>
+</Component>
 `;

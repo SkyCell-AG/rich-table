@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import {
     useTheme,
-} from '@material-ui/core/styles'
+} from '@mui/material/styles'
 
 import {
     ASC, DESC,

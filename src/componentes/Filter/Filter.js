@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import List from '@material-ui/core/List'
-import TextField from '@material-ui/core/TextField'
+import CircularProgress from '@mui/material/CircularProgress'
+import List from '@mui/material/List'
+import TextField from '@mui/material/TextField'
 
 import * as statuses from 'utils/requestStatuses'
 import getDataFromInput from 'utils/getDataFromInput'

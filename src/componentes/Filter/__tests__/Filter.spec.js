@@ -6,6 +6,15 @@ import {
 
 import Filter from '../Filter'
 
+jest.mock(
+    '../../FilterPopover',
+    () => {
+        return () => {
+            return (<div>FilterPopover</div>)
+        }
+    },
+)
+
 describe('app/shared-components/Filter should match snapshot', () => {
     it('should match snapshot', () => {
         const wrapper = shallow(

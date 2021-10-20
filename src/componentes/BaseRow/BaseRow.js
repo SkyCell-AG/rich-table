@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import noop from 'lodash/noop'
 import get from 'lodash/get'
-import ChevronRight from '@material-ui/icons/ChevronRight'
+import ChevronRight from '@mui/icons-material/ChevronRight'
 
 import getComponentProps from 'utils/getComponentProps'
 

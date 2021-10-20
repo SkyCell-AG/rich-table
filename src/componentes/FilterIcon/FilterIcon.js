@@ -1,26 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-    useTheme,
-} from '@material-ui/core/styles'
 import clsx from 'clsx'
-import SvgIcon from '@material-ui/core/SvgIcon'
+import SvgIcon from '@mui/material/SvgIcon'
 import {
     makeStyles,
-} from '@material-ui/styles'
+} from '@mui/styles'
 
-const useStyles = makeStyles({
-    icon: {
-        height: '20px !important',
-        width: '20px !important',
-    },
+const useStyles = makeStyles(() => {
+    return {
+        icon: {
+            height: '20px !important',
+            width: '20px !important',
+        },
+    }
 })
 
 const FilterIcon = ({
     className,
 }) => {
-    const theme = useTheme()
-    const classes = useStyles(theme)
+    const classes = useStyles()
 
     return (
         <SvgIcon

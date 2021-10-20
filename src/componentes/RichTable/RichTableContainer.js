@@ -73,6 +73,7 @@ const defaultProps = {
     sort: {},
     visible: [],
     filter: {},
+    excludeFilters: {},
     uniqField: 'id',
     onSelectRow: undefined,
     onFilterChange: undefined,

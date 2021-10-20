@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 
 import {
     ASC, DESC,
