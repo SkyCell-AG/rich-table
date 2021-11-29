@@ -42,7 +42,7 @@ module.exports = {
         'import/no-extraneous-dependencies': [
             "error",
             {
-                "peerDependencies": false,
+                "peerDependencies": true,
             }
         ],
         'import/no-cycle': [
