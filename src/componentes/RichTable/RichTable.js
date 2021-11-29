@@ -195,10 +195,10 @@ const RichTable = forwardRef((props, ref) => {
                                     ...rest
                                 }) => {
                                     const headerProps = headerPropsOut
-                                    || mapHeaderProps({
-                                        ...columnProps,
-                                        data,
-                                    })
+                                        || mapHeaderProps({
+                                            ...columnProps,
+                                            data,
+                                        })
 
                                     return (
                                         <div
