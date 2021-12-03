@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichTableContainer snapshot 1`] = `
+<ForwardRef
+  allColumns={
+    Array [
+      Object {
+        "headerProps": Object {
+          "children": "Heading 1",
+        },
+        "id": "id1",
+        "label": "Heading 1",
+        "props": Object {
+          "prop1": "prop1-1",
+        },
+      },
+      Object {
+        "id": "id2",
+        "label": "Heading 2",
+        "mapHeaderProps": [Function],
+        "props": Object {
+          "prop1": "prop1-2",
+        },
+      },
+      Object {
+        "id": "id3",
+        "label": "",
+        "props": Object {
+          "prop1": "prop1-3",
+        },
+      },
+    ]
+  }
+  changeSequence={[MockFunction]}
+  className=""
+  classNames={Object {}}
+  columns={
+    Array [
+      Object {
+        "id": "1",
+        "prop": "1",
+      },
+      Object {
+        "id": "2",
+        "prop": "2",
+      },
+      Object {
+        "id": "3",
+        "prop": "3",
+      },
+      Object {
+        "id": "4",
+        "prop": "4",
+      },
+    ]
+  }
+  controlPanel={null}
+  editing={false}
+  infinitListKey="random-key"
+  load={[Function]}
+  matchedResults={0}
+  name="some-name"
+  removeFilter={[MockFunction]}
+  removeSort={[MockFunction]}
+  rerenderInfinitList={[Function]}
+  selectedRowId=""
+  setMatchedResults={[Function]}
+  setVisible={[MockFunction]}
+  uniqField="id"
+  visible={
+    Array [
+      "id1",
+      "id2",
+      "id3",
+      "id4",
+    ]
+  }
+/>
+`;

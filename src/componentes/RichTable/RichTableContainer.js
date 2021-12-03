@@ -21,7 +21,8 @@ import useVisible from './hooks/useVisible'
 import useSequence from './hooks/useSequence'
 import useFilter from './hooks/useFilter'
 import useSort from './hooks/useSort'
-import useSelectRow from './hooks/useSelectRow/useSelectRow'
+import useSelectRow from './hooks/useSelectRow'
+import generateParams from './generateParams'
 
 import RichTable from './RichTable'
 
@@ -79,25 +80,6 @@ const defaultProps = {
     onFilterChange: undefined,
     selectedRows: undefined,
 }
-
-const generateParams = memoize((filter, sort, excludeFilters) => {
-    const params = {}
-
-    if (!isEmpty(filter)) {
-        params.filter = filter
-    }
-
-    if (!isEmpty(sort)) {
-        params.sort = sort
-    }
-    if (!isEmpty(excludeFilters)) {
-        params.excludeFilters = excludeFilters
-    }
-
-    return params
-}, (...data) => {
-    return JSON.stringify(data)
-})
 
 const RichTableContainer = forwardRef(({
     columns: outColumns,

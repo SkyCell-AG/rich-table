@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BeforeList BeforeList snapshot 1`] = `
+<div
+  className="makeStyles-headings-1"
+>
+  <div
+    className="makeStyles-cell-11"
+    data-testid="table-header-column1"
+    key="DndCell-column1"
+    style={
+      Object {
+        "width": undefined,
+      }
+    }
+  >
+    <DndCell
+      className=""
+      data={
+        Object {
+          "some": "data",
+        }
+      }
+      id="column1"
+      onDrop={[MockFunction]}
+      type="HeaderCell"
+    >
+      <HeaderCell
+        FilterComponent={[Function]}
+        appliedFilters={null}
+        className=""
+        column1="column1"
+        data={
+          Object {
+            "some": "data",
+          }
+        }
+        id="filter1"
+        key="header-column1"
+        loadFilters={null}
+        setFilter={[MockFunction]}
+        sort={[Function]}
+        sortDirection=""
+        sorting={true}
+      />
+    </DndCell>
+  </div>
+  <div
+    className="makeStyles-cell-11"
+    data-testid="table-header-column2"
+    key="DndCell-column2"
+    style={
+      Object {
+        "width": undefined,
+      }
+    }
+  >
+    <DndCell
+      className=""
+      data={
+        Object {
+          "some": "data",
+        }
+      }
+      id="column2"
+      onDrop={[MockFunction]}
+      type="HeaderCell"
+    >
+      <HeaderCell
+        FilterComponent={[Function]}
+        appliedFilters={null}
+        className=""
+        column2="column2"
+        data={
+          Object {
+            "some": "data",
+          }
+        }
+        id="filter2"
+        key="header-column2"
+        loadFilters={null}
+        setFilter={[MockFunction]}
+        sort={[Function]}
+        sortDirection=""
+        sorting={true}
+      />
+    </DndCell>
+  </div>
+</div>
+`;
