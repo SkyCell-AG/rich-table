@@ -253,7 +253,7 @@ const RichTableContainer = forwardRef(({
                     filter: filter[column.filterField],
                     predefinedFilter,
                     setFilter: createFilterHandler(column.filterField || column.id),
-                    [sort.field === column.id && 'sortDirection']: sort.direction,
+                    sortDirection: sort.field === column.id ? sort.direction : undefined,
                     sort: (direction) => {
                         setSorting(
                             column.id,

@@ -14,7 +14,7 @@ import {
 import styles from './InfiniteList.module.css'
 
 const propTypes = {
-    data: PropTypes.array.isRequired, // eslint-disable-line
+    data: PropTypes.array, // eslint-disable-line
     status: requestType.isRequired,
     onScroll: PropTypes.func.isRequired,
     className: PropTypes.string,
@@ -23,12 +23,13 @@ const propTypes = {
 }
 
 const defaultProps = {
+    data: [],
     className: '',
     BeforeList: null,
 }
 
 const InfiniteList = ({
-    data = [],
+    data,
     status,
     onScroll,
     wrapperRef, // eslint-disable-line

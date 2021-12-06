@@ -5,17 +5,19 @@ exports[`RichTableContainer snapshot 1`] = `
   allColumns={
     Array [
       Object {
+        "filterField": "someField",
+        "filterType": "specialFilter",
         "headerProps": Object {
           "children": "Heading 1",
         },
-        "id": "id1",
+        "id": "1",
         "label": "Heading 1",
         "props": Object {
           "prop1": "prop1-1",
         },
       },
       Object {
-        "id": "id2",
+        "id": "2",
         "label": "Heading 2",
         "mapHeaderProps": [Function],
         "props": Object {
@@ -23,10 +25,17 @@ exports[`RichTableContainer snapshot 1`] = `
         },
       },
       Object {
-        "id": "id3",
+        "id": "3",
         "label": "",
         "props": Object {
           "prop1": "prop1-3",
+        },
+      },
+      Object {
+        "id": "4",
+        "label": "",
+        "props": Object {
+          "prop1": "prop1-4",
         },
       },
     ]
@@ -37,26 +46,76 @@ exports[`RichTableContainer snapshot 1`] = `
   columns={
     Array [
       Object {
+        "filterField": "someField",
+        "filterType": "specialFilter",
+        "headerProps": Object {
+          "children": "Heading 1",
+        },
         "id": "1",
-        "prop": "1",
+        "label": "Heading 1",
+        "props": Object {
+          "appliedFilters": Object {
+            "includeFilters": Object {
+              "1": "val",
+            },
+          },
+          "filter": undefined,
+          "predefinedFilter": Object {
+            "1": Object {
+              "some": "val",
+            },
+          },
+          "setFilter": [Function],
+          "sort": [Function],
+          "sortDirection": "asc",
+        },
       },
       Object {
         "id": "2",
-        "prop": "2",
-      },
-      Object {
-        "id": "3",
-        "prop": "3",
+        "label": "Heading 2",
+        "mapHeaderProps": [Function],
+        "props": Object {
+          "appliedFilters": Object {
+            "includeFilters": Object {
+              "1": "val",
+            },
+          },
+          "filter": undefined,
+          "predefinedFilter": Object {
+            "1": Object {
+              "some": "val",
+            },
+          },
+          "setFilter": [Function],
+          "sort": [Function],
+          "sortDirection": undefined,
+        },
       },
       Object {
         "id": "4",
-        "prop": "4",
+        "label": "",
+        "props": Object {
+          "appliedFilters": Object {
+            "includeFilters": Object {
+              "1": "val",
+            },
+          },
+          "filter": undefined,
+          "predefinedFilter": Object {
+            "1": Object {
+              "some": "val",
+            },
+          },
+          "setFilter": [Function],
+          "sort": [Function],
+          "sortDirection": undefined,
+        },
       },
     ]
   }
   controlPanel={null}
   editing={false}
-  infinitListKey="random-key"
+  infinitListKey="some-random-key"
   load={[Function]}
   matchedResults={0}
   name="some-name"
@@ -69,10 +128,9 @@ exports[`RichTableContainer snapshot 1`] = `
   uniqField="id"
   visible={
     Array [
-      "id1",
-      "id2",
-      "id3",
-      "id4",
+      "1",
+      "2",
+      "4",
     ]
   }
 />
