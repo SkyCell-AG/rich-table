@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfinitListContainer snapshot 1`] = `
+<InfiniteList
+  BeforeList={null}
+  Row={[MockFunction]}
+  className=""
+  data={Array []}
+  hasMore={false}
+  load={[MockFunction]}
+  loadNextPage={[Function]}
+  onScroll={[Function]}
+  onUpdateMatchedResults={[MockFunction]}
+  spacerRef={
+    Object {
+      "current": null,
+    }
+  }
+  status="PRISTIN"
+  uniqField="id"
+  wrapperRef={
+    Object {
+      "current": null,
+    }
+  }
+/>
+`;
