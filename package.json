@@ -1,6 +1,6 @@
 {
   "name": "@skycell-ag/richtable",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": false,
   "main": "dist/index.js",
   "files": [
@@ -21,6 +21,21 @@
     "build-storybook": "build-storybook -s public",
     "clean": "rimraf dist",
     "compile": "npm run clean && cross-env NODE_ENV=production babel src --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__"
+  },
+  "jest": {
+    "coverageReporters": [
+      "lcov",
+      "json-summary"
+    ],
+    "collectCoverageFrom": [
+      "**/src/**",
+      "!**/src/setupTests.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "__snapshots__",
+      "setupTests.js"
+    ]
   },
   "eslintConfig": {
     "extends": [

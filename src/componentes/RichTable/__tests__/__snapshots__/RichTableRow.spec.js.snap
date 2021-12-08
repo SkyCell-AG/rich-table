@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Richtable Row snapshot 1`] = `
+<div
+  key="row-some-id"
+>
+  <BaseRow
+    closeOpenedRow={[Function]}
+    columns={
+      Array [
+        Object {
+          "id": "column1",
+          "props": Object {
+            "column1": "column1",
+          },
+        },
+        Object {
+          "id": "column2",
+          "props": Object {
+            "column2": "column2",
+          },
+        },
+      ]
+    }
+    name="someName"
+    openRow={false}
+    rowClick={[Function]}
+    rowProps={
+      Object {
+        "column1": "column1",
+        "column2": "column2",
+        "id": "some-id",
+      }
+    }
+    selectedRowId=""
+    uniqFieldValue="some-id"
+  />
+</div>
+`;

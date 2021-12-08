@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichTable snapshot 1`] = `
+<div
+  className="makeStyles-tableWrapper-2"
+>
+  <div
+    className="makeStyles-headerTableWrapper-5"
+  />
+  <div
+    className="makeStyles-contentWrapper-10"
+  >
+    <ForwardRef
+      BeforeList={[Function]}
+      ControlPanel={[MockFunction]}
+      Row={[Function]}
+      changeSequence={[MockFunction]}
+      className=""
+      classNames={Object {}}
+      columns={
+        Array [
+          Object {
+            "id": "column1",
+            "props": Object {
+              "column1": "column1",
+            },
+          },
+          Object {
+            "id": "column2",
+            "props": Object {
+              "column2": "column2",
+            },
+          },
+        ]
+      }
+      controlPanel={null}
+      editing={false}
+      infinitListKey="infinitListKey"
+      key="infinitListKey"
+      load={[MockFunction]}
+      name="someName"
+      onUpdateMatchedResults={[MockFunction]}
+      removeFilter={[MockFunction]}
+      removeSort={[MockFunction]}
+      rerenderInfinitList={[MockFunction]}
+      selectedRowId=""
+      setMatchedResults={[MockFunction]}
+      setVisible={[MockFunction]}
+      uniqField="id"
+      visible={
+        Array [
+          "column1",
+          "column2",
+        ]
+      }
+    />
+  </div>
+</div>
+`;

@@ -20,9 +20,9 @@ import useStyles from './RichTable.style'
 const propTypes = {
     uniqField: PropTypes.string,
     name: PropTypes.string.isRequired,
+    load: PropTypes.func.isRequired,
     visible: PropTypes.arrayOf(PropTypes.string).isRequired,
     setVisible: PropTypes.func.isRequired,
-    allColumns: PropTypes.arrayOf(PropTypes.object).isRequired,
     onRowClick: PropTypes.func,
     changeSequence: PropTypes.func.isRequired,
     setMatchedResults: PropTypes.func.isRequired,
@@ -93,6 +93,7 @@ const RichTable = forwardRef((props, ref) => {
         detailPanel,
         rerenderInfinitList,
         openRowId,
+        load,
     } = props
 
     const classes = useStyles()
@@ -169,6 +170,7 @@ const RichTable = forwardRef((props, ref) => {
             >
                 <InfiniteList
                     {...props}
+                    load={load}
                     ref={ref}
                     key={infinitListKey}
                     onUpdateMatchedResults={setMatchedResults}
@@ -236,6 +238,7 @@ const RichTable = forwardRef((props, ref) => {
                     }}
                     Row={(rowProps) => {
                         const uniqFieldValue = get(rowProps, uniqField)
+
                         const innerOpenRowId = get(openedRow, uniqField)
 
                         const openRow = (

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfinitListContainer snapshot on load Success 1`] = `
+<InfiniteList
+  BeforeList={null}
+  Row={[MockFunction]}
+  className=""
+  data={
+    Array [
+      Object {
+        "val": 1,
+      },
+      Object {
+        "val": 2,
+      },
+    ]
+  }
+  hasMore={true}
+  load={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          1,
+        ],
+        Array [
+          1,
+        ],
+        Array [
+          1,
+        ],
+        Array [
+          1,
+        ],
+        Array [
+          2,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": Promise {},
+        },
+        Object {
+          "type": "return",
+          "value": Promise {},
+        },
+        Object {
+          "type": "return",
+          "value": Promise {},
+        },
+        Object {
+          "type": "return",
+          "value": Promise {},
+        },
+        Object {
+          "type": "return",
+          "value": Promise {},
+        },
+      ],
+    }
+  }
+  loadNextPage={[Function]}
+  onScroll={[Function]}
+  onUpdateMatchedResults={[MockFunction]}
+  spacerRef={
+    Object {
+      "current": null,
+    }
+  }
+  status="SUCCESS"
+  uniqField="id"
+  wrapperRef={
+    Object {
+      "current": null,
+    }
+  }
+/>
+`;

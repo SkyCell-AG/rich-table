@@ -7,8 +7,6 @@ import React, {
     useRef,
 } from 'react'
 import PropTypes from 'prop-types'
-import memoize from 'lodash/memoize'
-import isEmpty from 'lodash/isEmpty'
 import omit from 'lodash/omit'
 import {
     v1 as uuid,
@@ -21,7 +19,8 @@ import useVisible from './hooks/useVisible'
 import useSequence from './hooks/useSequence'
 import useFilter from './hooks/useFilter'
 import useSort from './hooks/useSort'
-import useSelectRow from './hooks/useSelectRow/useSelectRow'
+import useSelectRow from './hooks/useSelectRow'
+import generateParams from './generateParams'
 
 import RichTable from './RichTable'
 
@@ -79,25 +78,6 @@ const defaultProps = {
     onFilterChange: undefined,
     selectedRows: undefined,
 }
-
-const generateParams = memoize((filter, sort, excludeFilters) => {
-    const params = {}
-
-    if (!isEmpty(filter)) {
-        params.filter = filter
-    }
-
-    if (!isEmpty(sort)) {
-        params.sort = sort
-    }
-    if (!isEmpty(excludeFilters)) {
-        params.excludeFilters = excludeFilters
-    }
-
-    return params
-}, (...data) => {
-    return JSON.stringify(data)
-})
 
 const RichTableContainer = forwardRef(({
     columns: outColumns,
@@ -271,7 +251,7 @@ const RichTableContainer = forwardRef(({
                     filter: filter[column.filterField],
                     predefinedFilter,
                     setFilter: createFilterHandler(column.filterField || column.id),
-                    [sort.field === column.id && 'sortDirection']: sort.direction,
+                    sortDirection: sort.field === column.id ? sort.direction : undefined,
                     sort: (direction) => {
                         setSorting(
                             column.id,

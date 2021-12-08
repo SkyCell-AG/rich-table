@@ -25,6 +25,7 @@ import reducer from './store/reducer'
 import InfiniteList from './InfiniteList'
 
 const propTypes = {
+    Row: PropTypes.func.isRequired,
     uniqField: PropTypes.string,
     load: PropTypes.func.isRequired,
     onUpdateMatchedResults: PropTypes.func,
@@ -40,6 +41,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
         load,
         onUpdateMatchedResults,
         uniqField,
+        Row,
     } = props
 
     const [
@@ -54,6 +56,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
         status: statuses.PRISTIN,
         data: [],
         matchedResults: 0,
+        page: 0,
     })
 
     useEffect(() => {
@@ -217,6 +220,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
     return (
         <InfiniteList
             {...props}
+            Row={Row}
             wrapperRef={wrapperRef}
             spacerRef={spacerRef}
             hasMore={hasMore}
