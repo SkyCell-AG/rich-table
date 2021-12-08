@@ -9,7 +9,6 @@ import {
     PENDING,
     FAILURE,
     SUCCESS,
-    requestType,
 } from 'utils/requestStatuses'
 
 import InfiniteList from '../InfiniteList'

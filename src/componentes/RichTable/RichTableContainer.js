@@ -7,8 +7,6 @@ import React, {
     useRef,
 } from 'react'
 import PropTypes from 'prop-types'
-import memoize from 'lodash/memoize'
-import isEmpty from 'lodash/isEmpty'
 import omit from 'lodash/omit'
 import {
     v1 as uuid,
