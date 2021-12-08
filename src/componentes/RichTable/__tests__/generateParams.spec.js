@@ -28,4 +28,21 @@ describe('generateParams', () => {
             },
         )
     })
+    test('params generated no filter no sort', () => {
+        expect(
+            generateParams(
+                null,
+                null,
+                {
+                    c: 1,
+                },
+            ),
+        ).toEqual(
+            {
+                excludeFilters: {
+                    c: 1,
+                },
+            },
+        )
+    })
 })
