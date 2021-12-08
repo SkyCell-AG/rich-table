@@ -56,6 +56,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
         status: statuses.PRISTIN,
         data: [],
         matchedResults: 0,
+        page: 0,
     })
 
     useEffect(() => {
