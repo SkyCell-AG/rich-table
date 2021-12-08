@@ -17,7 +17,7 @@ describe('InfinitListContainer', () => {
                             matchedresults: 20,
                         },
                         data: [{
-                            val: d, // eslint-disable-line no-plusplus
+                            val: d,
                         }],
                     })
                 }, 200)
