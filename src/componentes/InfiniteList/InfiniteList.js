@@ -43,6 +43,7 @@ const InfiniteList = ({
             onScroll={onScroll}
             ref={wrapperRef}
             className={clsx(styles.wrapper, className)}
+            data-testid="infinitelist"
         >
             {status === FAILURE && (
                 <SnackbarContent
