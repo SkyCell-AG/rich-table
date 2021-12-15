@@ -56,7 +56,18 @@ const InfiniteList = ({
                     No data to show
                 </div>
             )}
-            {data.map(Row)}
+            {data.map((rowProps) => {
+                const {
+                    uniqField,
+                } = rowProps
+
+                return (
+                    <Row
+                        key={`row-${uniqField}`}
+                        {...rowProps}
+                    />
+                )
+            })}
             {status === PENDING && (
                 <CircularProgress
                     className={styles.loader}
