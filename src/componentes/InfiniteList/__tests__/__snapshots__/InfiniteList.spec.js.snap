@@ -22,16 +22,16 @@ exports[`InfiniteList snapshot 1`] = `
       ]
     }
   />
-  <Row
-    field={1}
-    id={1}
-    key="1"
-  />
-  <Row
-    field={2}
-    id={2}
-    key="2"
-  />
+  <div
+    key="row-1"
+  >
+    1
+  </div>
+  <div
+    key="row-2"
+  >
+    2
+  </div>
   <div />
 </div>
 `;
