@@ -35,6 +35,7 @@ const FilterItem = (props) => {
             disabled={disabled}
             className={classes.root}
             onClick={onClick}
+            data-testid={`listItem-${label}`}
         >
             <div className={classes.labelCheckbox}>
                 <Checkbox

@@ -34,12 +34,14 @@ const propTypes = {
         statuses.PENDING,
         statuses.PRISTIN,
     ]).isRequired,
+    filterField: PropTypes.string,
 }
 
 const defaultProps = {
     predefinedFilter: {},
     filter: [],
     filters: [],
+    filterField: '',
     className: '',
     button: null,
 }
@@ -78,6 +80,7 @@ const Filter = (props) => {
         filter,
         button,
         className,
+        filterField,
     } = props
 
     const classes = useStyles()
@@ -128,12 +131,16 @@ const Filter = (props) => {
 
     return (
         <FilterPopover
+            data-testid={`filter-${filterField}`}
             className={className}
             onOpen={load}
             active={filter.length > 0}
             button={button}
         >
-            <div className={classes.filterListContainer}>
+            <div
+                className={classes.filterListContainer}
+                data-testid={`filter-container-${filterField}`}
+            >
                 {status === statuses.FAILURE && (
                     <div>an error happened.</div>
                 )}
