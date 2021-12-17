@@ -5,10 +5,12 @@ exports[`app/shared-components/Filter should match snapshot should match snapsho
   active={true}
   button={null}
   className="makeStyles-item-2"
+  data-testid="filter-"
   onOpen={[MockFunction]}
 >
   <div
     className="makeStyles-filterListContainer-1"
+    data-testid="filter-container-"
   >
     <ForwardRef(List)>
       <ForwardRef(TextField)
