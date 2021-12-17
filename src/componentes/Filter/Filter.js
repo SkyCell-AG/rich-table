@@ -139,7 +139,6 @@ const Filter = (props) => {
         >
             <div
                 className={classes.filterListContainer}
-                data-testid={`filter-container-${filterField}`}
             >
                 {status === statuses.FAILURE && (
                     <div>an error happened.</div>

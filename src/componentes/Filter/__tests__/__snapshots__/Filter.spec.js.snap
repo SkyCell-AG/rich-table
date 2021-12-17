@@ -10,7 +10,6 @@ exports[`app/shared-components/Filter should match snapshot should match snapsho
 >
   <div
     className="makeStyles-filterListContainer-1"
-    data-testid="filter-container-"
   >
     <ForwardRef(List)>
       <ForwardRef(TextField)
