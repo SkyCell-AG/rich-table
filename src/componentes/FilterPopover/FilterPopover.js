@@ -54,7 +54,10 @@ const FilterPopover = (props) => {
     const dataTestId = get(props, 'data-testid')
 
     return (
-        <div className={className}>
+        <div
+            className={className}
+            data-testid={`filterpopover-${dataTestId}`}
+        >
             <div
                 data-testid={dataTestId}
                 ref={filterIcon}

@@ -5,6 +5,7 @@ exports[`app/shared-components/Filter should match snapshot should match snapsho
   active={true}
   button={null}
   className="makeStyles-item-2"
+  data-testid="filter-"
   onOpen={[MockFunction]}
 >
   <div
