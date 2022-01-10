@@ -24,6 +24,7 @@ exports[`RichTable snapshot 1`] = `
             "props": Object {
               "column1": "column1",
             },
+            "width": "80%",
           },
           Object {
             "id": "column2",
