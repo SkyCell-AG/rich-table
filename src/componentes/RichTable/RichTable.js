@@ -211,7 +211,7 @@ const RichTable = forwardRef((props, ref) => {
                                                 cellClassName,
                                             )}
                                             style={{
-                                                width,
+                                                flex: `0 0 ${width}`,
                                             }}
                                         >
                                             <DndCell

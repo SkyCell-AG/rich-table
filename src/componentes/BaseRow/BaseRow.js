@@ -80,7 +80,7 @@ const BaseRow = (props) => {
 
     return (
         <div
-            data-testid={`richtable-row-${rowProps.id}`}
+            data-testid={`richtable-row-${uniqFieldValue}`}
             className={clsx({
                 [classes.selectedRow]: selectedRowId === uniqFieldValue,
                 [classes.cursorPointer]: Boolean(rowClick),
@@ -141,7 +141,7 @@ const BaseRow = (props) => {
                         return (
                             <div
                                 style={{
-                                    width,
+                                    flex: `0 0 ${width}`,
                                 }}
                                 className={classes.cell}
                                 key={`cell-${id}`}
