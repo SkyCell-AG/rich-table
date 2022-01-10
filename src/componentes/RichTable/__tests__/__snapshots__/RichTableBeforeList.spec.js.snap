@@ -8,11 +8,6 @@ exports[`BeforeList BeforeList snapshot 1`] = `
     className="makeStyles-cell-11"
     data-testid="table-header-column1"
     key="DndCell-column1"
-    style={
-      Object {
-        "width": undefined,
-      }
-    }
   >
     <DndCell
       className=""
@@ -49,11 +44,6 @@ exports[`BeforeList BeforeList snapshot 1`] = `
     className="makeStyles-cell-11"
     data-testid="table-header-column2"
     key="DndCell-column2"
-    style={
-      Object {
-        "width": undefined,
-      }
-    }
   >
     <DndCell
       className=""

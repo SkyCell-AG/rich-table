@@ -78,6 +78,7 @@ const Template = (props) => {
             {
                 id: 'field1',
                 filterField: 'field1',
+                width: '10%',
                 mapHeaderProps: () => {
                     return {
                         children: 'Field 1',
@@ -88,6 +89,7 @@ const Template = (props) => {
             {
                 id: 'field2',
                 filterField: 'field2',
+                width: '60px',
                 mapHeaderProps: () => {
                     return {
                         children: 'Field 2',

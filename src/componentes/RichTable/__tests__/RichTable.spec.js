@@ -29,6 +29,7 @@ describe('RichTable', () => {
                             props: {
                                 column1: 'column1',
                             },
+                            width: '80%',
                         },
                         {
                             id: 'column2',
