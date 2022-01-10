@@ -28,6 +28,7 @@ describe('components/BaseRow', () => {
                     headerProps: {
                         children: 'Note Subject',
                     },
+                    width: '20px',
                     mapCellProps: 'noteSubject',
                 },
                 {
