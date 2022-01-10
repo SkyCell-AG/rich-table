@@ -15,7 +15,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       key="cell-noteSubject"
       style={
         Object {
-          "flex": "0 0 undefined",
+          "undefined": "0 0 undefined",
         }
       }
     >
@@ -35,7 +35,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       key="cell-noteText"
       style={
         Object {
-          "flex": "0 0 undefined",
+          "undefined": "0 0 undefined",
         }
       }
     >

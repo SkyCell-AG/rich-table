@@ -141,7 +141,7 @@ const BaseRow = (props) => {
                         return (
                             <div
                                 style={{
-                                    flex: `0 0 ${width}`,
+                                    [width && 'flex']: `0 0 ${width}`,
                                 }}
                                 className={classes.cell}
                                 key={`cell-${id}`}
