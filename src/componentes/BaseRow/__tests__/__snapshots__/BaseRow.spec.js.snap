@@ -13,11 +13,6 @@ exports[`components/BaseRow should match snapshot 1`] = `
     <div
       data-testid="cell-noteSubject"
       key="cell-noteSubject"
-      style={
-        Object {
-          "undefined": "0 0 undefined",
-        }
-      }
     >
       <BaseCell
         changedBy="alessio.conese@skycell.ch"
@@ -33,11 +28,6 @@ exports[`components/BaseRow should match snapshot 1`] = `
     <div
       data-testid="cell-noteText"
       key="cell-noteText"
-      style={
-        Object {
-          "undefined": "0 0 undefined",
-        }
-      }
     >
       <BaseCell
         changedBy="alessio.conese@skycell.ch"

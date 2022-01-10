@@ -138,11 +138,13 @@ const BaseRow = (props) => {
                                 : value,
                         } : mapCellProps(rowProps)
 
+                        const divStyles = width ? {
+                            flex: `0 0 ${width}`,
+                        } : undefined
+
                         return (
                             <div
-                                style={{
-                                    [width && 'flex']: `0 0 ${width}`,
-                                }}
+                                style={divStyles}
                                 className={classes.cell}
                                 key={`cell-${id}`}
                                 data-testid={`cell-${id}`}
