@@ -10,7 +10,7 @@ exports[`BeforeList BeforeList snapshot 1`] = `
     key="DndCell-column1"
     style={
       Object {
-        "width": undefined,
+        "flex": "0 0 undefined",
       }
     }
   >
@@ -51,7 +51,7 @@ exports[`BeforeList BeforeList snapshot 1`] = `
     key="DndCell-column2"
     style={
       Object {
-        "width": undefined,
+        "flex": "0 0 undefined",
       }
     }
   >

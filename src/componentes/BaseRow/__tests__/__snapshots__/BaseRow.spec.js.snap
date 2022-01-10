@@ -3,7 +3,7 @@
 exports[`components/BaseRow should match snapshot 1`] = `
 <div
   className="cursorPointer"
-  data-testid="richtable-row-1"
+  data-testid="richtable-row-9x3C821DE9260469101EAEF912A3B3961A9E71B1D7037AF64F78DBE960"
 >
   <div
     className="cursorPointer"
@@ -15,7 +15,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       key="cell-noteSubject"
       style={
         Object {
-          "width": undefined,
+          "flex": "0 0 undefined",
         }
       }
     >
@@ -35,7 +35,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       key="cell-noteText"
       style={
         Object {
-          "width": undefined,
+          "flex": "0 0 undefined",
         }
       }
     >
