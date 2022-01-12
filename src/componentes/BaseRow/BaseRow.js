@@ -118,6 +118,7 @@ const BaseRow = (props) => {
                         component: Component,
                         propsMapper,
                         props: columnProps,
+                        ...rest
                     }) => {
                         const value = get(rowProps, mapCellProps)
 
@@ -133,6 +134,7 @@ const BaseRow = (props) => {
                                             propsMapper,
                                             rowProps,
                                         )}
+                                        {...rest}
                                     />
                                 )
                                 : value,
