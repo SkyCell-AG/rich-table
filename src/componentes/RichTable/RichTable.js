@@ -59,6 +59,9 @@ const propTypes = {
         PropTypes.string,
         PropTypes.number,
     ]),
+    rowStyle: PropTypes.shape({
+        crossLine: PropTypes.string,
+    }),
 }
 
 const defaultProps = {
@@ -73,6 +76,7 @@ const defaultProps = {
     selectedRowId: '',
     detailPanel: undefined,
     openRowId: undefined,
+    rowStyle: undefined,
 }
 
 const RichTable = forwardRef((props, ref) => {
@@ -94,6 +98,7 @@ const RichTable = forwardRef((props, ref) => {
         rerenderInfinitList,
         openRowId,
         load,
+        rowStyle,
     } = props
 
     const classes = useStyles()
@@ -264,6 +269,7 @@ const RichTable = forwardRef((props, ref) => {
                                     detailPanel={detailPanel}
                                     openRow={openRow}
                                     closeOpenedRow={closeOpenedRow}
+                                    rowStyle={rowStyle}
                                 />
                             </div>
                         )

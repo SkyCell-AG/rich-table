@@ -1,6 +1,6 @@
 {
   "name": "@skycell-ag/richtable",
-  "version": "0.8.7",
+  "version": "0.9.0",
   "private": false,
   "main": "dist/index.js",
   "files": [
