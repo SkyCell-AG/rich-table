@@ -61,7 +61,7 @@ const propTypes = {
     ]),
     rowStyle: PropTypes.shape({
         crossLine: PropTypes.string,
-    })
+    }),
 }
 
 const defaultProps = {

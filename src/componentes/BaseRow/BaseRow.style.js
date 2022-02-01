@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => {
         },
         crossLine: {
             position: 'absolute',
-            top: `calc(50% - 1px)`,
+            top: 'calc(50% - 1px)',
             height: 1,
             width: '100%',
             background: theme.palette.secondary[600],

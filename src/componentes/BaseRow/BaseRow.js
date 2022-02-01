@@ -46,7 +46,7 @@ const propTypes = {
     closeOpenedRow: PropTypes.func.isRequired,
     rowStyle: PropTypes.shape({
         crossLine: PropTypes.string,
-    })
+    }),
 }
 
 const defaultProps = {
@@ -101,7 +101,9 @@ const BaseRow = (props) => {
                     },
                 )}
             >
-                {rowStyle?.crossLine && rowProps[rowStyle.crossLine] && <div className={classes.crossLine} />}
+                {
+                    rowStyle?.crossLine && rowProps[rowStyle.crossLine] && <div className={classes.crossLine} />
+                }
                 {
                     DetailPanel && (
                         <div className={classes.iconWrapper}>
