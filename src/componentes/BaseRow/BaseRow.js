@@ -44,6 +44,9 @@ const propTypes = {
     selectedRowId: PropTypes.string,
     openRow: PropTypes.bool,
     closeOpenedRow: PropTypes.func.isRequired,
+    rowStyle: PropTypes.shape({
+        crossLine: PropTypes.string,
+    })
 }
 
 const defaultProps = {
@@ -51,6 +54,7 @@ const defaultProps = {
     selectedRows: undefined,
     detailPanel: undefined,
     selectedRowId: undefined,
+    rowStyle: undefined,
     rowProps: {},
     openRow: false,
 }
@@ -67,8 +71,9 @@ const BaseRow = (props) => {
         detailPanel: DetailPanel,
         openRow,
         closeOpenedRow,
+        rowStyle,
     } = props
-
+    console.log('stylesRow', styles)
     const classes = useStyles()
 
     const showDetailPanel = useMemo(() => {
@@ -96,11 +101,13 @@ const BaseRow = (props) => {
                     },
                 )}
             >
+                {rowStyle?.crossLine && rowProps[rowStyle.crossLine] && <div className={classes.crossLine} />}
                 {
                     DetailPanel && (
                         <div className={classes.iconWrapper}>
                             <ChevronRight
                                 className={clsx(
+                                    classes.iconChevron,
                                     {
                                         [classes.isOpenIcon]: showDetailPanel,
                                     },
