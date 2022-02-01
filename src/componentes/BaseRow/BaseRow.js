@@ -73,7 +73,7 @@ const BaseRow = (props) => {
         closeOpenedRow,
         rowStyle,
     } = props
-    console.log('stylesRow', styles)
+
     const classes = useStyles()
 
     const showDetailPanel = useMemo(() => {
