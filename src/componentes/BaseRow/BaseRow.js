@@ -102,7 +102,9 @@ const BaseRow = (props) => {
                 )}
             >
                 {
-                    rowStyle?.crossLine && rowProps[rowStyle.crossLine] && <div className={classes.crossLine} />
+                    rowStyle?.crossLine
+                    && rowProps[rowStyle.crossLine]
+                    && <div className={classes.crossLine} />
                 }
                 {
                     DetailPanel && (
