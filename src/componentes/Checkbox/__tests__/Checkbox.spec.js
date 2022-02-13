@@ -14,7 +14,7 @@ describe('Checkbox', () => {
             <Checkbox
                 title="title"
                 onChange={jest.fn()}
-            />
+            />,
         )
 
         expect(wrapper).toMatchSnapshot()
@@ -27,7 +27,7 @@ describe('Checkbox', () => {
             <Checkbox
                 title="title"
                 onChange={onChange}
-            />
+            />,
         )
 
         wrapper.find(MaterialCheckbox).props().onChange()
