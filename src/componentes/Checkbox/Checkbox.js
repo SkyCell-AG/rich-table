@@ -7,6 +7,8 @@ import {
     FormControlLabel, Checkbox as MaterialCheckbox,
 } from '@mui/material'
 
+import useStyles from './Checkbox.style'
+
 const propTypes = {
     title: PropTypes.string,
     disabled: PropTypes.bool,
@@ -36,6 +38,7 @@ const Checkbox = ({
     value,
     className,
 }) => {
+    const classes = useStyles()
     const handleChange = useCallback(() => {
         const newValue = !value
 
@@ -68,6 +71,9 @@ const Checkbox = ({
                     )
                 }
                 label={title}
+                classes={{
+                    root: classes.root,
+                }}
             />
         </div>
     )
