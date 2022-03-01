@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {
+    useCallback,
+} from 'react'
 import PropTypes from 'prop-types'
 
 import Checkbox from 'componentes/Checkbox'
@@ -24,9 +26,15 @@ const SelectRowCell = ({
     onChange,
     data,
 }) => {
+    const stopDetailPanelPropagation = useCallback((e) => {
+        e.stopPropagation()
+    }, [])
+
     return (
         <div
             className={styles.wrapper}
+            onClick={stopDetailPanelPropagation}
+            onKeyDown={stopDetailPanelPropagation}
         >
             <Checkbox
                 value={checked}
