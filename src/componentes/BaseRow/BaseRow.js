@@ -1,6 +1,5 @@
 import React, {
     useMemo,
-    useCallback,
 } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
@@ -109,9 +108,7 @@ const BaseRow = (props) => {
                 }
                 {
                     DetailPanel && (
-                        <div
-                            className={classes.iconWrapper}
-                        >
+                        <div className={classes.iconWrapper}>
                             <ChevronRight
                                 className={clsx(
                                     classes.iconChevron,
