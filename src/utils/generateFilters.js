@@ -72,7 +72,6 @@ const dayRange = ([
     from,
     to,
 ]) => {
-    console.log(new Date() - new Date(from * 86400000).getTime())
     return {
         rangeFilters: [({
             from: new Date() - new Date(from * 86400000).getTime(),
