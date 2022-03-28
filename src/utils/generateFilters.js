@@ -68,6 +68,19 @@ const range = ([
     }
 }
 
+const dayRange = ([
+    from,
+    to,
+]) => {
+    console.log(new Date() - new Date(from * 86400000).getTime())
+    return {
+        rangeFilters: [({
+            from: new Date() - new Date(from * 86400000).getTime(),
+            to: new Date() - new Date(to * 86400000).getTime(),
+        })],
+    }
+}
+
 const dateRange = ({
     from,
     to,
@@ -84,6 +97,7 @@ const typeSerializers = {
     value: valueSerializer,
     exactValue,
     range,
+    dayRange,
     array: arraySerializer,
     tree,
     'date-range': dateRange,
