@@ -3,6 +3,8 @@ import isEmpty from 'lodash/isEmpty'
 
 import removeEmptyFields from './removeEmptyFields'
 
+const DAY_IN_MILLISECONDS = 86400000
+
 const valueSerializer = (values) => {
     return {
         includeFilters: [`*${values}*`],
@@ -68,6 +70,18 @@ const range = ([
     }
 }
 
+const dayRange = ([
+    from,
+    to,
+]) => {
+    return {
+        rangeFilters: [({
+            from: new Date() - new Date(from * DAY_IN_MILLISECONDS).getTime(),
+            to: new Date() - new Date(to * DAY_IN_MILLISECONDS).getTime(),
+        })],
+    }
+}
+
 const dateRange = ({
     from,
     to,
@@ -84,6 +98,7 @@ const typeSerializers = {
     value: valueSerializer,
     exactValue,
     range,
+    dayRange,
     array: arraySerializer,
     tree,
     'date-range': dateRange,
