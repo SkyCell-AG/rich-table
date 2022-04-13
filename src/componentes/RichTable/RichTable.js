@@ -19,7 +19,6 @@ import useStyles from './RichTable.style'
 
 const propTypes = {
     uniqField: PropTypes.string,
-    name: PropTypes.string.isRequired,
     load: PropTypes.func.isRequired,
     visible: PropTypes.arrayOf(PropTypes.string).isRequired,
     setVisible: PropTypes.func.isRequired,
@@ -89,7 +88,6 @@ const RichTable = forwardRef((props, ref) => {
         classNames,
         editing,
         selectedRowId,
-        name,
         detailPanel,
         rerenderInfinitList,
         openRowId,
@@ -254,7 +252,6 @@ const RichTable = forwardRef((props, ref) => {
                                 key={`row-${uniqFieldValue}`}
                             >
                                 <BaseRow
-                                    name={name}
                                     selectedRows={selectedRows}
                                     selectedRowId={selectedRowId}
                                     uniqFieldValue={uniqFieldValue}

@@ -14,7 +14,6 @@ import BaseCell from 'componentes/BaseCell'
 import useStyles from './BaseRow.style'
 
 const propTypes = {
-    name: PropTypes.string.isRequired,
     selectedRows: PropTypes.arrayOf(
         PropTypes.oneOfType([
             PropTypes.string,
@@ -57,7 +56,6 @@ const defaultProps = {
 
 const BaseRow = (props) => {
     const {
-        name,
         selectedRows,
         selectedRowId,
         uniqFieldValue,
@@ -125,7 +123,6 @@ const BaseRow = (props) => {
                             children: Component
                                 ? (
                                     <Component
-                                        name={name}
                                         value={value}
                                         rowProps={rowProps}
                                         mapCellProps={mapCellProps}
@@ -163,7 +160,6 @@ const BaseRow = (props) => {
             {
                 showDetailPanel && (
                     <DetailPanel
-                        name={name}
                         rowProps={rowProps}
                         closeOpenedRow={closeOpenedRow}
                     />

@@ -57,7 +57,6 @@ const propTypes = {
     selectedRows: PropTypes.arrayOf(PropTypes.string),
     onSelectRow: PropTypes.func,
     load: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
     onFilterChange: PropTypes.func,
     selectedFilter: PropTypes.object, // eslint-disable-line
     filter: PropTypes.object, // eslint-disable-line
@@ -82,7 +81,6 @@ const defaultProps = {
 const RichTableContainer = forwardRef(({
     columns: outColumns,
     load,
-    name,
     selectedRows,
     visible: predefinedVisible,
     sort: predefinedSort,
@@ -274,7 +272,6 @@ const RichTableContainer = forwardRef(({
             {...props}
             ref={infiniteListRef}
             load={loadWithParams}
-            name={name}
             removeFilter={removeFilter}
             infinitListKey={infinitListKey}
             rerenderInfinitList={rerenderInfinitList}
