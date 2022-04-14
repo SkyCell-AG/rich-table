@@ -13,12 +13,20 @@ const useStyles = makeStyles(() => {
             background: `${theme.palette.primary[50]} !important`,
         },
         rowContent: {
+            position: 'relative',
             display: 'flex',
             justifyContent: 'space-around',
-            minHeight: '40px',
+            minHeight: '33px',
             '&:hover': {
                 backgroundColor: theme.palette.primary[50],
             },
+        },
+        crossLine: {
+            position: 'absolute',
+            top: 'calc(50% - 1px)',
+            height: 1,
+            width: '100%',
+            background: theme.palette.secondary[600],
         },
         cursorPointer: {
             cursor: 'pointer',
@@ -34,6 +42,10 @@ const useStyles = makeStyles(() => {
             display: 'flex',
             alignItems: 'center',
             color: theme.palette.secondary[600],
+        },
+        iconChevron: {
+            width: 25,
+            height: 25,
         },
         isOpenIcon: {
             transform: 'rotate(90deg)',

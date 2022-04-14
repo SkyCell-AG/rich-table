@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => {
             display: 'flex',
             justifyContent: 'space-around',
             boxShadow: `0 1px 2px 0 ${theme.palette.secondary[100]}`,
-            minHeight: theme.shape.tabHeight,
+            minHeight: theme.shape.tabHeight - 3,
             backgroundColor: theme.palette.common.white,
         },
         tableWrapper: {
@@ -73,7 +73,7 @@ const useStyles = makeStyles(() => {
             position: 'relative',
             left: 0,
             padding: theme.spacing(1.5),
-            top: theme.shape.tabHeight - 1,
+            top: theme.shape.tabHeight,
             width: `calc(100% - ${theme.spacing(3)})`,
             height: `calc(100% - ${theme.shape.tabHeight}px - ${theme.spacing(3)} - 2px)`,
             borderRadius: '10px 0 0 0',
