@@ -1,0 +1,63 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import {
+  ThemeProvider as MuiThemeProvider,
+  StyledEngineProvider,
+  createTheme,
+} from '@mui/material/styles'
+import skyTheme from '@skycell-ag/theme'
+
+import RichTable from '../componentes/RichTable'
+
+
+<Meta title="Basic usecase of richtable" component={RichTable} />
+
+# RichTable
+
+## Setup
+
+Before using RichTable react-dnd with HMTL5Backend need to be settupped.
+
+### Required properties load and columns
+
+Property `load` is used to load data, so it should return promise with data in format 
+```
+{
+  meta: {
+    matchedresults: overall amount of objects
+  },
+  data: array of objects
+}
+```
+
+<Story
+  name="Basic usage"
+>
+  <DndProvider backend={HTML5Backend}>
+    <RichTable 
+      columns={[
+        {
+          id: 'field1',
+          mapCellProps: 'field1',
+        }
+      ]}
+      load={() => {
+        return Promise.resolve({
+          meta: {
+            matchedresults: 1000,
+          },
+          data: new Array(20)
+            .fill(0)
+            .map((_, index) => {
+              return {
+                id: index,
+                field1: `${index}-field1`,
+              }
+            })
+        })
+      }} 
+    />
+  </DndProvider>
+</Story>
