@@ -11,7 +11,7 @@ import useSequence from '../hooks/useSequence'
 import useVisible from '../hooks/useVisible'
 import useFilter from '../hooks/useFilter'
 import useSort from '../hooks/useSort'
-import useSelectRow from '../hooks/useSelectRow'
+import useSelectRowLogic from '../hooks/useSelectRowLogic'
 import RichTableContainer from '../RichTableContainer'
 import RichTable from '../RichTable'
 
@@ -32,7 +32,7 @@ jest.mock('../hooks/useFilter', () => {
 jest.mock('../hooks/useSort', () => {
     return jest.fn()
 })
-jest.mock('../hooks/useSelectRow', () => {
+jest.mock('../hooks/useSelectRowLogic', () => {
     return jest.fn().mockImplementation(({
         columns: cp,
     }) => {
@@ -84,7 +84,7 @@ describe('RichTableContainer', () => {
     beforeEach(() => {
         jest.clearAllMocks()
 
-        useSelectRow.mockImplementation(({
+        useSelectRowLogic.mockImplementation(({
             columns: cp,
         }) => {
             return cp
@@ -237,7 +237,7 @@ describe('RichTableContainer', () => {
             [[{}]],
         )
 
-        const [[useSelectRowParams]] = useSelectRow.mock.calls
+        const [[useSelectRowParams]] = useSelectRowLogic.mock.calls
 
         expect(useSelectRowParams.uniqField).toBe('id')
         expect(useSelectRowParams.onSelectRow).toBe(undefined)
