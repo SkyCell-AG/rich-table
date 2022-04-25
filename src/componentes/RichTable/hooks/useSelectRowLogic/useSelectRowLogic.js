@@ -26,7 +26,7 @@ const useSelectRowLogic = ({
         selectedRows,
     })
 
-    const columsWithSelect = useMemo(() => {
+    return useMemo(() => {
         if (!onSelectRow) {
             return columns
         }
@@ -43,8 +43,6 @@ const useSelectRowLogic = ({
         visibleAndSortedColumnsWithRadioSelection,
         visibleAndSortedColumnsWithSelection,
     ])
-
-    return columsWithSelect
 }
 
 export default useSelectRowLogic

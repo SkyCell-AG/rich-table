@@ -33,7 +33,7 @@ const useRadioSelectRow = ({
         selectedRows,
     ])
 
-    const columsWithSelect = useMemo(() => {
+    return useMemo(() => {
         if (!onSelectRow) {
             return columns
         }
@@ -67,8 +67,6 @@ const useRadioSelectRow = ({
         classes.headerCell,
         selectedRows,
     ])
-
-    return columsWithSelect
 }
 
 export default useRadioSelectRow
