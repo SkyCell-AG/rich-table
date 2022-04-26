@@ -19,7 +19,7 @@ import useVisible from './hooks/useVisible'
 import useSequence from './hooks/useSequence'
 import useFilter from './hooks/useFilter'
 import useSort from './hooks/useSort'
-import useSelectRow from './hooks/useSelectRow'
+import useSelectRowLogic from './hooks/useSelectRowLogic'
 import generateParams from './generateParams'
 
 import RichTable from './RichTable'
@@ -66,6 +66,7 @@ const propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({
         props: PropTypes.object, // eslint-disable-line
     })).isRequired,
+    radioSelect: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -77,6 +78,7 @@ const defaultProps = {
     onSelectRow: undefined,
     onFilterChange: undefined,
     selectedRows: undefined,
+    radioSelect: false,
 }
 
 const RichTableContainer = forwardRef(({
@@ -90,6 +92,7 @@ const RichTableContainer = forwardRef(({
     excludeFilters,
     onSelectRow,
     uniqField,
+    radioSelect,
     ...props
 }, ref) => {
     const [
@@ -262,11 +265,12 @@ const RichTableContainer = forwardRef(({
             }
         })
 
-    const visibleAndSortedColumnsWithSelection = useSelectRow({
+    const visibleAndSortedColumnsWithSelection = useSelectRowLogic({
         columns: visibleAndSortedColumns,
         onSelectRow,
         uniqField,
         selectedRows,
+        radioSelect,
     })
 
     return (
