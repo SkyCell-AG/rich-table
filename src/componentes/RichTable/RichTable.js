@@ -53,7 +53,10 @@ const propTypes = {
         headerWrapper: PropTypes.string,
     }),
     editing: PropTypes.bool,
-    selectedRowId: PropTypes.string,
+    selectedRowId: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]),
     detailPanel: PropTypes.func,
     openRowId: PropTypes.oneOfType([
         PropTypes.string,

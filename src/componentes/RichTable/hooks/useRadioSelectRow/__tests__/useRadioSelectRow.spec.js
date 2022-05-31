@@ -54,7 +54,7 @@ describe('useRadioSelectRow', () => {
                 className: 'makeStyles-headerCell-1',
                 id: 'Select',
                 mapCellProps: expect.anything(),
-                mapHeaderProps: noop,
+                mapHeaderProps: expect.anything(),
                 width: '60px',
             },
             {
@@ -111,5 +111,26 @@ describe('useRadioSelectRow', () => {
         })
 
         expect(result.current).toEqual(columns)
+    })
+
+    test('check mapHeaderProps', () => {
+        const onSelectRowSpy = jest.fn()
+        const {
+            result,
+        } = renderHook(() => {
+            return useRadioSelectRow({
+                columns,
+                onSelectRow: onSelectRowSpy,
+                uniqField: 'uniqField',
+                selectedRows: ['1'],
+            })
+        })
+
+        const radioHelderMapper1 = result.current[0].mapHeaderProps()
+
+        expect(radioHelderMapper1).toEqual(expect.objectContaining({
+            id: 'radio-select-header-cell',
+            setFilter: noop,
+        }))
     })
 })
