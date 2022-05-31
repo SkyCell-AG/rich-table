@@ -41,7 +41,10 @@ const propTypes = {
         }).isRequired,
     ).isRequired,
     detailPanel: PropTypes.func,
-    selectedRowId: PropTypes.string,
+    selectedRowId: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]),
     openRow: PropTypes.bool,
     closeOpenedRow: PropTypes.func.isRequired,
     rowStyle: PropTypes.shape({

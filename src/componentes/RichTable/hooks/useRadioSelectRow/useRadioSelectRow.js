@@ -43,7 +43,12 @@ const useRadioSelectRow = ({
                 id: 'Select',
                 className: classes.headerCell,
                 Header: HeaderCell,
-                mapHeaderProps: noop,
+                mapHeaderProps: () => {
+                    return {
+                        id: 'radio-select-header-cell',
+                        setFilter: noop,
+                    }
+                },
                 width: '60px',
                 Cell: RadioSelectRowCell,
                 mapCellProps: (rowProps) => {

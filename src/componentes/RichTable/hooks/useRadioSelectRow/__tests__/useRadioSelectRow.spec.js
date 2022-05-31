@@ -1,7 +1,6 @@
 import {
     renderHook,
 } from '@testing-library/react-hooks'
-import noop from 'lodash/noop'
 
 import HeaderCell from 'componentes/HeaderCell'
 import RadioSelectRowCell from 'componentes/RadioSelectRowCell'
@@ -54,7 +53,7 @@ describe('useRadioSelectRow', () => {
                 className: 'makeStyles-headerCell-1',
                 id: 'Select',
                 mapCellProps: expect.anything(),
-                mapHeaderProps: noop,
+                mapHeaderProps: expect.anything(),
                 width: '60px',
             },
             {
