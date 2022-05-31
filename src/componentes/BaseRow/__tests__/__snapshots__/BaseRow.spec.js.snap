@@ -15,6 +15,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
       key="cell-noteSubject"
       style={
         Object {
+          "display": "flex",
           "flex": "0 0 20px",
         }
       }
