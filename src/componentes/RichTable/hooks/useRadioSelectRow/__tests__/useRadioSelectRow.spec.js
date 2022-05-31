@@ -1,6 +1,7 @@
 import {
     renderHook,
 } from '@testing-library/react-hooks'
+import noop from 'lodash/noop'
 
 import HeaderCell from 'componentes/HeaderCell'
 import RadioSelectRowCell from 'componentes/RadioSelectRowCell'
@@ -110,5 +111,26 @@ describe('useRadioSelectRow', () => {
         })
 
         expect(result.current).toEqual(columns)
+    })
+
+    test('check mapHeaderProps', () => {
+        const onSelectRowSpy = jest.fn()
+        const {
+            result,
+        } = renderHook(() => {
+            return useRadioSelectRow({
+                columns,
+                onSelectRow: onSelectRowSpy,
+                uniqField: 'uniqField',
+                selectedRows: ['1'],
+            })
+        })
+
+        const radioHelderMapper1 = result.current[0].mapHeaderProps()
+
+        expect(radioHelderMapper1).toEqual(expect.objectContaining({
+            id: 'radio-select-header-cell',
+            setFilter: noop,
+        }))
     })
 })
