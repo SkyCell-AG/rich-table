@@ -153,6 +153,7 @@ const BaseRow = (props) => {
                         } : mapCellProps(rowProps)
 
                         const divStyles = width ? {
+                            display: 'flex',
                             flex: `0 0 ${width}`,
                         } : undefined
 
