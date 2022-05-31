@@ -27,6 +27,7 @@ exports[`RichTable snapshot 1`] = `
             "width": "80%",
           },
           Object {
+            "filterField": "column2",
             "id": "column2",
             "props": Object {
               "column2": "column2",

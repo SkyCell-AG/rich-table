@@ -33,6 +33,7 @@ describe('RichTable', () => {
                         },
                         {
                             id: 'column2',
+                            filterField: 'column2',
                             props: {
                                 column2: 'column2',
                             },
