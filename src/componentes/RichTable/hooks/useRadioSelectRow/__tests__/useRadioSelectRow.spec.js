@@ -129,7 +129,6 @@ describe('useRadioSelectRow', () => {
         const radioHelderMapper1 = result.current[0].mapHeaderProps()
 
         expect(radioHelderMapper1).toEqual(expect.objectContaining({
-            id: 'radio-select-header-cell',
             setFilter: noop,
         }))
     })

@@ -237,7 +237,7 @@ const RichTable = forwardRef((props, ref) => {
                                                     {...headerProps}
                                                     data={data}
                                                     key={`header-${id}`}
-                                                    id={filterField}
+                                                    id={filterField || id}
                                                 />
                                             </DndCell>
                                         </div>
