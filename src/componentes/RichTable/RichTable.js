@@ -201,6 +201,7 @@ const RichTable = forwardRef((props, ref) => {
                                     id,
                                     className: cellClassName,
                                     width,
+                                    minWidth = '',
                                     props: columnProps,
                                     ...rest
                                 }) => {
@@ -212,7 +213,10 @@ const RichTable = forwardRef((props, ref) => {
 
                                     const divStyles = width ? {
                                         flex: `0 0 ${width}`,
-                                    } : undefined
+                                        minWidth: `${minWidth}`,
+                                    } : {
+                                        minWidth: `${minWidth}`,
+                                    }
 
                                     return (
                                         <div

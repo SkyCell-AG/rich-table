@@ -128,6 +128,7 @@ const BaseRow = (props) => {
                         Cell = BaseCell,
                         id,
                         width,
+                        minWidth = '',
                         mapCellProps = noop,
                         component: Component,
                         propsMapper,
@@ -155,7 +156,10 @@ const BaseRow = (props) => {
                         const divStyles = width ? {
                             display: 'flex',
                             flex: `0 0 ${width}`,
-                        } : undefined
+                            minWidth: `${minWidth}`,
+                        } : {
+                            minWidth: `${minWidth}`,
+                        }
 
                         return (
                             <div

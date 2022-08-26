@@ -14,7 +14,6 @@ const useStyles = makeStyles(() => {
             zIndex: 1,
             top: 0,
             display: 'flex',
-            justifyContent: 'space-around',
             boxShadow: `0 1px 2px 0 ${theme.palette.secondary[100]}`,
             minHeight: theme.shape.tabHeight - 3,
             backgroundColor: theme.palette.common.white,
