@@ -66,7 +66,7 @@
     ]
   },
   "dependencies": {
-    "@skycell-ag/theme": "^1.1.5",
+    "@skycell-ag/theme": "^1.1.8",
     "array-flat-polyfill": "1.0.1",
     "lodash": "4.17.20",
     "prop-types": "15.7.2",
