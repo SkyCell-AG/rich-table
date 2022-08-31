@@ -14,13 +14,19 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: bahmutov/npm-install@v1
+          
+      - name: install packages
+        run: npm install --force
+      
       - name: Lint
         run: npm run lint
+      
       - name: Unit testing
         run: npm test -- --coverage --watchAll=false
+      
       - name: Try to compile
         run: npm run compile
+      
       - name: SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         env:
