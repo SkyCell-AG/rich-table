@@ -15,7 +15,6 @@ const useStyles = makeStyles(() => {
         rowContent: {
             position: 'relative',
             display: 'flex',
-            justifyContent: 'space-around',
             minHeight: '33px',
             '&:hover': {
                 backgroundColor: theme.palette.primary[50],

@@ -17,6 +17,7 @@ exports[`components/BaseRow should match snapshot 1`] = `
         Object {
           "display": "flex",
           "flex": "0 0 20px",
+          "minWidth": "",
         }
       }
     >
@@ -34,6 +35,11 @@ exports[`components/BaseRow should match snapshot 1`] = `
     <div
       data-testid="cell-noteText"
       key="cell-noteText"
+      style={
+        Object {
+          "minWidth": "",
+        }
+      }
     >
       <BaseCell
         changedBy="alessio.conese@skycell.ch"
