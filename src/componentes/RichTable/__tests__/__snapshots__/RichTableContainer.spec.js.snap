@@ -121,6 +121,7 @@ exports[`RichTableContainer snapshot 1`] = `
   name="some-name"
   removeFilter={[MockFunction]}
   removeSort={[MockFunction]}
+  renderControlPanel={null}
   rerenderInfinitList={[Function]}
   selectedRowId=""
   setMatchedResults={[Function]}
