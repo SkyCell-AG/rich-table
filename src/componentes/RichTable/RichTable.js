@@ -47,6 +47,7 @@ const propTypes = {
     ).isRequired,
     className: PropTypes.string,
     controlPanel: PropTypes.func,
+    renderControlPanel: PropTypes.func,
     classNames: PropTypes.exact({
         root: PropTypes.string,
         contentWrapper: PropTypes.string,
@@ -74,6 +75,7 @@ const defaultProps = {
     selectedRows: undefined,
     uniqField: 'id',
     controlPanel: null,
+    renderControlPanel: null,
     classNames: {},
     editing: false,
     selectedRowId: '',
@@ -93,6 +95,7 @@ const RichTable = forwardRef((props, ref) => {
         changeSequence,
         uniqField,
         controlPanel: ControlPanel,
+        renderControlPanel,
         classNames,
         editing,
         selectedRowId,
@@ -146,6 +149,8 @@ const RichTable = forwardRef((props, ref) => {
         }
     }, [selectedRowId])
 
+    const renderedControlPanel = (renderControlPanel) ? renderControlPanel(props) : null
+
     return (
         <div
             className={clsx(
@@ -167,6 +172,7 @@ const RichTable = forwardRef((props, ref) => {
                         {...props}
                     />
                 )}
+                {renderedControlPanel}
             </div>
 
             <div
