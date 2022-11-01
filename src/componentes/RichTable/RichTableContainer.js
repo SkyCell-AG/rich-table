@@ -195,10 +195,12 @@ const RichTableContainer = forwardRef(({
     ])
 
     useEffect(() => {
-        onParamsChange && onParamsChange({
-            ...params,
-            typeMapping,
-        })
+        if (onParamsChange) {
+            onParamsChange({
+                ...params,
+                typeMapping,
+            })
+        }
     }, [
         params,
         typeMapping,
