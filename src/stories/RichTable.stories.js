@@ -23,7 +23,7 @@ export default {
 
 const propTypes = {
     filter: PropTypes.object, // eslint-disable-line
-    onFilterChange: PropTypes.func, // eslint-disable-line
+    onParamsChange: PropTypes.func, // eslint-disable-line
     sort: PropTypes.object, // eslint-disable-line
     visible: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line
     selectedRows: PropTypes.arrayOf(PropTypes.number),
@@ -32,7 +32,7 @@ const propTypes = {
 const defaultProps = {
     selectedRows: [],
     filter: undefined,
-    onFilterChange: undefined,
+    onParamsChange: undefined,
     sort: undefined,
     visible: undefined,
 }
@@ -112,7 +112,7 @@ const Template = (props) => {
 
     const {
         filter,
-        onFilterChange,
+        onParamsChange,
         sort,
         visible,
     } = props
@@ -187,7 +187,7 @@ const Template = (props) => {
                 }}
                 columns={columns}
                 filter={filter}
-                onFilterChange={onFilterChange}
+                onParamsChange={onParamsChange}
                 onSelectRow={setSelectedRows}
                 sort={sort}
                 uniqField="uniqField"
