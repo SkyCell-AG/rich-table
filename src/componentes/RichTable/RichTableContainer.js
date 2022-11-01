@@ -58,7 +58,7 @@ const propTypes = {
     onSelectRow: PropTypes.func,
     load: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
-    onFilterChange: PropTypes.func,
+    onParamsChange: PropTypes.func,
     selectedFilter: PropTypes.object, // eslint-disable-line
     filter: PropTypes.object, // eslint-disable-line
     excludeFilters: PropTypes.object, // eslint-disable-line
@@ -76,7 +76,7 @@ const defaultProps = {
     excludeFilters: {},
     uniqField: 'id',
     onSelectRow: undefined,
-    onFilterChange: undefined,
+    onParamsChange: undefined,
     selectedRows: undefined,
     radioSelect: false,
 }
@@ -91,6 +91,7 @@ const RichTableContainer = forwardRef(({
     filter: predefinedFilter,
     excludeFilters,
     onSelectRow,
+    onParamsChange,
     uniqField,
     radioSelect,
     ...props
@@ -191,6 +192,17 @@ const RichTableContainer = forwardRef(({
         excludeFilters,
         filter,
         sort,
+    ])
+
+    useEffect(() => {
+        onParamsChange && onParamsChange({
+            ...params,
+            typeMapping,
+        })
+    }, [
+        params,
+        typeMapping,
+        onParamsChange,
     ])
 
     const loadWithParams = useCallback((page) => {
