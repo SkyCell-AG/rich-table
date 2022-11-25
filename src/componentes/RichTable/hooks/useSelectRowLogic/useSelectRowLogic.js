@@ -11,12 +11,14 @@ const useSelectRowLogic = ({
     uniqField,
     selectedRows = [],
     radioSelect,
+    disabled,
 }) => {
     const visibleAndSortedColumnsWithRadioSelection = useRadioSelectRow({
         columns,
         onSelectRow,
         uniqField,
         selectedRows,
+        disabled,
     })
 
     const visibleAndSortedColumnsWithSelection = useSelectRow({
@@ -24,6 +26,7 @@ const useSelectRowLogic = ({
         onSelectRow,
         uniqField,
         selectedRows,
+        disabled,
     })
 
     return useMemo(() => {

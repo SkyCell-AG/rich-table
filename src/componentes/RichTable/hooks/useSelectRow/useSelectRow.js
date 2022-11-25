@@ -2,7 +2,6 @@ import {
     useMemo,
     useCallback,
 } from 'react'
-
 import get from 'lodash/get'
 
 import SelectRowCell from 'componentes/SelectRowCell'
@@ -18,6 +17,7 @@ const useSelectRow = ({
     onSelectRow,
     uniqField,
     selectedRows = [],
+    disabled = false,
 }) => {
     const classes = useStyles()
     const allSelected = useMemo(() => {
@@ -98,6 +98,7 @@ const useSelectRow = ({
                         onChange: selectRowHandler(id),
                         checked: selectedRow || allSelected,
                         selectedRow,
+                        disabled,
                     }
                 },
             },
@@ -113,6 +114,7 @@ const useSelectRow = ({
         selectedRows.length,
         selectAllRowsHandler,
         classes.checkAll,
+        disabled,
     ])
 
     return columsWithSelect

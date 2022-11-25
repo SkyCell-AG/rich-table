@@ -8,6 +8,7 @@ exports[`RadioSelectRowCell should match snapshot 1`] = `
 >
   <ForwardRef(Radio)
     checked={true}
+    disabled={false}
     onChange={[MockFunction]}
   />
 </div>

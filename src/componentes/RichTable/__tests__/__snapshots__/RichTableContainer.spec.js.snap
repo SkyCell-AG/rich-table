@@ -114,6 +114,7 @@ exports[`RichTableContainer snapshot 1`] = `
     ]
   }
   controlPanel={null}
+  disabled={false}
   editing={false}
   infinitListKey="some-random-key"
   load={[Function]}
