@@ -50,6 +50,7 @@ const propTypes = {
     rowStyle: PropTypes.shape({
         crossLine: PropTypes.string,
     }),
+    disabled: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -60,6 +61,7 @@ const defaultProps = {
     rowStyle: undefined,
     rowProps: {},
     openRow: false,
+    disabled: false,
 }
 
 const BaseRow = (props) => {
@@ -75,6 +77,7 @@ const BaseRow = (props) => {
         openRow,
         closeOpenedRow,
         rowStyle,
+        disabled,
     } = props
 
     const classes = useStyles()
@@ -101,6 +104,7 @@ const BaseRow = (props) => {
                     classes.rowContent,
                     {
                         [classes.cursorPointer]: !selectedRows,
+                        [classes.disabled]: disabled,
                     },
                 )}
             >

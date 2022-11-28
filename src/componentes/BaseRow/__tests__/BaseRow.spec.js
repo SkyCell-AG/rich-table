@@ -49,6 +49,7 @@ describe('components/BaseRow', () => {
                 id: '1',
             },
             closeOpenedRow: jest.fn(),
+            disabled: true,
         }
 
         const wrapper = shallow(<BaseRow {...props} />)
