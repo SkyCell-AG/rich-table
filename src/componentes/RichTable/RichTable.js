@@ -66,6 +66,7 @@ const propTypes = {
     rowStyle: PropTypes.shape({
         crossLine: PropTypes.string,
     }),
+    disabled: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -82,6 +83,7 @@ const defaultProps = {
     detailPanel: undefined,
     openRowId: undefined,
     rowStyle: undefined,
+    disabled: false,
 }
 
 const RichTable = forwardRef((props, ref) => {
@@ -105,6 +107,7 @@ const RichTable = forwardRef((props, ref) => {
         openRowId,
         load,
         rowStyle,
+        disabled,
     } = props
 
     const classes = useStyles()
@@ -120,6 +123,7 @@ const RichTable = forwardRef((props, ref) => {
 
     const rowClick = useCallback((row) => {
         return () => {
+            if (disabled) { return }
             if (onRowClick) {
                 onRowClick(
                     row,
@@ -134,6 +138,7 @@ const RichTable = forwardRef((props, ref) => {
         onRowClick,
         detailPanel,
         rerenderInfinitList,
+        disabled,
     ])
 
     const selectedElm = useRef()

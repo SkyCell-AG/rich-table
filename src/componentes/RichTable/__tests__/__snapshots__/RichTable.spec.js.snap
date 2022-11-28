@@ -36,6 +36,7 @@ exports[`RichTable snapshot 1`] = `
         ]
       }
       controlPanel={null}
+      disabled={false}
       editing={false}
       infinitListKey="infinitListKey"
       key="infinitListKey"

@@ -17,6 +17,7 @@ const useRadioSelectRow = ({
     onSelectRow,
     uniqField,
     selectedRows = [],
+    disabled = false,
 }) => {
     const classes = useStyles()
 
@@ -58,6 +59,7 @@ const useRadioSelectRow = ({
                         onChange: selectRowHandler(id),
                         checked: selectedRow,
                         selectedRow,
+                        disabled,
                     }
                 },
             },
@@ -70,6 +72,7 @@ const useRadioSelectRow = ({
         selectRowHandler,
         classes.headerCell,
         selectedRows,
+        disabled,
     ])
 }
 

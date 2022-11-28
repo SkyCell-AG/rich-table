@@ -67,6 +67,7 @@ const propTypes = {
         props: PropTypes.object, // eslint-disable-line
     })).isRequired,
     radioSelect: PropTypes.bool,
+    disabled: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -79,6 +80,7 @@ const defaultProps = {
     onParamsChange: undefined,
     selectedRows: undefined,
     radioSelect: false,
+    disabled: false,
 }
 
 const RichTableContainer = forwardRef(({
@@ -94,6 +96,7 @@ const RichTableContainer = forwardRef(({
     onParamsChange,
     uniqField,
     radioSelect,
+    disabled,
     ...props
 }, ref) => {
     const [
@@ -285,6 +288,7 @@ const RichTableContainer = forwardRef(({
         uniqField,
         selectedRows,
         radioSelect,
+        disabled,
     })
 
     return (
@@ -306,6 +310,7 @@ const RichTableContainer = forwardRef(({
             selectedRows={selectedRows}
             columns={visibleAndSortedColumnsWithSelection}
             uniqField={uniqField}
+            disabled={disabled}
         />
     )
 })

@@ -11,15 +11,18 @@ import styles from './RadioSelectRowCell.module.css'
 const propTypes = {
     checked: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
 }
 
 const defaultProps = {
     checked: false,
+    disabled: false,
 }
 
 const RadioSelectRowCell = ({
     checked,
     onChange,
+    disabled,
 }) => {
     const stopDetailPanelPropagation = useCallback((e) => {
         e.stopPropagation()
@@ -34,6 +37,7 @@ const RadioSelectRowCell = ({
             <Radio
                 checked={checked}
                 onChange={onChange}
+                disabled={disabled}
             />
         </div>
     )

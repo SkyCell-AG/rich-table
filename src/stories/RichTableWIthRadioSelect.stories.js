@@ -39,6 +39,11 @@ const Template = (props) => {
         setSelectedRows,
     ] = useState()
 
+    const [
+        disabled,
+        setDisabled,
+    ] = useState(false)
+
     useEffect(() => {
         setSelectedRows(selectedRowsFromProps)
     }, [selectedRowsFromProps])
@@ -112,6 +117,12 @@ const Template = (props) => {
             >
                 change selected rows
             </button>
+            <button
+                type="button"
+                onClick={() => { setDisabled(!disabled) }}
+            >
+                Disabled
+            </button>
             <RichTable
                 ref={richtableRef}
                 detailPanel={() => {
@@ -123,6 +134,7 @@ const Template = (props) => {
                 onSelectRow={localSetSelectedRows}
                 selectedRows={selectedRows}
                 radioSelect
+                disabled={disabled}
             />
         </DndProvider>
     )

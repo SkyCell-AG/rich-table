@@ -12,12 +12,14 @@ const propTypes = {
     indeterminate: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     data: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+    disabled: PropTypes.bool,
 }
 
 const defaultProps = {
     checked: false,
     indeterminate: false,
     data: [],
+    disabled: false,
 }
 
 const SelectRowCell = ({
@@ -25,6 +27,7 @@ const SelectRowCell = ({
     indeterminate,
     onChange,
     data,
+    disabled,
 }) => {
     const stopDetailPanelPropagation = useCallback((e) => {
         e.stopPropagation()
@@ -41,6 +44,7 @@ const SelectRowCell = ({
                 indeterminate={indeterminate}
                 onChange={onChange}
                 data={data}
+                disabled={disabled}
             />
         </div>
     )
