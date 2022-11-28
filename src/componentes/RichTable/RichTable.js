@@ -288,6 +288,7 @@ const RichTable = forwardRef((props, ref) => {
                                     openRow={openRow}
                                     closeOpenedRow={closeOpenedRow}
                                     rowStyle={rowStyle}
+                                    disabled={disabled}
                                 />
                             </div>
                         )

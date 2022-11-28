@@ -22,6 +22,7 @@ exports[`Richtable Row snapshot 1`] = `
         },
       ]
     }
+    disabled={false}
     name="someName"
     openRow={false}
     rowClick={[Function]}

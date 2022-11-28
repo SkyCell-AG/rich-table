@@ -20,6 +20,11 @@ const useStyles = makeStyles(() => {
                 backgroundColor: theme.palette.primary[50],
             },
         },
+        disabled: {
+            '&:hover': {
+                backgroundColor: 'inherit',
+            },
+        },
         crossLine: {
             position: 'absolute',
             top: 'calc(50% - 1px)',
