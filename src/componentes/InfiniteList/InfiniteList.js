@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import CircularProgress from '@mui/material/CircularProgress'
-import SnackbarContent from '@mui/material/SnackbarContent'
+// import SnackbarContent from '@mui/material/SnackbarContent'
 
 import {
     PENDING,
@@ -11,7 +11,7 @@ import {
     requestType,
 } from 'utils/requestStatuses'
 
-import styles from './InfiniteList.module.css'
+import useStyles from './InfiniteList.style'
 
 const propTypes = {
     data: PropTypes.array, // eslint-disable-line
@@ -38,29 +38,34 @@ const InfiniteList = ({
     BeforeList,
     Row,
 }) => {
+    const classes = useStyles()
+
     return (
         <div
             onScroll={onScroll}
             ref={wrapperRef}
-            className={clsx(styles.wrapper, className)}
+            className={clsx(classes.wrapper, className)}
             data-testid="infinitelist"
         >
-            {status === FAILURE && (
-                <SnackbarContent
-                    className={styles.failureMessage}
-                    message="Failed to load data"
-                />
-            )}
             {BeforeList && <BeforeList data={data} />}
+            {status === FAILURE && (
+                <div className={classes.noDataContainer}>
+                    <div className={classes.noData}>
+                        Something went wrong and the data could not be loaded.
+                    </div>
+                </div>
+            )}
             {SUCCESS === status && data.length === 0 && (
-                <div>
-                    No data to show
+                <div className={classes.noDataContainer}>
+                    <div className={classes.noData}>
+                        There is no data in this table yet.
+                    </div>
                 </div>
             )}
             {data.map(Row)}
             {status === PENDING && (
                 <CircularProgress
-                    className={styles.loader}
+                    className={classes.loader}
                     size={40}
                 />
             )}
