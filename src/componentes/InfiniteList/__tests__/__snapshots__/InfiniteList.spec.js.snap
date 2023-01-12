@@ -2,7 +2,7 @@
 
 exports[`InfiniteList snapshot 1`] = `
 <div
-  className="wrapper infinite-list"
+  className="makeStyles-wrapper-1 infinite-list"
   data-testid="infinitelist"
   onScroll={[MockFunction]}
 >

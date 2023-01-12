@@ -3,7 +3,6 @@ import {
     shallow,
 } from 'enzyme'
 import CircularProgress from '@mui/material/CircularProgress'
-import SnackbarContent from '@mui/material/SnackbarContent'
 
 import {
     PENDING,
@@ -59,7 +58,7 @@ describe('InfiniteList', () => {
                 })
                 .text(),
         )
-            .toBe('<BeforeList />No data to show')
+            .toBe('<BeforeList />There is no data in this table yet.')
     })
 
     test('loading', () => {
@@ -72,7 +71,7 @@ describe('InfiniteList', () => {
                 .props(),
         )
             .toEqual({
-                className: 'loader',
+                className: 'makeStyles-loader-4',
                 size: 40,
             })
     })
@@ -83,12 +82,8 @@ describe('InfiniteList', () => {
                 .setProps({
                     status: FAILURE,
                 })
-                .find(SnackbarContent)
-                .props(),
+                .text(),
         )
-            .toEqual({
-                className: 'failureMessage',
-                message: 'Failed to load data',
-            })
+            .toBe('<BeforeList />Something went wrong and the data could not be loaded.12')
     })
 })
