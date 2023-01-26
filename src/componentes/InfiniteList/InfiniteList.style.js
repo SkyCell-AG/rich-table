@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => {
         loader: {
             position: 'absolute',
             left: '50%',
-            top: '50%',
+            top: '80%',
             marginLeft: '-20px',
             marginTop: '-20px',
         },
@@ -36,6 +36,9 @@ const useStyles = makeStyles(() => {
             position: 'sticky',
             top: 0,
             backgroundColor: '#d32f2f',
+        },
+        pendingContainer: {
+            marginTop: theme.spacing(6.875),
         },
         noDataContainer: {
             display: 'flex',

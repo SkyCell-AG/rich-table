@@ -63,10 +63,12 @@ const InfiniteList = ({
             )}
             {data.map(Row)}
             {status === PENDING && (
-                <CircularProgress
-                    className={classes.loader}
-                    size={40}
-                />
+                <div className={classes.pendingContainer}>
+                    <CircularProgress
+                        className={classes.loader}
+                        size={40}
+                    />
+                </div>
             )}
             <div ref={spacerRef} />
         </div>
