@@ -6,7 +6,6 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 import {
     PENDING,
-    FAILURE,
     SUCCESS,
 } from 'utils/requestStatuses'
 
@@ -20,6 +19,8 @@ describe('InfiniteList', () => {
             <InfiniteList
                 status={SUCCESS}
                 BeforeList={() => { return <div>Before</div> }}
+                renderFailureMessage={jest.fn()}
+                renderEmptyMessage={jest.fn()}
                 className="infinite-list"
                 onScroll={jest.fn()}
                 data={[
@@ -50,29 +51,6 @@ describe('InfiniteList', () => {
         ).toMatchSnapshot()
     })
 
-    test('no data', () => {
-        expect(
-            infiniteListElement
-                .setProps({
-                    data: [],
-                })
-                .text(),
-        )
-            .toBe('<BeforeList />It looks like there is no data in this table yet. ')
-    })
-
-    test('no data but the user can create', () => {
-        expect(
-            infiniteListElement
-                .setProps({
-                    data: [],
-                    canCreate: true,
-                })
-                .text(),
-        )
-            .toBe('<BeforeList />It looks like there is no data in this table yet. Why don\'t you create a new record by clicking the + button?')
-    })
-
     test('loading', () => {
         expect(
             infiniteListElement
@@ -86,16 +64,5 @@ describe('InfiniteList', () => {
                 className: 'makeStyles-loader-4',
                 size: 40,
             })
-    })
-
-    test('failure', () => {
-        expect(
-            infiniteListElement
-                .setProps({
-                    status: FAILURE,
-                })
-                .text(),
-        )
-            .toBe('<BeforeList />Ouups, we\'re sorry - it seems we can\'t find the data that should show here. Please contact your colleagues in IT if you need help!12')
     })
 })
