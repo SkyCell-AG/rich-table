@@ -76,8 +76,8 @@ const InfiniteList = ({
                         <div className={classes.noDataImage}>
                             <img
                                 className={classes.noDataImage}
-                                src="assets/images/robots/noDataImage.png"
-                                alt="noDataImage"
+                                src="assets/images/robots/dataEmpty.png"
+                                alt="dataEmpty"
                             />
                         </div>
                         <div className={classes.noDataContainer}>
