@@ -61,6 +61,18 @@ describe('InfiniteList', () => {
             .toBe('<BeforeList />It looks like there is no data in this table yet. ')
     })
 
+    test('no data but the user can create', () => {
+        expect(
+            infiniteListElement
+                .setProps({
+                    data: [],
+                    canCreate: true,
+                })
+                .text(),
+        )
+            .toBe('<BeforeList />It looks like there is no data in this table yet. Why don\'t you create a new record by clicking the + button?')
+    })
+
     test('loading', () => {
         expect(
             infiniteListElement
