@@ -4,6 +4,7 @@ exports[`InfinitListContainer snapshot on load Success 1`] = `
 <InfiniteList
   BeforeList={null}
   Row={[MockFunction]}
+  canCreate={false}
   className=""
   data={
     Array [

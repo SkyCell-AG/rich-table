@@ -17,6 +17,7 @@ const propTypes = {
     status: requestType.isRequired,
     onScroll: PropTypes.func.isRequired,
     className: PropTypes.string,
+    canCreate: PropTypes.bool,
     Row: PropTypes.func.isRequired,
     BeforeList: PropTypes.func,
 }
@@ -24,6 +25,7 @@ const propTypes = {
 const defaultProps = {
     data: [],
     className: '',
+    canCreate: false,
     BeforeList: null,
 }
 
@@ -33,6 +35,7 @@ const InfiniteList = ({
     onScroll,
     wrapperRef, // eslint-disable-line
     spacerRef, // eslint-disable-line
+    canCreate,
     className,
     BeforeList,
     Row,
@@ -48,16 +51,42 @@ const InfiniteList = ({
         >
             {BeforeList && <BeforeList data={data} />}
             {status === FAILURE && (
-                <div className={classes.noDataContainer}>
-                    <div className={classes.noData}>
-                        Something went wrong and the data could not be loaded.
+                <div className={classes.container}>
+                    <div className={classes.noDataWrapper}>
+                        <div className={classes.noDataImage}>
+                            <img
+                                className={classes.noDataImage}
+                                src="assets/images/robots/dataNotLoad.png"
+                                alt="dataNotLoad"
+                            />
+                        </div>
+                        <div className={classes.noDataContainer}>
+                            <div className={classes.noData}>
+                                Ouups, we&apos;re sorry - it seems we can&apos;t find the data that
+                                should show here.
+                                Please contact your colleagues in IT if you need help!
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
             {SUCCESS === status && data.length === 0 && (
-                <div className={classes.noDataContainer}>
-                    <div className={classes.noData}>
-                        There is no data in this table yet.
+                <div className={classes.container}>
+                    <div className={classes.noDataWrapper}>
+                        <div className={classes.noDataImage}>
+                            <img
+                                className={classes.noDataImage}
+                                src="assets/images/robots/noDataImage.png"
+                                alt="noDataImage"
+                            />
+                        </div>
+                        <div className={classes.noDataContainer}>
+                            <div className={classes.noData}>
+                                It looks like there is no data in this table yet.
+                                {' '}
+                                {canCreate ? <span>Why don&apos;t you create a new record by clicking the + button?</span> : ''}
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}

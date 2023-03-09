@@ -41,15 +41,33 @@ const useStyles = makeStyles(() => {
         pendingContainer: {
             marginTop: theme.spacing(6.875),
         },
+        container: {
+            height: '60%',
+            display: 'flex',
+        },
+        noDataWrapper: {
+            width: 600,
+            margin: '0 auto',
+            marginTop: '2vh',
+            overflow: 'hidden',
+            display: 'flex',
+            alignSelf: 'center',
+            justifyContent: 'space-evenly',
+        },
+        noDataImage: {
+            height: 200,
+        },
         noDataContainer: {
             display: 'flex',
             justifyContent: 'center',
-            marginTop: theme.spacing(3),
+            height: 200,
+            marginLeft: theme.spacing(3.75),
         },
         noData: {
             fontSize: theme.typography.body1.fontSize,
             color: theme.typography.body1.color,
             fontWeight: theme.typography.body1.fontWeight,
+            alignSelf: 'center',
         },
     }
 })

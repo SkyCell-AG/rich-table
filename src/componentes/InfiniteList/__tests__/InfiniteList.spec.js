@@ -58,7 +58,7 @@ describe('InfiniteList', () => {
                 })
                 .text(),
         )
-            .toBe('<BeforeList />There is no data in this table yet.')
+            .toBe('<BeforeList />It looks like there is no data in this table yet. ')
     })
 
     test('loading', () => {
@@ -84,6 +84,6 @@ describe('InfiniteList', () => {
                 })
                 .text(),
         )
-            .toBe('<BeforeList />Something went wrong and the data could not be loaded.12')
+            .toBe('<BeforeList />Ouups, we\'re sorry - it seems we can\'t find the data that should show here. Please contact your colleagues in IT if you need help!12')
     })
 })
