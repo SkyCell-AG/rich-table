@@ -14,8 +14,8 @@ import useStyles from './InfiniteList.style'
 
 const propTypes = {
     data: PropTypes.array, // eslint-disable-line
-    renderFailureMessage: PropTypes.any.isRequired, // eslint-disable-line
-    renderEmptyMessage: PropTypes.any.isRequired, // eslint-disable-line
+    renderFailureMessage: PropTypes.func.isRequired,
+    renderEmptyMessage: PropTypes.func.isRequired,
     status: requestType.isRequired,
     onScroll: PropTypes.func.isRequired,
     className: PropTypes.string,
