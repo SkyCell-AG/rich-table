@@ -1,7 +1,5 @@
 import React, {
     useCallback,
-    useEffect,
-    useState,
     useMemo,
     useRef,
 } from 'react'
@@ -22,51 +20,28 @@ export default {
 }
 
 const propTypes = {
-    selectedRows: PropTypes.arrayOf(PropTypes.number),
+    filter: PropTypes.object, // eslint-disable-line
+    onParamsChange: PropTypes.func, // eslint-disable-line
+    sort: PropTypes.object, // eslint-disable-line
+    visible: PropTypes.arrayOf(PropTypes.string), // eslint-disable-line
 }
 
 const defaultProps = {
-    selectedRows: [],
+    filter: undefined,
+    onParamsChange: undefined,
+    sort: undefined,
+    visible: undefined,
 }
 
 const Template = (props) => {
-    const {
-        selectedRows: selectedRowsFromProps,
-    } = props
-
-    const [
-        selectedRows,
-        setSelectedRows,
-    ] = useState()
-
-    const [
-        disabled,
-        setDisabled,
-    ] = useState(false)
-
-    useEffect(() => {
-        setSelectedRows(selectedRowsFromProps)
-    }, [selectedRowsFromProps])
-
     const richtableRef = useRef()
-
-    const localSetSelectedRows = useCallback((params) => {
-        setSelectedRows(params)
-    }, [])
 
     const load = useCallback(() => {
         return Promise.resolve({
             meta: {
-                matchedresults: 1000,
+                matchedresults: 0,
             },
-            data: (new Array(20).fill(0).map((val, index) => {
-                return {
-                    uniqField: index,
-                    field1: `field1: ${index}; tab: 0`,
-                    field2: `Field 2: ${index}`,
-                    field3: `Field 3: ${index}`,
-                }
-            })),
+            data: [],
         })
     }, [])
 
@@ -107,22 +82,15 @@ const Template = (props) => {
         ]
     }, [])
 
+    const {
+        filter,
+        onParamsChange,
+        sort,
+        visible,
+    } = props
+
     return (
         <DndProvider backend={HTML5Backend}>
-            <button
-                type="button"
-                onClick={() => {
-                    return setSelectedRows([5])
-                }}
-            >
-                change selected rows
-            </button>
-            <button
-                type="button"
-                onClick={() => { setDisabled(!disabled) }}
-            >
-                Disabled
-            </button>
             <RichTable
                 ref={richtableRef}
                 detailPanel={() => {
@@ -135,12 +103,12 @@ const Template = (props) => {
                 renderFailureMessage={() => {
                     return <div>Failure Message</div>
                 }}
+                filter={filter}
+                onParamsChange={onParamsChange}
+                sort={sort}
                 uniqField="uniqField"
+                visible={visible}
                 load={load}
-                onSelectRow={localSetSelectedRows}
-                selectedRows={selectedRows}
-                radioSelect
-                disabled={disabled}
             />
         </DndProvider>
     )
@@ -149,10 +117,4 @@ const Template = (props) => {
 Template.propTypes = propTypes
 Template.defaultProps = defaultProps
 
-export const Radio = Template.bind({})
-Radio.args = {
-    selectedRows: [
-        3,
-        5,
-    ],
-}
+export const Empty = Template.bind({})

@@ -197,6 +197,12 @@ const Template = (props) => {
                     return <div>DetailPanel</div>
                 }}
                 columns={columns}
+                renderEmptyMessage={() => {
+                    return <div>Empty Message</div>
+                }}
+                renderFailureMessage={() => {
+                    return <div>Failure Message</div>
+                }}
                 filter={filter}
                 onParamsChange={onParamsChange}
                 onSelectRow={setSelectedRows}
