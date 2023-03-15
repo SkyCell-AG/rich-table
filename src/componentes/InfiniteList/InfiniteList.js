@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
+import noop from 'lodash/noop'
 import CircularProgress from '@mui/material/CircularProgress'
 
 import {
@@ -14,8 +15,8 @@ import useStyles from './InfiniteList.style'
 
 const propTypes = {
     data: PropTypes.array, // eslint-disable-line
-    renderFailureMessage: PropTypes.func.isRequired,
-    renderEmptyMessage: PropTypes.func.isRequired,
+    renderFailureMessage: PropTypes.func,
+    renderEmptyMessage: PropTypes.func,
     status: requestType.isRequired,
     onScroll: PropTypes.func.isRequired,
     className: PropTypes.string,
@@ -27,6 +28,8 @@ const defaultProps = {
     data: [],
     className: '',
     BeforeList: null,
+    renderEmptyMessage: noop,
+    renderFailureMessage: noop,
 }
 
 const InfiniteList = ({
