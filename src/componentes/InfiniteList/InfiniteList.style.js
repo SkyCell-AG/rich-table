@@ -41,16 +41,6 @@ const useStyles = makeStyles(() => {
         pendingContainer: {
             marginTop: theme.spacing(6.875),
         },
-        noDataContainer: {
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: theme.spacing(3),
-        },
-        noData: {
-            fontSize: theme.typography.body1.fontSize,
-            color: theme.typography.body1.color,
-            fontWeight: theme.typography.body1.fontWeight,
-        },
     }
 })
 

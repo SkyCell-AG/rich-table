@@ -30,6 +30,8 @@ describe('InfinitListContainer', () => {
                 uniqField="id"
                 load={load}
                 onUpdateMatchedResults={jest.fn()}
+                renderFailureMessage={jest.fn()}
+                renderEmptyMessage={jest.fn()}
             />,
         )
 

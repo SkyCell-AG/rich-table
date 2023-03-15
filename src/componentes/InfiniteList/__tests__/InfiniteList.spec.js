@@ -6,7 +6,6 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 import {
     PENDING,
-    FAILURE,
     SUCCESS,
 } from 'utils/requestStatuses'
 
@@ -20,6 +19,8 @@ describe('InfiniteList', () => {
             <InfiniteList
                 status={SUCCESS}
                 BeforeList={() => { return <div>Before</div> }}
+                renderFailureMessage={jest.fn()}
+                renderEmptyMessage={jest.fn()}
                 className="infinite-list"
                 onScroll={jest.fn()}
                 data={[
@@ -50,17 +51,6 @@ describe('InfiniteList', () => {
         ).toMatchSnapshot()
     })
 
-    test('no data', () => {
-        expect(
-            infiniteListElement
-                .setProps({
-                    data: [],
-                })
-                .text(),
-        )
-            .toBe('<BeforeList />There is no data in this table yet.')
-    })
-
     test('loading', () => {
         expect(
             infiniteListElement
@@ -74,16 +64,5 @@ describe('InfiniteList', () => {
                 className: 'makeStyles-loader-4',
                 size: 40,
             })
-    })
-
-    test('failure', () => {
-        expect(
-            infiniteListElement
-                .setProps({
-                    status: FAILURE,
-                })
-                .text(),
-        )
-            .toBe('<BeforeList />Something went wrong and the data could not be loaded.12')
     })
 })

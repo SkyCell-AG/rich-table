@@ -62,6 +62,8 @@ exports[`InfinitListContainer snapshot on load Success 1`] = `
   loadNextPage={[Function]}
   onScroll={[Function]}
   onUpdateMatchedResults={[MockFunction]}
+  renderEmptyMessage={[MockFunction]}
+  renderFailureMessage={[MockFunction]}
   spacerRef={
     Object {
       "current": null,

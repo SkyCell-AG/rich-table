@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
+import noop from 'lodash/noop'
 import CircularProgress from '@mui/material/CircularProgress'
 
 import {
@@ -14,6 +15,8 @@ import useStyles from './InfiniteList.style'
 
 const propTypes = {
     data: PropTypes.array, // eslint-disable-line
+    renderFailureMessage: PropTypes.func,
+    renderEmptyMessage: PropTypes.func,
     status: requestType.isRequired,
     onScroll: PropTypes.func.isRequired,
     className: PropTypes.string,
@@ -25,6 +28,8 @@ const defaultProps = {
     data: [],
     className: '',
     BeforeList: null,
+    renderEmptyMessage: noop,
+    renderFailureMessage: noop,
 }
 
 const InfiniteList = ({
@@ -33,6 +38,8 @@ const InfiniteList = ({
     onScroll,
     wrapperRef, // eslint-disable-line
     spacerRef, // eslint-disable-line
+    renderFailureMessage,
+    renderEmptyMessage,
     className,
     BeforeList,
     Row,
@@ -47,20 +54,8 @@ const InfiniteList = ({
             data-testid="infinitelist"
         >
             {BeforeList && <BeforeList data={data} />}
-            {status === FAILURE && (
-                <div className={classes.noDataContainer}>
-                    <div className={classes.noData}>
-                        Something went wrong and the data could not be loaded.
-                    </div>
-                </div>
-            )}
-            {SUCCESS === status && data.length === 0 && (
-                <div className={classes.noDataContainer}>
-                    <div className={classes.noData}>
-                        There is no data in this table yet.
-                    </div>
-                </div>
-            )}
+            {status === FAILURE && renderFailureMessage()}
+            {(status === SUCCESS && data.length === 0) && renderEmptyMessage()}
             {data.map(Row)}
             {status === PENDING && (
                 <div className={classes.pendingContainer}>
