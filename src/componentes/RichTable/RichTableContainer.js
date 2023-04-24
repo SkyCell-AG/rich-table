@@ -3,6 +3,7 @@ import React, {
     useReducer,
     forwardRef,
     useEffect,
+    useState,
     useMemo,
     useRef,
 } from 'react'
@@ -23,6 +24,7 @@ import useSelectRowLogic from './hooks/useSelectRowLogic'
 import generateParams from './generateParams'
 
 import RichTable from './RichTable'
+import RichTableContext from './RichTable.context'
 
 const SET_MATCHED_RESULTS = 'SET_MATCHED_RESULTS'
 const RERENDER_INFINIT_LIST = 'RERENDER_INFINIT_LIST'
@@ -57,7 +59,7 @@ const propTypes = {
     selectedRows: PropTypes.arrayOf(PropTypes.string),
     onSelectRow: PropTypes.func,
     load: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     onParamsChange: PropTypes.func,
     selectedFilter: PropTypes.object, // eslint-disable-line
     filter: PropTypes.object, // eslint-disable-line
@@ -68,6 +70,7 @@ const propTypes = {
     })).isRequired,
     radioSelect: PropTypes.bool,
     disabled: PropTypes.bool,
+    showSelectAll: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -81,6 +84,8 @@ const defaultProps = {
     selectedRows: undefined,
     radioSelect: false,
     disabled: false,
+    showSelectAll: false,
+    name: '',
 }
 
 const RichTableContainer = forwardRef(({
@@ -97,6 +102,7 @@ const RichTableContainer = forwardRef(({
     uniqField,
     radioSelect,
     disabled,
+    showSelectAll,
     ...props
 }, ref) => {
     const [
@@ -110,6 +116,11 @@ const RichTableContainer = forwardRef(({
     })
 
     const infiniteListRef = useRef(null)
+
+    const [
+        dataTable,
+        setDataTable,
+    ] = useState()
 
     useEffect(() => {
         if (!ref) {
@@ -289,29 +300,36 @@ const RichTableContainer = forwardRef(({
         selectedRows,
         radioSelect,
         disabled,
+        dataTable,
+        showSelectAll,
     })
 
     return (
-        <RichTable
-            {...props}
-            ref={infiniteListRef}
-            load={loadWithParams}
-            name={name}
-            removeFilter={removeFilter}
-            infinitListKey={infinitListKey}
-            rerenderInfinitList={rerenderInfinitList}
-            removeSort={removeSort}
-            setMatchedResults={setMatchedResults}
-            matchedResults={matchedResults}
-            changeSequence={changeSequence}
-            visible={visible}
-            setVisible={setVisible}
-            allColumns={columns}
-            selectedRows={selectedRows}
-            columns={visibleAndSortedColumnsWithSelection}
-            uniqField={uniqField}
-            disabled={disabled}
-        />
+        <RichTableContext.Provider value={{
+            setDataTable,
+        }}
+        >
+            <RichTable
+                {...props}
+                ref={infiniteListRef}
+                load={loadWithParams}
+                name={name}
+                removeFilter={removeFilter}
+                infinitListKey={infinitListKey}
+                rerenderInfinitList={rerenderInfinitList}
+                removeSort={removeSort}
+                setMatchedResults={setMatchedResults}
+                matchedResults={matchedResults}
+                changeSequence={changeSequence}
+                visible={visible}
+                setVisible={setVisible}
+                allColumns={columns}
+                selectedRows={selectedRows}
+                columns={visibleAndSortedColumnsWithSelection}
+                uniqField={uniqField}
+                disabled={disabled}
+            />
+        </RichTableContext.Provider>
     )
 })
 

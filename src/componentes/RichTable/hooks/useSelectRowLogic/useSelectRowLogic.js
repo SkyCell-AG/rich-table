@@ -12,6 +12,8 @@ const useSelectRowLogic = ({
     selectedRows = [],
     radioSelect,
     disabled,
+    dataTable,
+    showSelectAll,
 }) => {
     const visibleAndSortedColumnsWithRadioSelection = useRadioSelectRow({
         columns,
@@ -27,6 +29,8 @@ const useSelectRowLogic = ({
         uniqField,
         selectedRows,
         disabled,
+        dataTable,
+        showSelectAll,
     })
 
     return useMemo(() => {

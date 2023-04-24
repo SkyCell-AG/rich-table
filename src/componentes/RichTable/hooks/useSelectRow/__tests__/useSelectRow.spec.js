@@ -84,7 +84,7 @@ describe('useSelectRow', () => {
             checked: false,
             disabled: true,
             onChange: expect.anything(),
-            selectedRow: undefined,
+            selectedRow: false,
         })
     })
 })
