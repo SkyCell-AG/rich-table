@@ -23,6 +23,7 @@ import {
 } from './store/actions'
 import reducer from './store/reducer'
 import InfiniteList from './InfiniteList'
+import useRichTableContext from '../RichTable/hooks/useRichTableContext'
 
 const propTypes = {
     Row: PropTypes.func.isRequired,
@@ -58,6 +59,10 @@ const InfiniteListContainer = forwardRef((props, ref) => {
         matchedResults: 0,
         page: 0,
     })
+
+    const {
+        setDataTable,
+    } = useRichTableContext()
 
     useEffect(() => {
         ref.current = { // eslint-disable-line
@@ -172,6 +177,13 @@ const InfiniteListContainer = forwardRef((props, ref) => {
     }, [
         onUpdateMatchedResults,
         matchedResults,
+    ])
+
+    useEffect(() => {
+        setDataTable(data)
+    }, [
+        data,
+        setDataTable,
     ])
 
     useLayoutEffect(() => {

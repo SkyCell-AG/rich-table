@@ -1,139 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RichTableContainer snapshot 1`] = `
-<ForwardRef
-  allColumns={
-    Array [
-      Object {
-        "filterField": "someField",
-        "filterType": "specialFilter",
-        "headerProps": Object {
-          "children": "Heading 1",
-        },
-        "id": "1",
-        "label": "Heading 1",
-        "props": Object {
-          "prop1": "prop1-1",
-        },
-      },
-      Object {
-        "id": "2",
-        "label": "Heading 2",
-        "mapHeaderProps": [Function],
-        "props": Object {
-          "prop1": "prop1-2",
-        },
-      },
-      Object {
-        "id": "3",
-        "label": "",
-        "props": Object {
-          "prop1": "prop1-3",
-        },
-      },
-      Object {
-        "id": "4",
-        "label": "",
-        "props": Object {
-          "prop1": "prop1-4",
-        },
-      },
-    ]
+<ContextProvider
+  value={
+    Object {
+      "setDataTable": [Function],
+    }
   }
-  changeSequence={[MockFunction]}
-  className=""
-  classNames={Object {}}
-  columns={
-    Array [
-      Object {
-        "filterField": "someField",
-        "filterType": "specialFilter",
-        "headerProps": Object {
-          "children": "Heading 1",
+>
+  <ForwardRef
+    allColumns={
+      Array [
+        Object {
+          "filterField": "someField",
+          "filterType": "specialFilter",
+          "headerProps": Object {
+            "children": "Heading 1",
+          },
+          "id": "1",
+          "label": "Heading 1",
+          "props": Object {
+            "prop1": "prop1-1",
+          },
         },
-        "id": "1",
-        "label": "Heading 1",
-        "props": Object {
-          "appliedFilters": Object {
-            "includeFilters": Object {
-              "1": "val",
-            },
+        Object {
+          "id": "2",
+          "label": "Heading 2",
+          "mapHeaderProps": [Function],
+          "props": Object {
+            "prop1": "prop1-2",
           },
-          "filter": undefined,
-          "predefinedFilter": Object {
-            "1": Object {
-              "some": "val",
-            },
-          },
-          "setFilter": [Function],
-          "sort": [Function],
-          "sortDirection": "asc",
         },
-      },
-      Object {
-        "id": "2",
-        "label": "Heading 2",
-        "mapHeaderProps": [Function],
-        "props": Object {
-          "appliedFilters": Object {
-            "includeFilters": Object {
-              "1": "val",
-            },
+        Object {
+          "id": "3",
+          "label": "",
+          "props": Object {
+            "prop1": "prop1-3",
           },
-          "filter": undefined,
-          "predefinedFilter": Object {
-            "1": Object {
-              "some": "val",
-            },
-          },
-          "setFilter": [Function],
-          "sort": [Function],
-          "sortDirection": undefined,
         },
-      },
-      Object {
-        "id": "4",
-        "label": "",
-        "props": Object {
-          "appliedFilters": Object {
-            "includeFilters": Object {
-              "1": "val",
-            },
+        Object {
+          "id": "4",
+          "label": "",
+          "props": Object {
+            "prop1": "prop1-4",
           },
-          "filter": undefined,
-          "predefinedFilter": Object {
-            "1": Object {
-              "some": "val",
-            },
-          },
-          "setFilter": [Function],
-          "sort": [Function],
-          "sortDirection": undefined,
         },
-      },
-    ]
-  }
-  controlPanel={null}
-  disabled={false}
-  editing={false}
-  infinitListKey="some-random-key"
-  load={[Function]}
-  matchedResults={0}
-  name="some-name"
-  removeFilter={[MockFunction]}
-  removeSort={[MockFunction]}
-  renderControlPanel={null}
-  rerenderInfinitList={[Function]}
-  selectedRowId=""
-  setMatchedResults={[Function]}
-  setVisible={[MockFunction]}
-  uniqField="id"
-  visible={
-    Array [
-      "1",
-      "2",
-      "4",
-    ]
-  }
-/>
+      ]
+    }
+    changeSequence={[MockFunction]}
+    className=""
+    classNames={Object {}}
+    columns={
+      Array [
+        Object {
+          "filterField": "someField",
+          "filterType": "specialFilter",
+          "headerProps": Object {
+            "children": "Heading 1",
+          },
+          "id": "1",
+          "label": "Heading 1",
+          "props": Object {
+            "appliedFilters": Object {
+              "includeFilters": Object {
+                "1": "val",
+              },
+            },
+            "filter": undefined,
+            "predefinedFilter": Object {
+              "1": Object {
+                "some": "val",
+              },
+            },
+            "setFilter": [Function],
+            "sort": [Function],
+            "sortDirection": "asc",
+          },
+        },
+        Object {
+          "id": "2",
+          "label": "Heading 2",
+          "mapHeaderProps": [Function],
+          "props": Object {
+            "appliedFilters": Object {
+              "includeFilters": Object {
+                "1": "val",
+              },
+            },
+            "filter": undefined,
+            "predefinedFilter": Object {
+              "1": Object {
+                "some": "val",
+              },
+            },
+            "setFilter": [Function],
+            "sort": [Function],
+            "sortDirection": undefined,
+          },
+        },
+        Object {
+          "id": "4",
+          "label": "",
+          "props": Object {
+            "appliedFilters": Object {
+              "includeFilters": Object {
+                "1": "val",
+              },
+            },
+            "filter": undefined,
+            "predefinedFilter": Object {
+              "1": Object {
+                "some": "val",
+              },
+            },
+            "setFilter": [Function],
+            "sort": [Function],
+            "sortDirection": undefined,
+          },
+        },
+      ]
+    }
+    controlPanel={null}
+    disabled={false}
+    editing={false}
+    infinitListKey="some-random-key"
+    load={[Function]}
+    matchedResults={0}
+    name="some-name"
+    removeFilter={[MockFunction]}
+    removeSort={[MockFunction]}
+    renderControlPanel={null}
+    rerenderInfinitList={[Function]}
+    selectedRowId=""
+    setMatchedResults={[Function]}
+    setVisible={[MockFunction]}
+    uniqField="id"
+    visible={
+      Array [
+        "1",
+        "2",
+        "4",
+      ]
+    }
+  />
+</ContextProvider>
 `;
