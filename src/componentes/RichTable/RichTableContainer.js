@@ -59,7 +59,7 @@ const propTypes = {
     selectedRows: PropTypes.arrayOf(PropTypes.string),
     onSelectRow: PropTypes.func,
     load: PropTypes.func.isRequired,
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
     onParamsChange: PropTypes.func,
     selectedFilter: PropTypes.object, // eslint-disable-line
     filter: PropTypes.object, // eslint-disable-line
@@ -85,7 +85,6 @@ const defaultProps = {
     radioSelect: false,
     disabled: false,
     showSelectAll: false,
-    name: '',
 }
 
 const RichTableContainer = forwardRef(({
