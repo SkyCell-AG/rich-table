@@ -95,6 +95,7 @@ const useSelectRow = ({
                         onChange: selectAllRowsHandler,
                         checked: allSelected,
                         indeterminate: allSelected ? false : selectedRows.length > 0,
+                        disabled,
                     }
                 },
                 Cell: SelectRowCell,
