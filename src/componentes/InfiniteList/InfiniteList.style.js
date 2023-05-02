@@ -30,6 +30,7 @@ const useStyles = makeStyles(() => {
             top: '80%',
             marginLeft: '-20px',
             marginTop: '-20px',
+            zIndex: 2,
         },
         failureMessage: {
             zIndex: 2,

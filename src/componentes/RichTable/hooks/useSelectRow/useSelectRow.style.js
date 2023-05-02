@@ -4,7 +4,7 @@ import {
 
 const useStyles = makeStyles(() => {
     return {
-        checkAll: {
+        hiddenCheckAll: {
             visibility: 'hidden',
         },
     }

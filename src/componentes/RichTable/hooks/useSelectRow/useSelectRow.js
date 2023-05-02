@@ -1,5 +1,7 @@
 import {
     useMemo,
+    useState,
+    useEffect,
     useCallback,
 } from 'react'
 import get from 'lodash/get'
@@ -8,53 +10,59 @@ import SelectRowCell from 'componentes/SelectRowCell'
 
 import useStyles from './useSelectRow.style'
 
-import {
-    ALL_ROWS_SELECTED,
-} from './utils'
-
 const useSelectRow = ({
     columns,
     onSelectRow,
     uniqField,
     selectedRows = [],
     disabled = false,
+    dataTable,
+    showSelectAll,
 }) => {
     const classes = useStyles()
-    const allSelected = useMemo(() => {
-        return selectedRows === ALL_ROWS_SELECTED
-    }, [selectedRows])
-    const selectedRowsHash = useMemo(() => {
-        if (allSelected) {
-            return {}
-        }
 
-        return selectedRows.reduce((acc, id) => {
-            return {
-                ...acc,
-                [id]: true,
-            }
-        }, {})
-    }, [
+    const [
         allSelected,
-        selectedRows,
+        setAllSelected,
+    ] = useState(false)
+
+    useEffect(() => {
+        if (!showSelectAll) {
+            return
+        }
+        if (dataTable?.length > 0 && (selectedRows.length === dataTable?.length)) {
+            setAllSelected(true)
+        }
+    }, [
+        dataTable?.length,
+        selectedRows.length,
+        showSelectAll,
     ])
 
     const selectAllRowsHandler = useCallback(() => {
         if (allSelected) {
+            setAllSelected(false)
             onSelectRow([])
 
             return
         }
 
-        onSelectRow(ALL_ROWS_SELECTED)
+        setAllSelected(true)
+        onSelectRow(dataTable?.map((item) => { return item[uniqField] }))
     }, [
-        allSelected,
+        dataTable,
         onSelectRow,
+        allSelected,
+        uniqField,
     ])
 
     const selectRowHandler = useCallback((id) => {
         return () => {
-            if (selectedRowsHash[id]) {
+            if (selectedRows.includes(id)) {
+                if (allSelected) {
+                    setAllSelected(false)
+                }
+
                 onSelectRow(selectedRows.filter((oldId) => { return oldId !== id }))
 
                 return
@@ -67,11 +75,11 @@ const useSelectRow = ({
         }
     }, [
         onSelectRow,
+        allSelected,
         selectedRows,
-        selectedRowsHash,
     ])
 
-    const columsWithSelect = useMemo(() => {
+    const columnsWithSelect = useMemo(() => {
         if (!onSelectRow) {
             return columns
         }
@@ -80,19 +88,20 @@ const useSelectRow = ({
             {
                 id: 'Select',
                 Header: SelectRowCell,
-                className: classes.checkAll,
+                className: !showSelectAll ? classes.hiddenCheckAll : undefined,
                 width: '60px',
                 mapHeaderProps: () => {
                     return {
                         onChange: selectAllRowsHandler,
                         checked: allSelected,
                         indeterminate: allSelected ? false : selectedRows.length > 0,
+                        disabled,
                     }
                 },
                 Cell: SelectRowCell,
                 mapCellProps: (rowProps) => {
                     const id = get(rowProps, uniqField)
-                    const selectedRow = allSelected ? false : selectedRowsHash[id]
+                    const selectedRow = allSelected ? false : selectedRows.includes(id)
 
                     return {
                         onChange: selectRowHandler(id),
@@ -105,19 +114,19 @@ const useSelectRow = ({
             ...columns,
         ]
     }, [
-        columns,
-        uniqField,
         onSelectRow,
-        allSelected,
-        selectedRowsHash,
-        selectRowHandler,
-        selectedRows.length,
+        showSelectAll,
+        classes.hiddenCheckAll,
+        columns,
         selectAllRowsHandler,
-        classes.checkAll,
+        allSelected,
+        selectedRows,
+        uniqField,
+        selectRowHandler,
         disabled,
     ])
 
-    return columsWithSelect
+    return columnsWithSelect
 }
 
 export default useSelectRow
