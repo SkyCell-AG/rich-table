@@ -102,6 +102,7 @@ const RichTable = forwardRef((props, ref) => {
         editing,
         selectedRowId,
         name,
+        configName,
         detailPanel,
         rerenderInfinitList,
         openRowId,
@@ -278,6 +279,7 @@ const RichTable = forwardRef((props, ref) => {
                             >
                                 <BaseRow
                                     name={name}
+                                    configName={configName}
                                     selectedRows={selectedRows}
                                     selectedRowId={selectedRowId}
                                     uniqFieldValue={uniqFieldValue}

@@ -15,6 +15,7 @@ import useStyles from './BaseRow.style'
 
 const propTypes = {
     name: PropTypes.string.isRequired,
+    configName: PropTypes.string,
     selectedRows: PropTypes.arrayOf(
         PropTypes.oneOfType([
             PropTypes.string,
@@ -62,11 +63,13 @@ const defaultProps = {
     rowProps: {},
     openRow: false,
     disabled: false,
+    configName: undefined,
 }
 
 const BaseRow = (props) => {
     const {
         name,
+        configName,
         selectedRows,
         selectedRowId,
         uniqFieldValue,
@@ -145,6 +148,7 @@ const BaseRow = (props) => {
                                 ? (
                                     <Component
                                         name={name}
+                                        configName={configName}
                                         value={value}
                                         rowProps={rowProps}
                                         mapCellProps={mapCellProps}
