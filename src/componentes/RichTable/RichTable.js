@@ -20,6 +20,7 @@ import useStyles from './RichTable.style'
 const propTypes = {
     uniqField: PropTypes.string,
     name: PropTypes.string.isRequired,
+    configName: PropTypes.string,
     load: PropTypes.func.isRequired,
     visible: PropTypes.arrayOf(PropTypes.string).isRequired,
     setVisible: PropTypes.func.isRequired,
@@ -76,6 +77,7 @@ const defaultProps = {
     selectedRows: undefined,
     uniqField: 'id',
     controlPanel: null,
+    configName: undefined,
     renderControlPanel: null,
     classNames: {},
     editing: false,
