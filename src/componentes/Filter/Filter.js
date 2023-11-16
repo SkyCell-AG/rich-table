@@ -92,7 +92,7 @@ const Filter = (props) => {
                 value = '',
             }) => {
                 return (
-                    value.toLowerCase().includes(searchPhrase.toLowerCase())
+                    String(value).toLowerCase().includes(searchPhrase.toLowerCase())
                     || label.toLowerCase().includes(searchPhrase.toLowerCase())
                 )
             })
