@@ -8,7 +8,6 @@ import React, {
     useMemo,
 } from 'react'
 import noop from 'lodash/noop'
-import get from 'lodash/get'
 import PropTypes from 'prop-types'
 
 import * as statuses from 'utils/requestStatuses'
@@ -29,18 +28,15 @@ const propTypes = {
     Row: PropTypes.func.isRequired,
     uniqField: PropTypes.string,
     load: PropTypes.func.isRequired,
-    onUpdateMatchedResults: PropTypes.func,
 }
 
 const defaultProps = {
-    onUpdateMatchedResults: noop,
     uniqField: 'id',
 }
 
 const InfiniteListContainer = forwardRef((props, ref) => {
     const {
         load,
-        onUpdateMatchedResults,
         uniqField,
         Row,
     } = props
@@ -103,7 +99,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
 
         request
             .then((response) => {
-                if (!get(response, 'data') || (get(response, 'meta.matchedresults') === undefined && response?.hasNextPage === undefined)) {
+                if (!response?.data) {
                     throw new Error('Not valid response')
                 }
 
@@ -173,13 +169,6 @@ const InfiniteListContainer = forwardRef((props, ref) => {
 
         loadNewPage([], 1)
     }, [loadNewPage])
-
-    useEffect(() => {
-        onUpdateMatchedResults(matchedResults)
-    }, [
-        onUpdateMatchedResults,
-        matchedResults,
-    ])
 
     useEffect(() => {
         setDataTable(data)
