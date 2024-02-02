@@ -49,6 +49,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
         {
             data,
             matchedResults,
+            hasNextPage,
             status,
             page,
         },
@@ -83,10 +84,11 @@ const InfiniteListContainer = forwardRef((props, ref) => {
     const cancelRequest = useRef(null)
 
     const hasMore = useMemo(() => {
-        return data.length < matchedResults
+        return matchedResults ? data.length < matchedResults : hasNextPage
     }, [
         data.length,
         matchedResults,
+        hasNextPage,
     ])
 
     const loadNewPage = useCallback((oldVal, newPage) => {
@@ -101,7 +103,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
 
         request
             .then((response) => {
-                if (!get(response, 'data') || get(response, 'meta.matchedresults') === undefined) {
+                if (!get(response, 'data') || (get(response, 'meta.matchedresults') === undefined && response?.hasNextPage === undefined)) {
                     throw new Error('Not valid response')
                 }
 
@@ -109,15 +111,15 @@ const InfiniteListContainer = forwardRef((props, ref) => {
             })
             .then(({
                 data: newPageData,
-                meta: {
-                    matchedresults,
-                },
+                meta,
+                hasNextPage: isNextPage,
             }) => {
                 cancelRequest.current = null
                 dispatch(loadDataSuccess({
                     meta: {
                         page: newPage,
-                        matchedResults: matchedresults,
+                        matchedResults: meta?.matchedresults,
+                        hasNextPage: isNextPage,
                     },
                     data: [
                         ...oldVal,
