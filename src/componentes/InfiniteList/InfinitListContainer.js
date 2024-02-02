@@ -8,7 +8,6 @@ import React, {
     useMemo,
 } from 'react'
 import noop from 'lodash/noop'
-import get from 'lodash/get'
 import PropTypes from 'prop-types'
 
 import * as statuses from 'utils/requestStatuses'
@@ -29,18 +28,15 @@ const propTypes = {
     Row: PropTypes.func.isRequired,
     uniqField: PropTypes.string,
     load: PropTypes.func.isRequired,
-    onUpdateMatchedResults: PropTypes.func,
 }
 
 const defaultProps = {
-    onUpdateMatchedResults: noop,
     uniqField: 'id',
 }
 
 const InfiniteListContainer = forwardRef((props, ref) => {
     const {
         load,
-        onUpdateMatchedResults,
         uniqField,
         Row,
     } = props
@@ -49,6 +45,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
         {
             data,
             matchedResults,
+            hasNextPage,
             status,
             page,
         },
@@ -83,10 +80,11 @@ const InfiniteListContainer = forwardRef((props, ref) => {
     const cancelRequest = useRef(null)
 
     const hasMore = useMemo(() => {
-        return data.length < matchedResults
+        return matchedResults ? data.length < matchedResults : hasNextPage
     }, [
         data.length,
         matchedResults,
+        hasNextPage,
     ])
 
     const loadNewPage = useCallback((oldVal, newPage) => {
@@ -101,7 +99,7 @@ const InfiniteListContainer = forwardRef((props, ref) => {
 
         request
             .then((response) => {
-                if (!get(response, 'data') || get(response, 'meta.matchedresults') === undefined) {
+                if (!response?.data) {
                     throw new Error('Not valid response')
                 }
 
@@ -109,15 +107,15 @@ const InfiniteListContainer = forwardRef((props, ref) => {
             })
             .then(({
                 data: newPageData,
-                meta: {
-                    matchedresults,
-                },
+                meta,
+                hasNextPage: isNextPage,
             }) => {
                 cancelRequest.current = null
                 dispatch(loadDataSuccess({
                     meta: {
                         page: newPage,
-                        matchedResults: matchedresults,
+                        matchedResults: meta?.matchedresults,
+                        hasNextPage: isNextPage,
                     },
                     data: [
                         ...oldVal,
@@ -171,13 +169,6 @@ const InfiniteListContainer = forwardRef((props, ref) => {
 
         loadNewPage([], 1)
     }, [loadNewPage])
-
-    useEffect(() => {
-        onUpdateMatchedResults(matchedResults)
-    }, [
-        onUpdateMatchedResults,
-        matchedResults,
-    ])
 
     useEffect(() => {
         setDataTable(data)

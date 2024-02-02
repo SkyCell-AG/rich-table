@@ -42,7 +42,6 @@ exports[`RichTable snapshot 1`] = `
       key="infinitListKey"
       load={[MockFunction]}
       name="someName"
-      onUpdateMatchedResults={[MockFunction]}
       removeFilter={[MockFunction]}
       removeSort={[MockFunction]}
       renderControlPanel={null}

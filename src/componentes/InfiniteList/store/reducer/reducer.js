@@ -30,7 +30,9 @@ const inifiniteListReducer = createReducer({
     [LOAD_DATA.success]: (state,
         {
             payload, meta: {
-                page, matchedResults,
+                page,
+                matchedResults,
+                hasNextPage,
             },
         }) => {
         return {
@@ -39,6 +41,7 @@ const inifiniteListReducer = createReducer({
             data: payload,
             page,
             matchedResults,
+            hasNextPage,
         }
     },
     [ADD_DATA_ENTRY]: (state,

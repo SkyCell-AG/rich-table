@@ -327,23 +327,6 @@ describe('RichTableContainer', () => {
         })
     })
 
-    test('setMatchedResults', () => {
-        const {
-            setMatchedResults,
-            matchedResults,
-        } = richTableContainerElement.find(RichTable).props()
-
-        expect(matchedResults).toBe(0)
-
-        setMatchedResults(24)
-
-        const {
-            matchedResults: updatedMatchedResults,
-        } = richTableContainerElement.find(RichTable).props()
-
-        expect(updatedMatchedResults).toBe(24)
-    })
-
     test('sort', () => {
         const [
             _,

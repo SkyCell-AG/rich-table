@@ -26,11 +26,9 @@ import generateParams from './generateParams'
 import RichTable from './RichTable'
 import RichTableContext from './RichTable.context'
 
-const SET_MATCHED_RESULTS = 'SET_MATCHED_RESULTS'
 const RERENDER_INFINIT_LIST = 'RERENDER_INFINIT_LIST'
 
 const initState = {
-    matchedResults: 0,
     infinitListKey: uuid(),
 }
 
@@ -39,16 +37,6 @@ const reducer = createReducer({
         return {
             ...state,
             infinitListKey: uuid(),
-        }
-    },
-    [SET_MATCHED_RESULTS]: (state, {
-        meta: {
-            matchedResults,
-        },
-    }) => {
-        return {
-            ...state,
-            matchedResults,
         }
     },
 })
@@ -108,7 +96,6 @@ const RichTableContainer = forwardRef(({
 }, ref) => {
     const [
         {
-            matchedResults,
             infinitListKey,
         },
         dispatch,
@@ -237,15 +224,6 @@ const RichTableContainer = forwardRef(({
         typeMapping,
     ])
 
-    const setMatchedResults = useCallback((newMatchedResults) => {
-        dispatch({
-            type: SET_MATCHED_RESULTS,
-            meta: {
-                matchedResults: newMatchedResults,
-            },
-        })
-    }, [dispatch])
-
     const rerenderInfinitList = useCallback(() => {
         dispatch({
             type: RERENDER_INFINIT_LIST,
@@ -319,8 +297,6 @@ const RichTableContainer = forwardRef(({
                 infinitListKey={infinitListKey}
                 rerenderInfinitList={rerenderInfinitList}
                 removeSort={removeSort}
-                setMatchedResults={setMatchedResults}
-                matchedResults={matchedResults}
                 changeSequence={changeSequence}
                 visible={visible}
                 setVisible={setVisible}

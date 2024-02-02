@@ -26,8 +26,6 @@ const propTypes = {
     setVisible: PropTypes.func.isRequired,
     onRowClick: PropTypes.func,
     changeSequence: PropTypes.func.isRequired,
-    setMatchedResults: PropTypes.func.isRequired,
-    matchedResults: PropTypes.number,
     removeFilter: PropTypes.func.isRequired,
     removeSort: PropTypes.func.isRequired,
     rerenderInfinitList: PropTypes.func.isRequired,
@@ -71,7 +69,6 @@ const propTypes = {
 }
 
 const defaultProps = {
-    matchedResults: undefined,
     className: '',
     onRowClick: undefined,
     selectedRows: undefined,
@@ -92,7 +89,6 @@ const RichTable = forwardRef((props, ref) => {
     const {
         columns,
         className: wrapperClassName,
-        setMatchedResults,
         onRowClick,
         selectedRows,
         infinitListKey,
@@ -195,7 +191,6 @@ const RichTable = forwardRef((props, ref) => {
                     load={load}
                     ref={ref}
                     key={infinitListKey}
-                    onUpdateMatchedResults={setMatchedResults}
                     BeforeList={({
                         data,
                     }) => {
