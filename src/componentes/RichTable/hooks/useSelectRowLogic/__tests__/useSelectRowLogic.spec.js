@@ -1,6 +1,6 @@
 import {
     renderHook,
-} from '@testing-library/react-hooks'
+} from '@testing-library/react'
 
 import useSelectRow from 'componentes/RichTable/hooks/useSelectRow'
 import useRadioSelectRow from 'componentes/RichTable/hooks/useRadioSelectRow'
