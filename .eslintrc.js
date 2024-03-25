@@ -4,14 +4,15 @@ module.exports = {
         es6: true,
         jest: true,
     },
-    extends: ['airbnb'],
-    parser: 'babel-eslint',
+    extends: ['plugin:import/recommended', 'airbnb'],
+    parser: '@babel/eslint-parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
         },
         ecmaVersion: 2018,
         sourceType: 'module',
+        requireConfigFile: false
     },
     plugins: [
         'react',
@@ -38,6 +39,7 @@ module.exports = {
             },
         },
     },
+    ignorePatterns: ['src/stories/*.js', 'src/stories/**/*.js'],
     rules: {
         'import/no-extraneous-dependencies': [
             "error",

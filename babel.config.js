@@ -11,6 +11,7 @@ module.exports = function (api) {
         "root": ["./src"],
       },
     ],
+    ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
   ];
 
   return {

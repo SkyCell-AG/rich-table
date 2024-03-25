@@ -225,11 +225,11 @@ const Template = (props) => {
 Template.propTypes = propTypes
 Template.defaultProps = defaultProps
 
-export const Primary = Template.bind({})
-Primary.args = {
-    selectedRows: [
+export const Primary = {
+    render: () => <Template  selectedRows={[
         0,
         3,
         5,
-    ],
-}
+    ]} />,
+};
+

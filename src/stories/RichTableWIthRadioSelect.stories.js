@@ -142,11 +142,9 @@ const Template = (props) => {
 
 Template.propTypes = propTypes
 Template.defaultProps = defaultProps
-
-export const Radio = Template.bind({})
-Radio.args = {
-    selectedRows: [
+export const PrimaryRadio = {
+    render: () => <Template  selectedRows={[
         3,
         5,
-    ],
-}
+    ]} />,
+};
